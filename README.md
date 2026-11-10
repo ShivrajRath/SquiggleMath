@@ -6,13 +6,10 @@ worksheet generator. No build step, no backend, no dependencies to install.
 
 ## What is inside
 
-- **Printables Library** grouped by level, with 120 worksheets for every
-  age group (360 total):
-  - Pre-K (ages 3–4): tracing, counting, shapes, size comparison, mixed practice
-  - Kindergarten (ages 5–6): addition/subtraction to 10, number bonds, tally marks
-  - 1st Grade (ages 6–7): facts to 20, missing numbers, word problems
-- **Worksheet Studio** with level, problem count (5/10/15/20), theme
-  (Dinos, Space, Monsters, Ocean), and an optional answer key.
+- **Printables Library** grouped by level, with 180 worksheets for every
+  age group (540 total), across 30 themes in the studio.
+- **Worksheet Studio** on its own page, with 40+ activity types, 30 themes,
+  problem counts (5/10/15/20), and an optional answer key.
 - **Standalone print pages** for every library sheet and generated worksheet:
   each opens in a new tab at full A4 size, with a print button and optional
   answer key.
@@ -25,13 +22,17 @@ worksheet generator. No build step, no backend, no dependencies to install.
 
 ```text
 .
-├── index.html     # Home page, library, generator
-├── worksheet.html # Full-size print page for one worksheet
-├── styles.css     # Design system, responsive layout, worksheet + print styles
-├── worksheet.css  # Print-page chrome only
-├── engine.js      # Shared worksheet engine and 360-recipe catalogue
-├── script.js      # Home page: library filters, generator, print-page links
-├── worksheet.js   # Print page rendering and print handling
+├── index.html       # Landing page with printables library
+├── worksheets.html  # Full browsable library
+├── generator.html   # Worksheet studio
+├── worksheet.html   # Standalone print page
+├── engine.js        # Shared worksheet engine
+├── script.js        # Library interactions
+├── generator.js     # Studio interactions
+├── worksheet.js     # Print page logic
+├── styles.css       # Design system + worksheet styles
+├── generator.css    # Studio styles
+├── worksheet.css    # Print page chrome
 └── README.md
 ```
 

@@ -1985,6 +1985,7 @@ window.SquiggleMath = {
   THEMES,
   ACTIVITY_INFO,
   LEVEL_PLAN,
+  CATALOG,
   CATALOG_PLAN,
   ACTIVITY_GROUPS,
   catalogFor,

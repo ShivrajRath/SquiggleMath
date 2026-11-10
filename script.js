@@ -142,15 +142,24 @@ function filteredSheets(category) {
 }
 
 function renderLibraryLevel(category) {
-  const current = libraryState[category];
   const all = catalogFor(category);
-  const sheets = filteredSheets(category);
   const grid = $(`.printables-grid[data-category="${category}"]`);
   const tools = $(`.library-tools[data-tools="${category}"]`);
   const moreWrap = $(`.library-more[data-more-wrap="${category}"]`);
   const countEl = $(`[data-count="${category}"]`);
 
-  if (!grid || !tools || !moreWrap) return;
+  if (!grid) return;
+
+  // Landing page: show only a few cards, no filters.
+  if (!tools) {
+    const limit = Number(grid.dataset.limit) || 4;
+    grid.innerHTML = all.slice(0, limit).map(sheetCardMarkup).join('');
+    if (countEl) countEl.textContent = `· ${all.length} worksheets`;
+    return;
+  }
+
+  const current = libraryState[category];
+  const sheets = filteredSheets(category);
 
   grid.innerHTML = sheets.slice(0, current.visible).map(sheetCardMarkup).join('');
 
