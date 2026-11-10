@@ -301,7 +301,7 @@ function updateUrl() {
     url.searchParams.set('level', state.difficulty);
     url.searchParams.set('activity', state.activity);
     url.searchParams.set('theme', state.theme);
-    url.searchParams.set('problems', String(state.problems));
+    url.searchParams.set('problems', String((state.lastConfig && state.lastConfig.problems) || state.problems));
     url.searchParams.set('seed', String(state.seed));
     if (state.includeKey) url.searchParams.set('key', '1');
     else url.searchParams.delete('key');

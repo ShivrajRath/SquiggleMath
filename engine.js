@@ -130,6 +130,26 @@ const THEMES = {
   rainforest: { name:'Rainforest', emoji:'🦜', styleName:'Rainforest', accent:'#2f8f5b', soft:'#e3f8ea', deco:['🐸','🌿','🦋'], characters:['Rio','Leaf','Pip'], who:'rainforest explorer', items:['leaves','berries','vines'], hint:'Rainforest number fun.' },
   firefighter: { name:'Firefighter', emoji:'🚒', styleName:'Firefighter', accent:'#c9452f', soft:'#fde9e5', deco:['🔥','🧯','💨'], characters:['Chief Ember','Sparky','Hose'], who:'firefighter', items:['hoses','helmets','water drops'], hint:'Fire up your maths.' },
   ballerina: { name:'Ballerina', emoji:'🩰', styleName:'Ballerina', accent:'#d66fa8', soft:'#fdeaf4', deco:['🌷','🎀','🩰'], characters:['Lily','Tutu','Rose'], who:'ballerina', items:['ribbons','flowers','bows'], hint:'Graceful maths moves.' },
+  dragons: { name:'Dragons', emoji:'🐉', styleName:'Dragon', accent:'#b53b2f', soft:'#fde9e6', deco:['🔥','🪨','🥚'], characters:['Ember','Draco','Spark'], who:'dragon rider', items:['fire gems','dragon eggs','scales'], hint:'Roar into dragon maths.' },
+  aliens: { name:'Aliens', emoji:'👽', styleName:'Alien', accent:'#4fa84f', soft:'#eaf8ea', deco:['🛸','🌟','👽'], characters:['Zorp','Blib','Neb'], who:'alien', items:['moon rocks','star dust','space gems'], hint:'Out-of-this-world maths.' },
+  mermaids: { name:'Mermaids', emoji:'🧜‍♀️', styleName:'Mermaid', accent:'#2fa8a0', soft:'#e0f8f6', deco:['🐚','🌊','✨'], characters:['Coral','Pearl','Marina'], who:'mermaid', items:['shells','pearls','sea stars'], hint:'Splashy mermaid maths.' },
+  ninjas: { name:'Ninjas', emoji:'🥷', styleName:'Ninja', accent:'#2f2f3a', soft:'#ececf0', deco:['⚔️','🌑','🥷'], characters:['Shadow','Blade','Kage'], who:'ninja', items:['shuriken','scrolls','lanterns'], hint:'Stealthy ninja maths.' },
+  knights: { name:'Knights', emoji:'🛡️', styleName:'Knight', accent:'#6b6b8a', soft:'#ededf5', deco:['⚔️','🏰','🐉'], characters:['Sir Lance','Gwen','Arthur'], who:'knight', items:['shields','swords','coins'], hint:'Brave knight maths.' },
+  princesses: { name:'Princesses', emoji:'👸', styleName:'Princess', accent:'#d66fa8', soft:'#fdeaf4', deco:['👑','🏰','✨'], characters:['Princess Lily','Rose','Belle'], who:'princess', items:['crowns','gems','ribbons'], hint:'Royal maths adventures.' },
+  trains: { name:'Trains', emoji:'🚂', styleName:'Train', accent:'#2f6bb5', soft:'#e6f0fc', deco:['🚋','🛤️','🔔'], characters:['Conductor Cal','Choo','Pip'], who:'conductor', items:['tickets','coal','wheels'], hint:'All aboard for maths.' },
+  airplanes: { name:'Airplanes', emoji:'✈️', styleName:'Airplane', accent:'#3a8fb5', soft:'#e5f5fd', deco:['🛫','☁️','🧳'], characters:['Pilot Pete','Wings','Sky'], who:'pilot', items:['suitcases','tickets','clouds'], hint:'Fly high with maths.' },
+  boats: { name:'Boats', emoji:'⛵', styleName:'Boat', accent:'#2f7fb5', soft:'#e3f2fb', deco:['⚓','🌊','🦀'], characters:['Captain Cal','Sail','Mast'], who:'sailor', items:['ropes','anchors','life rings'], hint:'Sail into maths.' },
+  zoo: { name:'Zoo', emoji:'🦓', styleName:'Zoo', accent:'#3a8f5b', soft:'#e5f8ee', deco:['🦒','🐘','🐒'], characters:['Zookeeper Zoe','Roary','Trunk'], who:'zookeeper', items:['tickets','feed','keys'], hint:'A wild zoo maths day.' },
+  forest: { name:'Forest', emoji:'🌲', styleName:'Forest', accent:'#2f7a4a', soft:'#e5f5ea', deco:['🍂','🐿️','🍄'], characters:['Forrest','Acorn','Pine'], who:'forest friend', items:['acorns','leaves','mushrooms'], hint:'Forest maths adventures.' },
+  mountain: { name:'Mountain', emoji:'🏔️', styleName:'Mountain', accent:'#6b7a8a', soft:'#ededf2', deco:['⛰️','🐐','❄️'], characters:['Climber Kit','Peak','Snow'], who:'mountaineer', items:['ropes','rocks','flags'], hint:'Climb into maths.' },
+  bears: { name:'Bears', emoji:'🐻', styleName:'Bear', accent:'#8a6b3a', soft:'#f6eee0', deco:['🍯','🌲','🐾'], characters:['Bruno','Honey','Paws'], who:'bear', items:['honey','berries','fish'], hint:'Bear-y good maths.' },
+  foxes: { name:'Foxes', emoji:'🦊', styleName:'Fox', accent:'#c96a2f', soft:'#fdeee4', deco:['🍂','🌲','🦊'], characters:['Foxy','Rusty','Amber'], who:'fox', items:['leaves','berries','acorns'], hint:'Clever fox maths.' },
+  pandas: { name:'Pandas', emoji:'🐼', styleName:'Panda', accent:'#2f2f2f', soft:'#ececec', deco:['🎋','🍃','🐼'], characters:['Panda Pop','Bamboo','Dot'], who:'panda', items:['bamboo','leaves','berries'], hint:'Panda maths fun.' },
+  owls: { name:'Owls', emoji:'🦉', styleName:'Owl', accent:'#7a5a2f', soft:'#f6eee0', deco:['🌙','🌳','🦉'], characters:['Hoot','Wise','Twig'], who:'owl', items:['feathers','acorns','stars'], hint:'Wise owl maths.' },
+  butterflies: { name:'Butterflies', emoji:'🦋', styleName:'Butterfly', accent:'#a84fd6', soft:'#f5e9ff', deco:['🌸','🌼','🦋'], characters:['Flutter','Petal','Wings'], who:'butterfly', items:['flowers','leaves','nectar'], hint:'Fluttery maths fun.' },
+  rainbows: { name:'Rainbows', emoji:'🌈', styleName:'Rainbow', accent:'#d64fa2', soft:'#fdeaf6', deco:['☀️','☁️','🌈'], characters:['Sunny','Cloud','Arc'], who:'rainbow friend', items:['colors','stars','clouds'], hint:'Colorful rainbow maths.' },
+  birthdays: { name:'Birthdays', emoji:'🎂', styleName:'Birthday', accent:'#d64545', soft:'#fde8e8', deco:['🎈','🎁','🎉'], characters:['Party Pip','Cake','Candle'], who:'party host', items:['balloons','gifts','candles'], hint:'Party maths fun.' },
+  science: { name:'Science', emoji:'🔬', styleName:'Science', accent:'#3a6f8f', soft:'#e5f2f8', deco:['🧪','🧬','⚛️'], characters:['Professor Pip','Lab','Atom'], who:'scientist', items:['beakers','atoms','stars'], hint:'Experiment with maths.' },
 };
 
 /* =========================================================
@@ -870,6 +890,7 @@ function buildTraceContent(count, theme, rng, range) {
     }),
     answers: [],
     answersNote: 'Tracing sheets do not need an answer key.',
+    count: numbers.length,
   };
 }
 
@@ -883,6 +904,7 @@ function buildCountContent(count, theme, rng) {
     }),
     answers: items.map((item) => String(item.count)),
     answersNote: 'Answers are listed in worksheet order.',
+    count: items.length,
   };
 }
 
@@ -920,6 +942,7 @@ function buildShapesContent(count, theme, rng) {
     body,
     answers: items.map((item) => String(item.shapes)),
     answersNote: 'Answers show the number of shapes in each card.',
+    count: items.length,
   };
 }
 
@@ -955,6 +978,7 @@ function buildCompareContent(count, theme, rng) {
     </section>`,
     answers: [],
     answersNote: 'Ask your child to explain which picture is bigger or smaller.',
+    count: cards.length,
   };
 }
 
@@ -991,6 +1015,7 @@ function buildEquationContent(activity, count, theme, rng) {
     </section>`,
     answers: problems.map((problem) => String(problem.answer)),
     answersNote: 'Answers are listed in worksheet order.',
+    count: problems.length,
   };
 }
 
@@ -1041,6 +1066,7 @@ function buildBondsContent(count, theme, rng) {
     </section>`,
     answers: bonds.map((bond) => String(bond.missingPart)),
     answersNote: 'The answer is the missing part of each number bond.',
+    count: bonds.length,
   };
 }
 
@@ -1072,6 +1098,7 @@ function buildTallyContent(count, theme, rng) {
     </section>`,
     answers: selected.map(String),
     answersNote: 'Answers are the totals of the tally marks.',
+    count: selected.length,
   };
 }
 
@@ -1153,6 +1180,7 @@ function buildWordContent(count, theme, rng) {
     </section>`,
     answers: problems.map((problem) => String(problem.answer)),
     answersNote: 'Answers are listed in story order.',
+    count: problems.length,
   };
 }
 
@@ -1177,6 +1205,7 @@ function buildMixedPreKContent(count, theme, rng, options = {}) {
     body,
     answers: items.map((item) => String(item.count)),
     answersNote: 'Answer key covers the counting section. Tracing needs no key.',
+    count: items.length,
   };
 }
 
@@ -1878,7 +1907,7 @@ function worksheetMarkup({ title, subtitle, instruction, body, theme, difficulty
     <p class="ws-instruction"><span aria-hidden="true">✏️</span><span>${escapeHtml(instruction)}</span></p>
     <div class="ws-body">${body}</div>
     <div class="ws-reward">
-      <span>All done? Colour a star for every try!</span>
+      <span>All done? Colour a star for every try! ${theme.emoji}</span>
       <span class="ws-reward__stars" aria-hidden="true">☆ ☆ ☆ ☆ ☆</span>
     </div>
     <footer class="ws-footer"><span>${theme.emoji} SquiggleMath</span><span>${escapeHtml(pageLabel)}</span></footer>

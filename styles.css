@@ -2438,7 +2438,9 @@ ul, ol {
   min-height: 1123px;
   padding: 34px 42px 24px;
   border-radius: 18px;
-  background: #fff;
+  background:
+    radial-gradient(circle at 90% 8%, var(--ws-accent-soft), transparent 26%),
+    #fff;
   color: var(--ink);
   font-family: var(--font-body);
   box-shadow:
@@ -2459,7 +2461,7 @@ ul, ol {
   justify-content: space-between;
   gap: 16px;
   padding-bottom: 12px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ws-accent);
 }
 
 .ws-brand {
@@ -2631,7 +2633,7 @@ ul, ol {
   gap: 16px;
   margin-top: 16px;
   padding-top: 9px;
-  border-top: 1.5px dashed rgba(31, 42, 68, 0.25);
+  border-top: 1.5px dashed var(--ws-accent);
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.07em;
@@ -2646,7 +2648,7 @@ ul, ol {
   gap: 12px;
   margin-top: 12px;
   padding: 7px 10px;
-  border: 1.5px dashed rgba(31, 42, 68, 0.18);
+  border: 1.5px dashed var(--ws-accent);
   border-radius: 8px;
   background: #fffdf8;
   font-size: 9px;
@@ -3365,7 +3367,7 @@ ul, ol {
   gap: 22px;
   margin-top: 16px;
   padding: 10px 14px;
-  border: 1.5px dashed rgba(31, 42, 68, 0.22);
+  border: 1.5px dashed var(--ws-accent);
   border-radius: 10px;
   font-size: 10px;
   font-weight: 700;

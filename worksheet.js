@@ -121,7 +121,7 @@ function syncHeader() {
     bits.push(`Sheet ${entry.number} of ${catalogFor(entry.category).length}`);
   }
   bits.push(`${theme.emoji} ${theme.name}`);
-  bits.push(countDescription(entry));
+  bits.push(countDescription({ ...entry, problems: result.count }));
   els.meta.textContent = bits.join(' • ');
 
   const hasAnswers = result.answers.length > 0;

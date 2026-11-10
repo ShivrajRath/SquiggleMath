@@ -7,8 +7,8 @@ worksheet generator. No build step, no backend, no dependencies to install.
 ## What is inside
 
 - **Printables Library** grouped by level, with 180 worksheets for every
-  age group (540 total), across 30 themes in the studio.
-- **Worksheet Studio** on its own page, with 40+ activity types, 30 themes,
+  age group (540 total), across 50 themes in the studio.
+- **Worksheet Studio** on its own page, with 40+ activity types, 50 themes,
   problem counts (5/10/15/20), and an optional answer key.
 - **Standalone print pages** for every library sheet and generated worksheet:
   each opens in a new tab at full A4 size, with a print button and optional
