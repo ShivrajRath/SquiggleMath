@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Print worksheet | SquiggleMath</title>
+  <meta name="description" content="A full-size, print-ready SquiggleMath worksheet. Print it or save it as a PDF.">
+  <meta name="theme-color" content="#fff8ea">
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ffd447'/%3E%3Cpath d='M10 38c8-22 14 14 22-8s12 14 22-6' fill='none' stroke='%231f2a44' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261109-2">
+  <link rel="stylesheet" href="worksheet.css?v=20261109-2">
+  <script src="engine.js?v=20261109-2" defer></script>
+  <script src="worksheet.js?v=20261109-2" defer></script>
+</head>
+<body class="print-page">
+  <a class="skip-link" href="#print-stage">Skip to worksheet</a>
+
+  <header class="print-bar">
+    <div class="print-bar__inner">
+      <a class="print-bar__back" href="index.html#library">
+        <span aria-hidden="true">←</span>
+        <span>All worksheets</span>
+      </a>
+
+      <div class="print-bar__title">
+        <p class="print-bar__eyebrow" id="print-eyebrow">SquiggleMath</p>
+        <h1 id="print-title">Worksheet</h1>
+        <p class="print-bar__meta" id="print-meta"></p>
+      </div>
+
+      <div class="print-bar__actions">
+        <label class="print-key-toggle" id="print-key-wrap">
+          <input type="checkbox" id="print-key">
+          <span class="switch" aria-hidden="true"><span></span></span>
+          <span class="print-key-toggle__label" id="print-key-label">Answer key</span>
+        </label>
+        <button class="btn btn--primary print-action" type="button" id="print-button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Print / Save PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="print-stage" id="print-stage">
+    <div class="print-help">
+      <span aria-hidden="true">🖨️</span>
+      <p>A4 &middot; Print at 100% &middot; Turn on <strong>Background graphics</strong> for full colour. Use “Save as PDF” to keep a copy.</p>
+    </div>
+
+    <div class="print-frame" id="print-frame">
+      <div class="print-canvas" id="print-canvas" aria-live="polite"></div>
+    </div>
+
+    <p class="print-stage__footer">
+      <a href="index.html#generator">Need different numbers? Make your own worksheet <span aria-hidden="true">→</span></a>
+    </p>
+  </main>
+
+  <!-- Print-only destination. The active sheet is cloned here before printing. -->
+  <div id="print-area" aria-hidden="true"></div>
+  <div class="toast" id="print-toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">SquiggleMath needs JavaScript to build this worksheet. Please enable it and refresh.</div>
+  </noscript>
+</body>
+</html>

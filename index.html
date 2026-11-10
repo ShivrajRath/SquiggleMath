@@ -14,8 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261109">
-  <script src="script.js?v=20261109" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261109-2">
+  <script src="engine.js?v=20261109-2" defer></script>
+  <script src="script.js?v=20261109-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -134,7 +135,7 @@
           <div class="section-head__copy">
             <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--pink"></span> The print &amp; play library</p>
             <h2>A worksheet for every<br><span class="marker marker--mint">little milestone</span>.</h2>
-            <p class="section-lede">Hand-picked practice sheets, organised by age and skill. Preview any sheet, then send it straight to the printer.</p>
+            <p class="section-lede">360 hand-built practice sheets — 120 for every age group. Filter by skill, then open any sheet in its own full-size print page.</p>
           </div>
           <a class="text-link" href="#generator">Can't find the one? Build your own <span aria-hidden="true">→</span></a>
         </div>
@@ -145,11 +146,15 @@
               <span class="level__badge">Pre-K <small>Ages 3–4</small></span>
               <div class="level__heading">
                 <h3 id="prek-title">First steps &amp; big pencils</h3>
-                <p>Tracing, counting, shapes, and size comparisons.</p>
+                <p>Tracing, counting, shapes, and size comparisons. <span class="level__count" data-count="prek"></span></p>
               </div>
               <span class="level__sticker" aria-hidden="true">✏️</span>
             </header>
+            <div class="library-tools" data-tools="prek"></div>
             <div class="printables-grid" data-category="prek"></div>
+            <div class="library-more" data-more-wrap="prek" hidden>
+              <button class="btn btn--ghost btn--small" type="button" data-more="prek">Show 12 more <span aria-hidden="true">↓</span></button>
+            </div>
           </section>
 
           <section class="level level--k" aria-labelledby="k-title">
@@ -157,11 +162,15 @@
               <span class="level__badge">Kindergarten <small>Ages 5–6</small></span>
               <div class="level__heading">
                 <h3 id="k-title">Adding up the fun</h3>
-                <p>Single-digit facts, number bonds, and tally marks.</p>
+                <p>Single-digit facts, number bonds, and tally marks. <span class="level__count" data-count="k"></span></p>
               </div>
               <span class="level__sticker" aria-hidden="true">🧩</span>
             </header>
+            <div class="library-tools" data-tools="k"></div>
             <div class="printables-grid" data-category="k"></div>
+            <div class="library-more" data-more-wrap="k" hidden>
+              <button class="btn btn--ghost btn--small" type="button" data-more="k">Show 12 more <span aria-hidden="true">↓</span></button>
+            </div>
           </section>
 
           <section class="level level--g1" aria-labelledby="g1-title">
@@ -169,11 +178,15 @@
               <span class="level__badge">1st Grade <small>Ages 6–7</small></span>
               <div class="level__heading">
                 <h3 id="g1-title">Big-kid brain boosters</h3>
-                <p>Facts to 20, missing numbers, and story problems.</p>
+                <p>Facts to 20, missing numbers, and story problems. <span class="level__count" data-count="g1"></span></p>
               </div>
               <span class="level__sticker" aria-hidden="true">🚀</span>
             </header>
+            <div class="library-tools" data-tools="g1"></div>
             <div class="printables-grid" data-category="g1"></div>
+            <div class="library-more" data-more-wrap="g1" hidden>
+              <button class="btn btn--ghost btn--small" type="button" data-more="g1">Show 12 more <span aria-hidden="true">↓</span></button>
+            </div>
           </section>
         </div>
       </div>
@@ -288,7 +301,7 @@
               </div>
               <button class="btn btn--ink btn--small" type="button" id="print-btn">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Print worksheet
+                Open print page
               </button>
             </div>
 
@@ -297,7 +310,7 @@
                 <div class="worksheet-canvas" id="worksheet-canvas" aria-label="Generated worksheet preview"></div>
               </div>
             </div>
-            <p class="stage__hint">On a phone? Pinch to zoom in. The printout will always be full-size A4.</p>
+            <p class="stage__hint">Opens a full-size A4 print page in a new tab. On a phone? Pinch to zoom in the preview.</p>
           </div>
         </div>
       </div>
@@ -375,39 +388,6 @@
     </div>
   </footer>
 
-  <!-- ============ WORKSHEET PREVIEW MODAL ============ -->
-  <div class="modal" id="preview-modal" aria-hidden="true">
-    <div class="modal__backdrop" data-close-modal></div>
-    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
-      <header class="modal__head">
-        <div>
-          <p class="modal__eyebrow" id="modal-eyebrow">Pre-K • Ages 3–4</p>
-          <h2 id="modal-title">Worksheet preview</h2>
-          <p id="modal-desc" class="modal__desc">A peek at the printable. Close this window to keep browsing.</p>
-        </div>
-        <button class="icon-btn" type="button" id="modal-close" aria-label="Close worksheet preview" data-close-modal>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </button>
-      </header>
-
-      <div class="modal__stage">
-        <div class="modal__frame" id="modal-frame">
-          <div class="worksheet-canvas" id="modal-canvas"></div>
-        </div>
-      </div>
-
-      <footer class="modal__actions">
-        <button class="btn btn--ghost" type="button" id="modal-customize">Try this level <span aria-hidden="true">→</span></button>
-        <button class="btn btn--primary" type="button" id="modal-print">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Print this worksheet
-        </button>
-      </footer>
-    </div>
-  </div>
-
-  <!-- Print-only destination. The active worksheet is cloned here on print. -->
-  <div id="print-area" aria-hidden="true"></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <noscript>

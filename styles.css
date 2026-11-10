@@ -962,6 +962,18 @@ ul, ol {
   color: var(--ink-soft);
 }
 
+.level__count {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--level-soft);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 .level__sticker {
   margin-left: auto;
   display: grid;
@@ -982,6 +994,127 @@ ul, ol {
   gap: 18px;
 }
 
+/* filters + progressive reveal — rendered by script.js */
+
+.library-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 0 0 18px;
+  padding: 9px 12px;
+  border: 2px solid rgba(31, 42, 68, 0.07);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink-soft);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.filter-chip span {
+  min-width: 20px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: rgba(31, 42, 68, 0.07);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.filter-chip:hover {
+  background: var(--level-soft);
+  color: var(--ink);
+}
+
+.filter-chip.is-active {
+  border-color: var(--level-accent);
+  background: var(--level-accent);
+  color: #fff;
+}
+
+.filter-chip.is-active span {
+  background: rgba(255, 255, 255, 0.24);
+  color: #fff;
+}
+
+.library-count {
+  flex: none;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-faint);
+}
+
+.library-count strong {
+  color: var(--ink);
+}
+
+.library-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.library-show-all {
+  padding: 5px 4px;
+  border: 0;
+  border-bottom: 2px solid rgba(31, 42, 68, 0.22);
+  background: none;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.library-show-all:hover {
+  border-color: var(--pink-deep);
+  color: var(--pink-deep);
+}
+
+@media (max-width: 760px) {
+  .library-tools {
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .filter-chip {
+    padding: 5px 9px;
+    font-size: 0.7rem;
+  }
+
+  .library-count {
+    margin-left: auto;
+  }
+}
+
+.library-more[hidden] {
+  display: none;
+}
+
 /* printable card — rendered by JS */
 
 .sheet-card {
@@ -992,8 +1125,10 @@ ul, ol {
   border: 2px solid rgba(31, 42, 68, 0.09);
   border-radius: 20px;
   background: var(--level-card);
+  color: inherit;
   font-family: var(--font-body);
   text-align: left;
+  text-decoration: none;
   overflow: hidden;
   box-shadow: 0 3px 0 rgba(31, 42, 68, 0.05);
   transition:
@@ -1023,6 +1158,22 @@ ul, ol {
   background:
     radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.8), transparent 32%),
     var(--level-soft);
+}
+
+.sheet-card__number {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 2;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 3px 8px rgba(31, 42, 68, 0.08);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--level-accent);
 }
 
 .sheet-card__preview::after {
@@ -3731,8 +3882,9 @@ ul, ol {
 }
 
 /* =========================================================
-   PRINT — only the active worksheet is ever printed.
-   The active sheet is cloned into #print-area by script.js.
+   PRINT — the standalone print page only ever prints the
+   worksheet. worksheet.js clones the active sheet(s) into
+   #print-area before the browser print dialog opens.
    ========================================================= */
 
 #print-area {
@@ -3745,8 +3897,7 @@ ul, ol {
     margin: 0;
   }
 
-  html,
-  body {
+  body.print-page {
     width: 210mm;
     min-height: 297mm;
     margin: 0 !important;
@@ -3757,13 +3908,13 @@ ul, ol {
     scrollbar-gutter: auto;
   }
 
-  /* Hide the entire app: header, hero, library, controls, footer, modal, toast. */
-  body > * {
+  /* Hide the print page chrome: toolbar, preview, help, footer, toast. */
+  body.print-page > * {
     display: none !important;
   }
 
   /* Re-show only the print staging area. */
-  #print-area {
+  body.print-page #print-area {
     display: block !important;
     width: 210mm;
     margin: 0;

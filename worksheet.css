@@ -1,0 +1,274 @@
+/* =========================================================
+   SquiggleMath — standalone print page chrome
+   Loaded after styles.css. The worksheet itself keeps all of
+   its existing styles; this file only frames it on screen.
+   ========================================================= */
+
+.print-page {
+  min-height: 100vh;
+  background-color: #eee5d6;
+  background-image:
+    radial-gradient(rgba(31, 42, 68, 0.09) 1px, transparent 1.4px),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.65), transparent 62%);
+  background-size: 20px 20px, auto;
+}
+
+.print-bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 2px solid rgba(31, 42, 68, 0.09);
+  background: rgba(255, 253, 248, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(31, 42, 68, 0.07);
+}
+
+.print-bar__inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  width: min(100% - 40px, 1180px);
+  margin-inline: auto;
+  padding: 14px 0;
+}
+
+.print-bar__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 2px solid rgba(31, 42, 68, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 0.2s var(--ease-bounce), border-color 0.2s ease, background 0.2s ease;
+}
+
+.print-bar__back:hover {
+  transform: translateX(-3px);
+  border-color: var(--ink);
+  background: var(--yellow);
+}
+
+.print-bar__title {
+  min-width: 0;
+}
+
+.print-bar__eyebrow {
+  margin-bottom: 1px;
+  font-family: var(--font-display);
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pink-deep);
+}
+
+.print-bar__title h1 {
+  overflow: hidden;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.print-bar__meta {
+  margin-top: 2px;
+  overflow: hidden;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.print-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.print-key-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.print-key-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+.print-key-toggle__label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.print-key-toggle input:checked + .switch {
+  background: var(--mint-deep);
+}
+
+.print-key-toggle input:checked + .switch span {
+  transform: translateX(18px);
+}
+
+.print-key-toggle input:focus-visible + .switch {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.print-key-toggle.is-disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+
+.print-key-toggle.is-disabled .switch {
+  background: #d9dee8;
+}
+
+.print-action {
+  min-height: 46px;
+  white-space: nowrap;
+}
+
+.print-stage {
+  padding: 26px 20px 58px;
+}
+
+.print-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: min(100%, 794px);
+  margin: 0 auto 16px;
+  padding: 9px 16px;
+  border: 1.5px dashed rgba(31, 42, 68, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.7);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.print-help span {
+  flex: none;
+  font-size: 1rem;
+}
+
+.print-frame {
+  position: relative;
+  width: min(100%, 794px);
+  min-height: 300px;
+  margin-inline: auto;
+  transition: height 0.25s ease;
+}
+
+.print-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 794px;
+  transform-origin: top left;
+}
+
+.print-canvas .worksheet {
+  box-shadow: 0 26px 60px rgba(31, 42, 68, 0.24), 0 5px 16px rgba(31, 42, 68, 0.12);
+}
+
+.print-stage__footer {
+  margin-top: 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.print-stage__footer a {
+  padding-bottom: 2px;
+  border-bottom: 2px solid rgba(31, 42, 68, 0.22);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.print-stage__footer a:hover {
+  border-color: var(--pink-deep);
+  color: var(--pink-deep);
+}
+
+@media (max-width: 900px) {
+  .print-bar__inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px 16px;
+    padding: 12px 0;
+  }
+
+  .print-bar__actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-top: 2px;
+  }
+
+  .print-bar__title h1 {
+    white-space: normal;
+  }
+
+  .print-bar__meta {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 560px) {
+  .print-bar__inner {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .print-bar__back {
+    min-height: 38px;
+    padding: 6px 11px;
+  }
+
+  .print-bar__back span:last-child {
+    display: none;
+  }
+
+  .print-bar__eyebrow {
+    font-size: 0.6rem;
+  }
+
+  .print-bar__actions {
+    justify-content: space-between;
+  }
+
+  .print-action {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .print-stage {
+    padding: 18px 12px 42px;
+  }
+
+  .print-help {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+}
