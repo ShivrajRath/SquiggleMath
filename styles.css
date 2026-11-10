@@ -444,6 +444,24 @@ ul, ol {
   right: 0;
 }
 
+.site-nav__current {
+  position: relative;
+  padding: 6px 0;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.site-nav__current::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--pink);
+}
+
 .header-cta {
   flex: none;
 }
