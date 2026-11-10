@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pre-K worksheets | SquiggleMath</title>
+  <meta name="description" content="All 180 Pre-K SquiggleMath printable worksheets for ages 3–4.">
+  <meta name="theme-color" content="#fff8ea">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ffd447'/%3E%3Cpath d='M10 38c8-22 14 14 22-8s12 14 22-6' fill='none' stroke='%231f2a44' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261109-4">
+  <script src="engine.js?v=20261109-4" defer></script>
+  <script src="script.js?v=20261109-4" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="SquiggleMath home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 52 52" fill="none">
+            <rect width="52" height="52" rx="15" fill="#ffd447"/>
+            <path d="M8 31c7-18 12 11 19-6s10 11 18-4" stroke="#1f2a44" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand__name">Squiggle<span>Math</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html#library">Home</a>
+        <a href="index.html#generator">Generator</a>
+      </nav>
+      <a class="btn btn--small btn--ink header-cta" href="index.html#generator">Make a worksheet</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section library" id="library">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__copy">
+            <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--pink"></span> Pre-K library</p>
+            <h2>Pre-K worksheets,<br><span class="marker marker--mint">ages 3–4</span>.</h2>
+            <p class="section-lede">180 tracing, counting, shape and size worksheets. Filter by skill, then preview or print.</p>
+          </div>
+          <a class="text-link" href="index.html#generator">Build your own <span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="levels">
+          <section class="level level--prek" aria-labelledby="prek-title">
+            <header class="level__head">
+              <span class="level__badge">Pre-K <small>Ages 3–4</small></span>
+              <div class="level__heading">
+                <h3 id="prek-title">First steps &amp; big pencils</h3>
+                <p>Tracing, counting, shapes, and size comparisons. <span class="level__count" data-count="prek"></span></p>
+              </div>
+              <span class="level__sticker" aria-hidden="true">✏️</span>
+            </header>
+            <div class="library-tools" data-tools="prek"></div>
+            <div class="printables-grid" data-category="prek"></div>
+            <div class="library-more" data-more-wrap="prek" hidden></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <a class="brand brand--light" href="index.html" aria-label="SquiggleMath home">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 52 52" fill="none">
+              <rect width="52" height="52" rx="15" fill="#ffd447"/>
+              <path d="M8 31c7-18 12 11 19-6s10 11 18-4" stroke="#1f2a44" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand__name">Squiggle<span>Math</span></span>
+        </a>
+        <p>Big fun. Little squiggles.<br>Print-ready maths for ages 3–7.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="preview-modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+      <header class="modal__head">
+        <div>
+          <p class="modal__eyebrow" id="modal-eyebrow">Pre-K • Ages 3–4</p>
+          <h2 id="modal-title">Worksheet preview</h2>
+          <p id="modal-desc" class="modal__desc">A peek at the printable. Close this window to keep browsing.</p>
+        </div>
+        <button class="icon-btn" type="button" id="modal-close" aria-label="Close worksheet preview" data-close-modal>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+      <div class="modal__stage">
+        <div class="modal__frame" id="modal-frame">
+          <div class="worksheet-canvas" id="modal-canvas"></div>
+        </div>
+      </div>
+      <footer class="modal__actions">
+        <button class="btn btn--ghost" type="button" id="modal-customize">Try this level <span aria-hidden="true">→</span></button>
+        <button class="btn btn--primary" type="button" id="modal-print">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Print this worksheet
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <div id="print-area" aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">SquiggleMath needs JavaScript to build and print worksheets. Please enable it and refresh.</div>
+  </noscript>
+</body>
+</html>
