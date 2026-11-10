@@ -1,9 +1,8 @@
 /* =========================================================
-   SquiggleMath — home page interactions
-   The worksheet engine lives in engine.js. This file only
-   handles the library, the generator and the print-page links.
+   SquiggleMath — home page interactions (library only)
+   The worksheet engine lives in engine.js. This file handles
+   the printables library and its filters.
    ========================================================= */
-
 'use strict';
 
 const {
@@ -12,15 +11,10 @@ const {
   ACTIVITY_INFO,
   catalogFor,
   activitiesFor,
-  buildWorksheet,
   createRng,
-  randomSeed,
   escapeHtml,
   dashedGlyph,
   shapeSvg,
-  addThinkingSpace,
-  SHEET_WIDTH,
-  SHEET_HEIGHT,
 } = window.SquiggleMath;
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
@@ -38,20 +32,12 @@ function miniPreview(sheet) {
   const activity = sheet.activity;
   const rng = createRng(sheet.seed);
 
-  if (activity === 'trace') {
+  if (activity === 'trace' || activity === 'mixed-prek') {
     const start = Array.isArray(sheet.range) ? sheet.range[0] : 1;
     const numbers = [start, start + 1, start + 2, start + 3, start + 4].slice(0, 5);
     return `<div class="mini-trace-row">${numbers.slice(0, 3).map((number) => dashedGlyph(number, 'mini-trace-svg')).join('')}<span class="mini-trace-line"></span></div>
       <div class="mini-trace-row">${numbers.slice(3).map((number) => dashedGlyph(number, 'mini-trace-svg')).join('')}<span class="mini-trace-line"></span></div>
       <div class="mini-trace-row">${dashedGlyph(start, 'mini-trace-svg')}<span class="mini-trace-line"></span></div>`;
-  }
-
-  if (activity === 'mixed-prek') {
-    const start = Array.isArray(sheet.range) ? sheet.range[0] : 1;
-    const count = rng.int(3, 7);
-    return `<div class="mini-trace-row">${[start, start + 1, start + 2].map((number) => dashedGlyph(number, 'mini-trace-svg')).join('')}<span class="mini-trace-line"></span></div>
-      <div class="mini-trace-row">${dashedGlyph(start + 3, 'mini-trace-svg')}<span class="mini-trace-line"></span></div>
-      <div class="mini-count"><span class="mini-count__emojis">${theme.emoji.repeat(count)}</span><span class="mini-count__box"></span></div>`;
   }
 
   if (activity === 'count') {
@@ -190,12 +176,10 @@ function renderLibraryLevel(category) {
 
   const remaining = sheets.length - current.visible;
   moreWrap.hidden = remaining <= 0;
-  if (remaining > 0) {
+  const moreButton = $('[data-more]', moreWrap);
+  if (moreButton) {
     const next = Math.min(PAGE_SIZE, remaining);
-    moreWrap.innerHTML = `<button class="btn btn--ghost btn--small" type="button" data-more="${category}">
-        Show ${next} more <span aria-hidden="true">↓</span>
-      </button>
-      <button class="library-show-all" type="button" data-show-all="${category}">Show all ${sheets.length}</button>`;
+    moreButton.innerHTML = `Show ${next} more <span aria-hidden="true">↓</span>`;
   }
 
   if (countEl) countEl.textContent = `· ${all.length} worksheets`;
@@ -206,168 +190,6 @@ function renderLibrary() {
     libraryState[category] = { filter: 'all', visible: PAGE_SIZE };
     renderLibraryLevel(category);
   });
-}
-
-/* =========================================================
-   Fit the fixed A4 canvas into its responsive frame
-   ========================================================= */
-
-function fitPaper(frame, canvas) {
-  if (!frame || !canvas) return;
-  const available = frame.clientWidth;
-  if (!available) return;
-
-  const scale = Math.min(1, available / SHEET_WIDTH);
-  const unscaledHeight = Math.max(canvas.scrollHeight, SHEET_HEIGHT);
-  canvas.style.transform = `scale(${scale})`;
-  canvas.style.transformOrigin = 'top left';
-  canvas.style.left = `${Math.max(0, (available - SHEET_WIDTH * scale) / 2)}px`;
-  frame.style.height = `${Math.ceil(unscaledHeight * scale)}px`;
-}
-
-function scheduleFit() {
-  if (state.resizeFrame) cancelAnimationFrame(state.resizeFrame);
-  state.resizeFrame = requestAnimationFrame(() => {
-    fitPaper(els.paperFrame, els.canvas);
-    state.resizeFrame = null;
-  });
-}
-
-/* =========================================================
-   Generator
-   ========================================================= */
-
-const state = {
-  lastResult: null,
-  lastConfig: null,
-  toastTimer: null,
-  resizeFrame: null,
-  generateTimer: null,
-};
-
-const els = {
-  header: $('.site-header'),
-  generatorForm: $('#generator-form'),
-  canvas: $('#worksheet-canvas'),
-  paperFrame: $('#paper-frame'),
-  sheetStatus: $('#sheet-status'),
-  printButton: $('#print-btn'),
-  generateButton: $('#generate-btn'),
-  themeSelect: $('#theme-select'),
-  themeEmoji: $('#theme-emoji'),
-  themeHint: $('#theme-hint'),
-  answerKey: $('#answer-key'),
-  toast: $('#toast'),
-  year: $('#year'),
-};
-
-function updateThemePreview() {
-  const theme = THEMES[els.themeSelect.value] || THEMES.dinos;
-  els.themeEmoji.textContent = theme.emoji;
-  els.themeHint.textContent = theme.hint;
-}
-
-function readGeneratorSettings() {
-  const formData = new FormData(els.generatorForm);
-  return {
-    difficulty: String(formData.get('difficulty') || 'prek'),
-    problems: Number(formData.get('problems') || 10),
-    theme: String(formData.get('theme') || 'dinos'),
-    includeKey: formData.get('answerKey') === 'on',
-  };
-}
-
-function generateWorksheet({ announce = false, spin = false } = {}) {
-  const settings = readGeneratorSettings();
-  const result = buildWorksheet({
-    ...settings,
-    seed: randomSeed(),
-  });
-
-  state.lastResult = result;
-  state.lastConfig = {
-    difficulty: settings.difficulty,
-    activity: result.activity,
-    theme: settings.theme,
-    problems: result.count,
-    seed: result.seed,
-    includeKey: settings.includeKey && result.answers.length > 0,
-  };
-
-  els.canvas.innerHTML = result.html;
-  addThinkingSpace(els.canvas);
-  els.canvas.classList.remove('is-new');
-  // Restart the little paper entrance animation on every fresh sheet.
-  void els.canvas.offsetWidth;
-  els.canvas.classList.add('is-new');
-
-  const pageCopy = result.pageCount > 1 ? ` • ${result.pageCount} pages (with key)` : '';
-  const level = result.difficulty.shortBadge;
-  els.sheetStatus.textContent = `${level} · ${result.count} problems · ${result.theme.name}${pageCopy}`;
-
-  fitPaper(els.paperFrame, els.canvas);
-  scheduleFit();
-  // We refit once webfonts are ready, because text metrics can shift.
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(scheduleFit).catch(() => {});
-  }
-
-  if (spin) {
-    els.generateButton.classList.remove('is-spinning');
-    void els.generateButton.offsetWidth;
-    els.generateButton.classList.add('is-spinning');
-    clearTimeout(state.generateTimer);
-    state.generateTimer = setTimeout(() => {
-      els.generateButton.classList.remove('is-spinning');
-    }, 650);
-  }
-
-  if (announce) {
-    const messages = [
-      'Fresh worksheet served! 🎉',
-      'A brand-new sheet, just for you ✨',
-      'Shuffled up and ready to print 🖨️',
-      'New sheet, new little wins 🌟',
-    ];
-    showToast(messages[Math.floor(Math.random() * messages.length)]);
-  }
-}
-
-function buildPrintUrl(config) {
-  const params = new URLSearchParams({
-    level: config.difficulty,
-    activity: config.activity,
-    theme: config.theme,
-    problems: String(config.problems),
-    seed: String(config.seed),
-  });
-  if (config.includeKey) params.set('key', '1');
-  return `worksheet.html?${params.toString()}`;
-}
-
-function openPrintPage() {
-  if (!state.lastConfig) {
-    showToast('Generate a worksheet first ✏️');
-    return;
-  }
-  const opened = window.open(buildPrintUrl(state.lastConfig), '_blank', 'noopener');
-  if (!opened) {
-    showToast('Allow pop-ups to open the print page 🖨️');
-  }
-}
-
-/* =========================================================
-   Toast
-   ========================================================= */
-
-function showToast(message) {
-  if (!els.toast) return;
-  els.toast.textContent = message;
-  els.toast.classList.add('is-visible');
-  clearTimeout(state.toastTimer);
-  state.toastTimer = setTimeout(() => {
-    els.toast.classList.remove('is-visible');
-  }, 2800);
 }
 
 /* =========================================================
@@ -394,50 +216,20 @@ function bindEvents() {
         libraryState[category].visible += PAGE_SIZE;
         renderLibraryLevel(category);
       }
-      return;
-    }
-
-    const showAll = event.target.closest('[data-show-all]');
-    if (showAll) {
-      const category = showAll.dataset.showAll;
-      if (libraryState[category]) {
-        libraryState[category].visible = filteredSheets(category).length;
-        renderLibraryLevel(category);
-      }
     }
   });
 
-  els.generatorForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    generateWorksheet({ announce: true, spin: true });
-  });
-
-  els.themeSelect.addEventListener('change', updateThemePreview);
-  els.printButton.addEventListener('click', openPrintPage);
-
-  window.addEventListener('resize', scheduleFit);
-
+  const header = $('.site-header');
   window.addEventListener('scroll', () => {
-    els.header.classList.toggle('is-scrolled', window.scrollY > 8);
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
   }, { passive: true });
-
-  // Refit if worksheet content changes size (font load, reflow, etc.).
-  if ('ResizeObserver' in window) {
-    const observer = new ResizeObserver(scheduleFit);
-    observer.observe(els.canvas);
-  }
 }
 
 function init() {
   renderLibrary();
-  updateThemePreview();
-  if (els.year) els.year.textContent = new Date().getFullYear();
+  const year = $('#year');
+  if (year) year.textContent = new Date().getFullYear();
   bindEvents();
-  generateWorksheet({ announce: false });
-
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(scheduleFit).catch(() => {});
-  }
 }
 
 init();

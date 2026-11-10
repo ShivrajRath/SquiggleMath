@@ -14,9 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261109-2">
-  <script src="engine.js?v=20261109-2" defer></script>
-  <script src="script.js?v=20261109-2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261109-3">
+  <script src="engine.js?v=20261109-3" defer></script>
+  <script src="script.js?v=20261109-3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -35,11 +35,11 @@
 
       <nav class="site-nav" aria-label="Primary">
         <a href="#library">Printables</a>
-        <a href="#generator">Generator</a>
+        <a href="generator.html">Generator</a>
         <a href="#how">How it works</a>
       </nav>
 
-      <a class="btn btn--small btn--ink header-cta" href="#generator">
+      <a class="btn btn--small btn--ink header-cta" href="generator.html">
         <span>Make a worksheet</span>
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -56,7 +56,7 @@
           <p class="hero__lede">Big numbers, happy doodles, and just the right amount of challenge. Browse our free printables or build a fresh themed worksheet in one click.</p>
 
           <div class="hero__actions">
-            <a class="btn btn--primary btn--lg" href="#generator">
+            <a class="btn btn--primary btn--lg" href="generator.html">
               Make a worksheet
               <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
@@ -135,9 +135,9 @@
           <div class="section-head__copy">
             <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--pink"></span> The print &amp; play library</p>
             <h2>A worksheet for every<br><span class="marker marker--mint">little milestone</span>.</h2>
-            <p class="section-lede">360 hand-built practice sheets — 120 for every age group. Filter by skill, then open any sheet in its own full-size print page.</p>
+            <p class="section-lede">Over 1,100 hand-built practice sheets across every age group. Filter by skill, then open any sheet in its own full-size print page.</p>
           </div>
-          <a class="text-link" href="#generator">Can't find the one? Build your own <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="generator.html">Can't find the one? Build your own <span aria-hidden="true">→</span></a>
         </div>
 
         <div class="levels">
@@ -150,8 +150,10 @@
               </div>
               <span class="level__sticker" aria-hidden="true">✏️</span>
             </header>
-            <div class="library-tools" data-tools="prek"></div>
-            <div class="printables-grid" data-category="prek"></div>
+            <div class="printables-grid" data-category="prek" data-limit="4"></div>
+            <div class="library-browse-all">
+              <a class="text-link" href="worksheets.html?level=prek">Browse all 120 Pre-K worksheets <span aria-hidden="true">→</span></a>
+            </div>
             <div class="library-more" data-more-wrap="prek" hidden>
               <button class="btn btn--ghost btn--small" type="button" data-more="prek">Show 12 more <span aria-hidden="true">↓</span></button>
             </div>
@@ -166,8 +168,10 @@
               </div>
               <span class="level__sticker" aria-hidden="true">🧩</span>
             </header>
-            <div class="library-tools" data-tools="k"></div>
-            <div class="printables-grid" data-category="k"></div>
+            <div class="printables-grid" data-category="k" data-limit="4"></div>
+            <div class="library-browse-all">
+              <a class="text-link" href="worksheets.html?level=k">Browse all 120 Kindergarten worksheets <span aria-hidden="true">→</span></a>
+            </div>
             <div class="library-more" data-more-wrap="k" hidden>
               <button class="btn btn--ghost btn--small" type="button" data-more="k">Show 12 more <span aria-hidden="true">↓</span></button>
             </div>
@@ -182,8 +186,10 @@
               </div>
               <span class="level__sticker" aria-hidden="true">🚀</span>
             </header>
-            <div class="library-tools" data-tools="g1"></div>
-            <div class="printables-grid" data-category="g1"></div>
+            <div class="printables-grid" data-category="g1" data-limit="4"></div>
+            <div class="library-browse-all">
+              <a class="text-link" href="worksheets.html?level=g1">Browse all 120 1st Grade worksheets <span aria-hidden="true">→</span></a>
+            </div>
             <div class="library-more" data-more-wrap="g1" hidden>
               <button class="btn btn--ghost btn--small" type="button" data-more="g1">Show 12 more <span aria-hidden="true">↓</span></button>
             </div>
@@ -192,126 +198,16 @@
       </div>
     </section>
 
-    <!-- ============ GENERATOR ============ -->
-    <section class="section generator" id="generator">
+    <!-- ============ STUDIO PROMO ============ -->
+    <section class="section studio-promo" id="studio-promo">
       <div class="container">
-        <div class="section-head section-head--center">
+        <div class="studio-promo__card">
           <div>
             <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--blue"></span> The worksheet studio</p>
-            <h2>Make a brand-new sheet<br>in <span class="marker marker--pink">three little clicks</span>.</h2>
-            <p class="section-lede">Pick a level, choose a theme, and shuffle up some fresh problems. Every sheet is a little different — and always print-ready.</p>
+            <h2>Build your own sheet<br>in <span class="marker marker--pink">the studio</span>.</h2>
+            <p class="section-lede">Dozens of activity types, 30 themes and fresh problems every time. The studio now has its own page.</p>
           </div>
-        </div>
-
-        <div class="studio">
-          <aside class="panel" aria-label="Worksheet settings">
-            <form id="generator-form">
-              <fieldset class="field-group">
-                <legend class="field-label">Age &amp; difficulty</legend>
-                <div class="difficulty-list">
-                  <label class="difficulty-option">
-                    <input type="radio" name="difficulty" value="prek" checked>
-                    <span class="difficulty-card">
-                      <span class="difficulty-card__ages">3–4</span>
-                      <span class="difficulty-card__text">
-                        <strong>Pre-K</strong>
-                        <small>Tracing &amp; counting</small>
-                      </span>
-                      <span class="difficulty-card__check" aria-hidden="true">✓</span>
-                    </span>
-                  </label>
-                  <label class="difficulty-option">
-                    <input type="radio" name="difficulty" value="k">
-                    <span class="difficulty-card">
-                      <span class="difficulty-card__ages">5–6</span>
-                      <span class="difficulty-card__text">
-                        <strong>Kindergarten</strong>
-                        <small>Add &amp; subtract to 10</small>
-                      </span>
-                      <span class="difficulty-card__check" aria-hidden="true">✓</span>
-                    </span>
-                  </label>
-                  <label class="difficulty-option">
-                    <input type="radio" name="difficulty" value="g1">
-                    <span class="difficulty-card">
-                      <span class="difficulty-card__ages">6–7</span>
-                      <span class="difficulty-card__text">
-                        <strong>1st Grade</strong>
-                        <small>Facts to 20 &amp; missing numbers</small>
-                      </span>
-                      <span class="difficulty-card__check" aria-hidden="true">✓</span>
-                    </span>
-                  </label>
-                </div>
-              </fieldset>
-
-              <fieldset class="field-group">
-                <legend class="field-label">Number of problems</legend>
-                <div class="pill-group">
-                  <label><input type="radio" name="problems" value="5"><span>5</span></label>
-                  <label><input type="radio" name="problems" value="10" checked><span>10</span></label>
-                  <label><input type="radio" name="problems" value="15"><span>15</span></label>
-                  <label><input type="radio" name="problems" value="20"><span>20</span></label>
-                </div>
-              </fieldset>
-
-              <div class="field-group">
-                <label class="field-label" for="theme-select">Worksheet theme</label>
-                <div class="select-wrap">
-                  <span class="select-emoji" id="theme-emoji" aria-hidden="true">🦖</span>
-                  <select id="theme-select" name="theme">
-                    <option value="dinos">Dinos</option>
-                    <option value="space">Space</option>
-                    <option value="monsters">Monsters</option>
-                    <option value="ocean">Ocean</option>
-                  </select>
-                  <svg class="select-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 6 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <p class="field-hint" id="theme-hint">Roar! Little dinos will love this one.</p>
-              </div>
-
-              <label class="switch-row">
-                <span class="switch-row__text">
-                  <strong>Answer key</strong>
-                  <small>Print the answers on a second page.</small>
-                </span>
-                <input type="checkbox" id="answer-key" name="answerKey">
-                <span class="switch" aria-hidden="true"><span></span></span>
-              </label>
-
-              <button class="btn btn--primary btn--block generate-btn" type="submit" id="generate-btn">
-                <svg class="generate-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Generate new worksheet
-              </button>
-            </form>
-
-            <div class="panel__note">
-              <span aria-hidden="true">🖨️</span>
-              <p>Designed for A4 or US Letter. Prints beautifully in colour or black &amp; white.</p>
-            </div>
-          </aside>
-
-          <div class="stage">
-            <div class="stage__bar">
-              <div class="stage__status">
-                <span class="live-dot" aria-hidden="true"></span>
-                <span id="sheet-status" role="status" aria-live="polite">Your worksheet is ready</span>
-              </div>
-              <button class="btn btn--ink btn--small" type="button" id="print-btn">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Open print page
-              </button>
-            </div>
-
-            <div class="paper-scene">
-              <div class="paper-frame" id="paper-frame">
-                <div class="worksheet-canvas" id="worksheet-canvas" aria-label="Generated worksheet preview"></div>
-              </div>
-            </div>
-            <p class="stage__hint">Opens a full-size A4 print page in a new tab. On a phone? Pinch to zoom in the preview.</p>
-          </div>
+          <a class="btn btn--primary btn--lg" href="generator.html">Open the studio <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -346,7 +242,7 @@
             <h2>Ready for a fresh sheet?</h2>
             <p>Your next maths adventure is one click away.</p>
           </div>
-          <a class="btn btn--ink btn--lg" href="#generator">Let's make one <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ink btn--lg" href="generator.html">Let's make one <span aria-hidden="true">→</span></a>
           <span class="closing-cta__emoji" aria-hidden="true">🌟</span>
         </div>
       </div>
@@ -371,12 +267,12 @@
         <div>
           <h3>Explore</h3>
           <a href="#library">Printables library</a>
-          <a href="#generator">Worksheet generator</a>
+          <a href="generator.html">Worksheet generator</a>
           <a href="#how">How it works</a>
         </div>
         <div>
           <h3>Little extras</h3>
-          <a href="#generator">Make an answer key</a>
+          <a href="generator.html">Make an answer key</a>
           <a href="#library">Pre-K tracing</a>
           <a href="https://github.com/ShivrajRath/SquiggleMath" target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
@@ -388,6 +284,39 @@
     </div>
   </footer>
 
+  <!-- ============ WORKSHEET PREVIEW MODAL ============ -->
+  <div class="modal" id="preview-modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+      <header class="modal__head">
+        <div>
+          <p class="modal__eyebrow" id="modal-eyebrow">Pre-K • Ages 3–4</p>
+          <h2 id="modal-title">Worksheet preview</h2>
+          <p id="modal-desc" class="modal__desc">A peek at the printable. Close this window to keep browsing.</p>
+        </div>
+        <button class="icon-btn" type="button" id="modal-close" aria-label="Close worksheet preview" data-close-modal>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <div class="modal__stage">
+        <div class="modal__frame" id="modal-frame">
+          <div class="worksheet-canvas" id="modal-canvas"></div>
+        </div>
+      </div>
+
+      <footer class="modal__actions">
+        <button class="btn btn--ghost" type="button" id="modal-customize">Try this level <span aria-hidden="true">→</span></button>
+        <button class="btn btn--primary" type="button" id="modal-print">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Print this worksheet
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Print-only destination. The active worksheet is cloned here on print. -->
+  <div id="print-area" aria-hidden="true"></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <noscript>

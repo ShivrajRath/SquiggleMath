@@ -104,6 +104,32 @@ const THEMES = {
     items: ['shells', 'pearls', 'bubbles'],
     hint: 'Dive in for a splash of number fun.',
   },
+  unicorns: { name:'Unicorns', emoji:'🦄', styleName:'Unicorn', accent:'#d64fa2', soft:'#fdeaf6', deco:['🌈','🌸','⭐'], characters:['Luna','Sparkle','Petal'], who:'unicorn', items:['rainbows','flowers','stars'], hint:'Sparkly unicorn number magic!' },
+  safari: { name:'Safari', emoji:'🦁', styleName:'Safari', accent:'#c77a12', soft:'#fdf1dc', deco:['🐘','🦒','🌳'], characters:['Zara','Kito','Lulu'], who:'safari explorer', items:['acacia leaves','mangoes','rocks'], hint:'A wild safari counting adventure.' },
+  farm: { name:'Farm', emoji:'🐄', styleName:'Farm', accent:'#4b8f3a', soft:'#eaf7e3', deco:['🐔','🌾','🥕'], characters:['Barnaby','Clucky','Daisy'], who:'farmer', items:['eggs','carrots','hay bales'], hint:'Down on the farm, maths grows!' },
+  jungle: { name:'Jungle', emoji:'🐒', styleName:'Jungle', accent:'#1f8f6a', soft:'#e2f8ef', deco:['🐍','🍌','🌴'], characters:['Mango','Kiki','Tiko'], who:'jungle explorer', items:['bananas','leaves','vines'], hint:'Swing into jungle number fun.' },
+  pirates: { name:'Pirates', emoji:'🏴‍☠️', styleName:'Pirate', accent:'#8a5a2b', soft:'#f6ecdd', deco:['⚓','🦜','🗺️'], characters:['Captain Finn','Matey','Pearl'], who:'pirate', items:['gold coins','treasure chests','cannonballs'], hint:'X marks the spot for maths!' },
+  fairy: { name:'Fairy', emoji:'🧚', styleName:'Fairy', accent:'#c05fc9', soft:'#fbeafa', deco:['🧚','🍄','✨'], characters:['Faye','Pip','Rosie'], who:'fairy', items:['wands','mushrooms','sparkles'], hint:'A sprinkle of fairy maths.' },
+  robots: { name:'Robots', emoji:'🤖', styleName:'Robot', accent:'#3a6f8f', soft:'#e5f2f8', deco:['⚙️','🔋','🔩'], characters:['Bolt','Beep','Chip'], who:'robot', items:['gears','batteries','bolts'], hint:'Beep boop! Robot maths.' },
+  construction: { name:'Construction', emoji:'🚧', styleName:'Construction', accent:'#d97a13', soft:'#fff0d8', deco:['🚜','🧱','🪚'], characters:['Builder Bob','Digger','Mixer'], who:'builder', items:['bricks','cones','nails'], hint:'Build big number skills.' },
+  bugs: { name:'Bugs', emoji:'🐝', styleName:'Bug', accent:'#7a9a12', soft:'#f6f9df', deco:['🐞','🦋','🌼'], characters:['Buzz','Dot','Flutter'], who:'bug', items:['flowers','leaves','honey drops'], hint:'Tiny bugs, big maths.' },
+  arctic: { name:'Arctic', emoji:'🐧', styleName:'Arctic', accent:'#2f7fb5', soft:'#e3f2fb', deco:['🧊','🌨️','❄️'], characters:['Polar','Snowy','Ice'], who:'arctic explorer', items:['snowballs','ice cubes','fish'], hint:'Cool arctic number fun.' },
+  desert: { name:'Desert', emoji:'🌵', styleName:'Desert', accent:'#b07a2a', soft:'#fbf0dc', deco:['🐪','☀️','🦂'], characters:['Sandy','Camelot','Dune'], who:'desert explorer', items:['cactus flowers','dates','pebbles'], hint:'Sandy maths adventures.' },
+  weather: { name:'Weather', emoji:'🌈', styleName:'Weather', accent:'#3b8fd0', soft:'#e5f4fd', deco:['☁️','🌦️','⛅'], characters:['Sunny','Storm','Misty'], who:'weather watcher', items:['raindrops','clouds','sunbeams'], hint:'Maths come rain or shine.' },
+  bakery: { name:'Bakery', emoji:'🧁', styleName:'Bakery', accent:'#d95f8f', soft:'#fdeaf1', deco:['🍩','🍪','🍰'], characters:['Baker Bea','Crumbs','Sugar'], who:'baker', items:['cupcakes','cookies','doughnuts'], hint:'Sweet maths treats.' },
+  pizza: { name:'Pizza', emoji:'🍕', styleName:'Pizza', accent:'#c94a32', soft:'#fde9e4', deco:['🧀','🍅','🫒'], characters:['Chef Pep','Mozza','Basil'], who:'pizza chef', items:['pizza slices','cheese','tomatoes'], hint:'Slice up some maths.' },
+  sports: { name:'Sports', emoji:'⚽', styleName:'Sports', accent:'#2f8f5b', soft:'#e5f8ee', deco:['🏀','🏆','👟'], characters:['Sam','Jordan','Alex'], who:'athlete', items:['balls','medals','cones'], hint:'Score with maths.' },
+  vehicles: { name:'Vehicles', emoji:'🚗', styleName:'Vehicle', accent:'#2f6bb5', soft:'#e6f0fc', deco:['🚌','🚲','🚁'], characters:['Driver Dot','Wheels','Pilot Pip'], who:'driver', items:['wheels','tickets','traffic cones'], hint:'Race into maths.' },
+  circus: { name:'Circus', emoji:'🎪', styleName:'Circus', accent:'#d64545', soft:'#fde8e8', deco:['🎟️','🤹','🎈'], characters:['Jumbo','Trix','Bobo'], who:'circus star', items:['balloons','popcorn','juggling balls'], hint:'The greatest maths show.' },
+  magic: { name:'Magic', emoji:'🪄', styleName:'Magic', accent:'#7a4fd6', soft:'#efe8ff', deco:['✨','🎩','🔮'], characters:['Wizard Wren','Hocus','Pocus'], who:'wizard', items:['spells','magic hats','crystals'], hint:'Abracadabra maths!' },
+  superheroes: { name:'Superheroes', emoji:'🦸', styleName:'Superhero', accent:'#2f5fd6', soft:'#e7edff', deco:['💥','🛡️','⚡'], characters:['Captain Zoom','Mighty Mia','Flash'], who:'superhero', items:['stars','shields','power bolts'], hint:'Super-powered maths.' },
+  music: { name:'Music', emoji:'🎵', styleName:'Music', accent:'#8f4fc9', soft:'#f5e9ff', deco:['🎸','🥁','🎶'], characters:['Melody','Drummer Dan','Lyra'], who:'musician', items:['notes','drums','guitar picks'], hint:' maths in harmony.' },
+  pets: { name:'Pets', emoji:'🐶', styleName:'Pet', accent:'#c77a3a', soft:'#fbeee0', deco:['🐱','🦴','🐹'], characters:['Biscuit','Whiskers','Nibbles'], who:'pet pal', items:['bones','treats','balls'], hint:'Pet-friendly maths.' },
+  holidays: { name:'Holidays', emoji:'🎄', styleName:'Holiday', accent:'#b53b3b', soft:'#fdeaea', deco:['🎁','⛄','🔔'], characters:['Santa','Elfie','Rudy'], who:'holiday helper', items:['gifts','candy canes','snowballs'], hint:'Festive maths fun.' },
+  snow: { name:'Snow', emoji:'❄️', styleName:'Snow', accent:'#4f8fc9', soft:'#e8f4fd', deco:['⛄','🧣','🌨️'], characters:['Flurry','Frost','Snowball'], who:'snow friend', items:['snowflakes','snowballs','scarves'], hint:'Snowy maths adventures.' },
+  rainforest: { name:'Rainforest', emoji:'🦜', styleName:'Rainforest', accent:'#2f8f5b', soft:'#e3f8ea', deco:['🐸','🌿','🦋'], characters:['Rio','Leaf','Pip'], who:'rainforest explorer', items:['leaves','berries','vines'], hint:'Rainforest number fun.' },
+  firefighter: { name:'Firefighter', emoji:'🚒', styleName:'Firefighter', accent:'#c9452f', soft:'#fde9e5', deco:['🔥','🧯','💨'], characters:['Chief Ember','Sparky','Hose'], who:'firefighter', items:['hoses','helmets','water drops'], hint:'Fire up your maths.' },
+  ballerina: { name:'Ballerina', emoji:'🩰', styleName:'Ballerina', accent:'#d66fa8', soft:'#fdeaf4', deco:['🌷','🎀','🩰'], characters:['Lily','Tutu','Rose'], who:'ballerina', items:['ribbons','flowers','bows'], hint:'Graceful maths moves.' },
 };
 
 /* =========================================================
@@ -115,30 +141,64 @@ const THEMES = {
    ========================================================= */
 
 const ACTIVITY_INFO = {
-  trace: { label: 'Number tracing', short: 'Tracing', unit: 'numbers' },
-  count: { label: 'Counting', short: 'Counting', unit: 'cards' },
-  shapes: { label: 'Shapes & counting', short: 'Shapes', unit: 'groups' },
-  compare: { label: 'Size comparison', short: 'Size', unit: 'pairs' },
-  'mixed-prek': { label: 'Mixed pre-K', short: 'Mixed', unit: 'activities' },
-  add10: { label: 'Addition to 10', short: 'Addition', unit: 'problems' },
-  sub10: { label: 'Subtraction to 10', short: 'Subtraction', unit: 'problems' },
-  mixed10: { label: 'Add & subtract to 10', short: 'Mixed', unit: 'problems' },
-  bonds: { label: 'Number bonds', short: 'Bonds', unit: 'bonds' },
-  tally: { label: 'Tally marks', short: 'Tally', unit: 'cards' },
-  add20: { label: 'Addition to 20', short: 'Addition', unit: 'problems' },
-  sub20: { label: 'Subtraction to 20', short: 'Subtraction', unit: 'problems' },
-  mixed20: { label: 'Mixed facts to 20', short: 'Mixed', unit: 'problems' },
-  missing: { label: 'Missing numbers', short: 'Missing', unit: 'problems' },
-  word: { label: 'Word problems', short: 'Word problems', unit: 'stories' },
+  trace: { label: 'Number tracing', short: 'Tracing', unit: 'numbers', icon: '✏️', group: 'Early skills', description: 'Trace dashed digits, then write them alone.' },
+  count: { label: 'Counting', short: 'Counting', unit: 'cards', icon: '🔢', group: 'Early skills', description: 'Count pictures and write the total.' },
+  shapes: { label: 'Shapes & counting', short: 'Shapes', unit: 'groups', icon: '🔷', group: 'Early skills', description: 'Count shapes in each group.' },
+  compare: { label: 'Size comparison', short: 'Size', unit: 'pairs', icon: '📏', group: 'Early skills', description: 'Circle the bigger or smaller picture.' },
+  patterns: { label: 'Patterns', short: 'Patterns', unit: 'patterns', icon: '🎨', group: 'Early skills', description: 'Continue a repeating picture pattern.' },
+  tenframe: { label: 'Ten-frames', short: 'Ten-frames', unit: 'frames', icon: '🔟', group: 'Early skills', description: 'Count dots in a ten-frame.' },
+  dice: { label: 'Dice count', short: 'Dice', unit: 'cards', icon: '🎲', group: 'Early skills', description: 'Roll two dice and add the pips.' },
+  sort: { label: 'Sort & count', short: 'Sort', unit: 'mats', icon: '🧺', group: 'Early skills', description: 'Sort shapes and count each kind.' },
+  'mixed-prek': { label: 'Mixed pre-K', short: 'Mixed', unit: 'activities', icon: '🌟', group: 'Early skills', description: 'A little tracing plus a little counting.' },
+  add10: { label: 'Addition to 10', short: 'Addition', unit: 'problems', icon: '➕', group: 'Operations', description: 'Single-digit sums within 10.' },
+  sub10: { label: 'Subtraction to 10', short: 'Subtraction', unit: 'problems', icon: '➖', group: 'Operations', description: 'Take-away facts within 10.' },
+  mixed10: { label: 'Add & subtract to 10', short: 'Mixed', unit: 'problems', icon: '±', group: 'Operations', description: 'A mixed set of facts to 10.' },
+  bonds: { label: 'Number bonds', short: 'Bonds', unit: 'bonds', icon: '🔗', group: 'Number sense', description: 'Find the missing part of a bond.' },
+  tally: { label: 'Tally marks', short: 'Tally', unit: 'cards', icon: '🖐️', group: 'Number sense', description: 'Count tally marks and write the number.' },
+  addpics: { label: 'Picture addition', short: 'Pic add', unit: 'problems', icon: '🍎', group: 'Operations', description: 'Add groups of pictures.' },
+  subpics: { label: 'Cross-out subtraction', short: 'Pic sub', unit: 'problems', icon: '❌', group: 'Operations', description: 'Cross out and count what is left.' },
+  doubles: { label: 'Doubles facts', short: 'Doubles', unit: 'problems', icon: '✨', group: 'Operations', description: 'Double facts like 4 + 4.' },
+  beforeafter: { label: 'One more, one less', short: 'Before/after', unit: 'cards', icon: '↔️', group: 'Number sense', description: 'Write the number before and after.' },
+  skipcount: { label: 'Skip counting', short: 'Skip count', unit: 'sequences', icon: '🦘', group: 'Number sense', description: 'Count by 2s, 5s and 10s.' },
+  greater: { label: 'Greater / less / equal', short: 'Compare', unit: 'pairs', icon: '⚖️', group: 'Number sense', description: 'Choose >, < or =.' },
+  place: { label: 'Tens & ones', short: 'Tens/ones', unit: 'numbers', icon: '🧱', group: 'Number sense', description: 'Read base-ten blocks.' },
+  ordinal: { label: 'Ordinal numbers', short: 'Ordinals', unit: 'rows', icon: '🥇', group: 'Number sense', description: 'Find the position of a picture.' },
+  numberline: { label: 'Number line hops', short: 'Number line', unit: 'hops', icon: '📈', group: 'Number sense', description: 'Hop forward on a number line.' },
+  numberwords: { label: 'Number words', short: 'Words', unit: 'numbers', icon: '🔤', group: 'Number sense', description: 'Write the number word.' },
+  add20: { label: 'Addition to 20', short: 'Addition', unit: 'problems', icon: '🚀', group: 'Operations', description: 'Addition facts within 20.' },
+  sub20: { label: 'Subtraction to 20', short: 'Subtraction', unit: 'problems', icon: '🪂', group: 'Operations', description: 'Subtraction facts within 20.' },
+  mixed20: { label: 'Mixed facts to 20', short: 'Mixed', unit: 'problems', icon: '🧠', group: 'Operations', description: 'A mixed set of facts to 20.' },
+  missing: { label: 'Missing numbers', short: 'Missing', unit: 'problems', icon: '❓', group: 'Operations', description: 'Find the missing number.' },
+  word: { label: 'Word problems', short: 'Word problems', unit: 'stories', icon: '📖', group: 'Stories', description: 'Read and solve little stories.' },
+  place100: { label: 'Place value to 100', short: 'Place value', unit: 'numbers', icon: '🏢', group: 'Number sense', description: 'Break a number into tens and ones.' },
+  evenodd: { label: 'Even & odd', short: 'Even/odd', unit: 'numbers', icon: '🎯', group: 'Number sense', description: 'Sort numbers into even and odd.' },
+  fractions: { label: 'Fractions', short: 'Fractions', unit: 'shapes', icon: '🍕', group: 'Geometry', description: 'Name a fraction from a picture.' },
+  time: { label: 'Telling time', short: 'Time', unit: 'clocks', icon: '🕐', group: 'Measurement & data', description: 'Read an analog clock.' },
+  money: { label: 'Coins & money', short: 'Money', unit: 'purses', icon: '🪙', group: 'Measurement & data', description: 'Count coins and find the total.' },
+  factfamily: { label: 'Fact families', short: 'Fact family', unit: 'families', icon: '🏠', group: 'Operations', description: 'Write the four related facts.' },
+  threeadd: { label: 'Add three numbers', short: '3 addends', unit: 'problems', icon: '➕➕', group: 'Operations', description: 'Add three numbers together.' },
+  twodigit: { label: 'Two-digit practice', short: '2-digit', unit: 'problems', icon: '🔢', group: 'Operations', description: 'Add and subtract two-digit numbers.' },
+  arrays: { label: 'Arrays', short: 'Arrays', unit: 'arrays', icon: '🔲', group: 'Geometry', description: 'Repeated addition from a dot array.' },
+  graph: { label: 'Picture graphs', short: 'Graphs', unit: 'questions', icon: '📊', group: 'Measurement & data', description: 'Read a picture graph.' },
+  rounding: { label: 'Round to ten', short: 'Rounding', unit: 'numbers', icon: '⭕', group: 'Number sense', description: 'Round a number to the nearest ten.' },
+  shapes3d: { label: '3D shapes', short: '3D shapes', unit: 'shapes', icon: '🧊', group: 'Geometry', description: 'Name a solid shape.' },
 };
 
-const LEVEL_PLAN = {
+const CATALOG_PLAN = {
   prek: ['trace', 'count', 'shapes', 'compare', 'mixed-prek'],
   k: ['add10', 'sub10', 'mixed10', 'bonds', 'tally'],
   g1: ['add20', 'sub20', 'mixed20', 'missing', 'word'],
 };
 
-const CATALOG_THEMES = ['dinos', 'space', 'monsters', 'ocean'];
+const LEVEL_PLAN = {
+  prek: ['trace', 'count', 'shapes', 'compare', 'patterns', 'tenframe', 'dice', 'sort', 'mixed-prek'],
+  k: ['add10', 'sub10', 'mixed10', 'bonds', 'tally', 'addpics', 'subpics', 'doubles', 'beforeafter', 'skipcount', 'greater', 'place', 'ordinal', 'numberline', 'numberwords'],
+  g1: ['add20', 'sub20', 'mixed20', 'missing', 'word', 'place100', 'evenodd', 'fractions', 'time', 'money', 'factfamily', 'threeadd', 'twodigit', 'arrays', 'graph', 'rounding', 'shapes3d', 'numberline', 'numberwords'],
+};
+
+const ACTIVITY_GROUPS = ['Early skills', 'Number sense', 'Operations', 'Measurement & data', 'Geometry', 'Stories'];
+
+const CATALOG_THEMES = ['dinos', 'space', 'monsters', 'ocean', 'unicorns', 'safari'];
 
 const TITLE_PATTERNS = {
   trace: ['Trace & Race', 'Rainbow Tracing', 'Pencil Parade', 'Number Trail', 'Write It, Trace It', 'Trace & Try'],
@@ -318,7 +378,7 @@ function buildCatalog() {
   const entries = [];
   const counters = { prek: 0, k: 0, g1: 0 };
 
-  Object.entries(LEVEL_PLAN).forEach(([category, activities]) => {
+  Object.entries(CATALOG_PLAN).forEach(([category, activities]) => {
     activities.forEach((activity) => {
       const info = ACTIVITY_INFO[activity];
       for (let pattern = 0; pattern < 6; pattern += 1) {
@@ -380,6 +440,10 @@ function findSheet(id) {
 }
 
 function activitiesFor(category) {
+  return CATALOG_PLAN[category] || [];
+}
+
+function generatorActivitiesFor(category) {
   return LEVEL_PLAN[category] || [];
 }
 
@@ -497,16 +561,42 @@ function defaultTitle(activity, theme) {
     count: 'Count & Write',
     shapes: 'Shape Count',
     compare: 'Big or Small?',
+    patterns: `${theme.styleName} Pattern Parade`,
+    tenframe: 'Ten-Frame Count',
+    dice: 'Dice Roll Math',
+    sort: 'Sort & Count',
     mixed10: `${theme.styleName} Add & Subtract`,
     add10: 'Add It Up!',
     sub10: 'Take It Away!',
     bonds: 'Number Bond Buddies',
     tally: 'Tally Up!',
+    addpics: 'Picture Addition',
+    subpics: 'Cross-Out Subtraction',
+    doubles: 'Doubles Fun',
+    beforeafter: 'One More, One Less',
+    skipcount: 'Skip Counting',
+    greater: 'Greater, Less or Equal?',
+    place: 'Tens & Ones',
+    ordinal: 'Ordinal Numbers',
+    numberline: 'Number Line Hops',
+    numberwords: 'Number Words',
     mixed20: `${theme.styleName} Math Facts`,
     add20: 'Super Sums to 20',
     sub20: 'Subtraction Practice',
     missing: 'Missing Number Mysteries',
     word: 'Word Problem Wizards',
+    place100: 'Place Value to 100',
+    evenodd: 'Even or Odd?',
+    fractions: 'Fraction Fun',
+    time: 'Telling Time',
+    money: 'Coin Count',
+    factfamily: 'Fact Families',
+    threeadd: 'Add Three Numbers',
+    twodigit: 'Two-Digit Practice',
+    arrays: 'Arrays & Repeated Addition',
+    graph: 'Picture Graph',
+    rounding: 'Round to Ten',
+    shapes3d: '3D Shape Spotter',
   };
   return titles[activity] || 'SquiggleMath Worksheet';
 }
@@ -518,16 +608,42 @@ function defaultSubtitle(activity, theme) {
     count: 'Count the pictures and write how many you see.',
     shapes: 'Count each shape group and write the total.',
     compare: 'Look at each pair. Which one is bigger or smaller?',
+    patterns: 'Look closely and finish the repeating pattern.',
+    tenframe: 'Count the dots in each ten-frame.',
+    dice: 'Add the dots on the two dice.',
+    sort: 'Sort the shapes, then count each kind.',
     mixed10: 'Addition and subtraction with friendly numbers up to 10.',
     add10: 'Add the numbers and write the answer.',
     sub10: 'Take the second number away from the first.',
     bonds: 'Find the missing part of each number bond.',
     tally: 'Count the tally marks and write the number.',
+    addpics: 'Add the groups of pictures.',
+    subpics: 'Cross out, then count what is left.',
+    doubles: 'Double each number.',
+    beforeafter: 'Write the number before and after.',
+    skipcount: 'Count by 2s, 5s and 10s.',
+    greater: 'Compare the two numbers.',
+    place: 'Read the base-ten blocks.',
+    ordinal: 'Find the position of the picture.',
+    numberline: 'Start, hop and land.',
+    numberwords: 'Write the word for each number.',
     mixed20: `A ${theme.name.toLowerCase()} adventure in addition, subtraction, and missing numbers.`,
     add20: 'Add carefully — every answer is 20 or less.',
     sub20: 'Subtract carefully — every answer stays above zero.',
     missing: 'A sneaky number has vanished from each equation. Can you find it?',
     word: 'Read each little story, then work out the answer.',
+    place100: 'Break each number into tens and ones.',
+    evenodd: 'Sort each number into even or odd.',
+    fractions: 'Name the shaded fraction.',
+    time: 'Read the time on each clock.',
+    money: 'Count the coins and find the total.',
+    factfamily: 'Write the four related facts.',
+    threeadd: 'Add the three numbers.',
+    twodigit: 'Add and subtract two-digit numbers.',
+    arrays: 'Turn the array into repeated addition.',
+    graph: 'Read the picture graph.',
+    rounding: 'Round to the nearest ten.',
+    shapes3d: 'Name each solid shape.',
   };
   return subtitles[activity] || 'A little maths adventure from SquiggleMath.';
 }
@@ -539,16 +655,42 @@ function defaultInstruction(activity) {
     count: 'Count the pictures in each box. Write the number in the box.',
     shapes: 'Count the shapes in each group. Write the total in the box.',
     compare: 'Read the prompt. Circle the bigger or smaller picture.',
+    patterns: 'Look at the pattern. Draw or write what comes next.',
+    tenframe: 'Count the dots in each ten-frame. Write the number.',
+    dice: 'Add the two dice. Write the total.',
+    sort: 'Sort the shapes and count each kind.',
     mixed10: 'Add or subtract. Write each answer in the box.',
     add10: 'Add the numbers. Write each answer in the box.',
     sub10: 'Subtract the numbers. Write each answer in the box.',
     bonds: 'Find the missing part of each number bond.',
     tally: 'Count the tally marks. Write the number in the box.',
+    addpics: 'Add the groups of pictures. Write the total.',
+    subpics: 'Cross out and count what is left.',
+    doubles: 'Double each number. Write the answer.',
+    beforeafter: 'Write the number before and after each number.',
+    skipcount: 'Fill in the missing numbers in each sequence.',
+    greater: 'Write >, < or = between the numbers.',
+    place: 'Write how many tens and how many ones.',
+    ordinal: 'Find the position of the picture. Write the number.',
+    numberline: 'Start at the number and hop forward. Write where you land.',
+    numberwords: 'Write the word for each number.',
     mixed20: 'Solve each problem. Then find the missing numbers in the dashed boxes.',
     add20: 'Add the numbers. Write each answer in the box.',
     sub20: 'Subtract the numbers. Write each answer in the box.',
     missing: 'Find the missing number. Write it in the dashed box.',
     word: 'Read the story. Write your answer on the line.',
+    place100: 'Write the tens and ones for each number.',
+    evenodd: 'Circle even or odd for each number.',
+    fractions: 'Write the fraction that is shaded.',
+    time: 'Write the time shown on each clock.',
+    money: 'Count the coins. Write the total.',
+    factfamily: 'Write the four related facts.',
+    threeadd: 'Add the three numbers. Write the answer.',
+    twodigit: 'Add or subtract. Write each answer.',
+    arrays: 'Write the repeated addition and the total.',
+    graph: 'Answer each question about the graph.',
+    rounding: 'Round each number to the nearest ten.',
+    shapes3d: 'Write the name of each solid shape.',
   };
   return instructions[activity] || '';
 }
@@ -1038,15 +1180,671 @@ function buildMixedPreKContent(count, theme, rng, options = {}) {
   };
 }
 
+function sheetCount(count, max) {
+  return Math.max(1, Math.min(Number.isFinite(count) ? count : 10, max));
+}
+
+function answerBox(extraClass = '') {
+  return `<span class="answer-box${extraClass ? ' ' + extraClass : ''}" aria-hidden="true"></span>`;
+}
+
+function buildPatternsContent(count, theme, rng) {
+  const total = sheetCount(count, 8);
+  const symbols = [theme.emoji, ...theme.deco];
+  const rows = [];
+  for (let i = 0; i < total; i += 1) {
+    const unitLength = rng.int(2, 3);
+    const unit = rng.shuffle(symbols).slice(0, unitLength);
+    const length = rng.int(7, 9);
+    const blanks = rng.int(1, 2);
+    const sequence = Array.from({ length }, (_, index) => unit[index % unit.length]);
+    rows.push({ visible: sequence.slice(0, length - blanks), blanks: sequence.slice(length - blanks) });
+  }
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Continue the pattern', `${total} patterns`)}
+    <div class="pattern-list">
+      ${rows.map((row, index) => `<div class="pattern-row">
+        <span class="pattern-row__num">${index + 1}</span>
+        <span class="pattern-row__seq">${row.visible.map((symbol) => `<span class="pattern-symbol">${symbol}</span>`).join('')}${row.blanks.map(() => '<span class="pattern-blank"></span>').join('')}</span>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: rows.map((row) => row.blanks.join(' ')), answersNote: 'The answer shows the pictures that finish each pattern.', count: total };
+}
+
+function buildSortContent(count, theme, rng) {
+  const kinds = [
+    { kind: 'circle', label: 'Circles' },
+    { kind: 'square', label: 'Squares' },
+    { kind: 'triangle', label: 'Triangles' },
+    { kind: 'star', label: 'Stars' },
+  ];
+  const counts = kinds.map(() => rng.int(1, 4));
+  const pile = [];
+  kinds.forEach((item, index) => { for (let i = 0; i < counts[index]; i += 1) pile.push(item.kind); });
+  const shuffled = rng.shuffle(pile);
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Sort & count', 'Count each shape')}
+    <div class="sort-pile" aria-hidden="true">${shuffled.map((kind) => shapeSvg(kind, rng.int(0, 3))).join('')}</div>
+    <div class="sort-tally">
+      ${kinds.map((item, index) => `<div class="sort-tally__item">
+        ${shapeSvg(item.kind, index)}
+        <span class="sort-tally__label">${item.label}</span>
+        ${answerBox()}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: counts.map(String), answersNote: 'Answers are the number of circles, squares, triangles and stars.', count: 4 };
+}
+
+function tenFrameMarkup(value) {
+  return `<div class="ten-frame" aria-hidden="true">${Array.from({ length: 10 }, (_, index) => `<span class="${index < value ? 'is-filled' : ''}"></span>`).join('')}</div>`;
+}
+
+function buildTenframeContent(count, theme, rng) {
+  const total = sheetCount(count, 12);
+  const values = Array.from({ length: total }, () => rng.int(3, 10));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Ten-frame count', `${total} frames`)}
+    <div class="tenframe-grid ${total > 8 ? 'tenframe-grid--dense' : ''}">
+      ${values.map((value) => `<div class="tenframe-card">${tenFrameMarkup(value)}${answerBox()}</div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: values.map(String), answersNote: 'Answers are the number of dots in each ten-frame.', count: total };
+}
+
+const DICE_PIPS = {
+  1: [[30, 30]],
+  2: [[18, 18], [42, 42]],
+  3: [[18, 18], [30, 30], [42, 42]],
+  4: [[18, 18], [18, 42], [42, 18], [42, 42]],
+  5: [[18, 18], [18, 42], [30, 30], [42, 18], [42, 42]],
+  6: [[18, 18], [18, 30], [18, 42], [42, 18], [42, 30], [42, 42]],
+};
+
+function diceSvg(value) {
+  return `<svg class="die" viewBox="0 0 60 60" aria-hidden="true"><rect x="2" y="2" width="56" height="56" rx="12" fill="#fff" stroke="currentColor" stroke-width="2.5"/>${DICE_PIPS[value].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4.5" fill="currentColor"/>`).join('')}</svg>`;
+}
+
+function buildDiceContent(count, theme, rng) {
+  const total = sheetCount(count, 12);
+  const rolls = Array.from({ length: total }, () => ({ a: rng.int(1, 6), b: rng.int(1, 6) }));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Dice addition', `${total} cards`)}
+    <div class="dice-grid ${total > 8 ? 'dice-grid--dense' : ''}">
+      ${rolls.map((roll, index) => `<div class="dice-card">
+        <span class="dice-card__num">${index + 1}</span>
+        <span class="dice-pair" aria-hidden="true">${diceSvg(roll.a)}<b>+</b>${diceSvg(roll.b)}</span>
+        ${answerBox()}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: rolls.map((roll) => String(roll.a + roll.b)), answersNote: 'Answers are the sums of the two dice.', count: total };
+}
+
+function buildAddPicsContent(count, theme, rng) {
+  const total = count;
+  const problems = Array.from({ length: total }, () => {
+    const a = rng.int(1, 5);
+    const b = rng.int(1, 5);
+    const icon = rng.chance(0.7) ? theme.emoji : rng.pick(theme.deco);
+    return { a, b, icon, answer: a + b };
+  });
+  const dense = total > 10;
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Picture addition', `${total} problems`)}
+    <div class="picture-eq-grid ${dense ? 'picture-eq-grid--dense' : ''}">
+      ${problems.map((problem) => `<div class="picture-eq">
+        <span class="picture-eq__group" aria-hidden="true">${problem.icon.repeat(problem.a)}</span>
+        <b>+</b>
+        <span class="picture-eq__group" aria-hidden="true">${problem.icon.repeat(problem.b)}</span>
+        <b>=</b>
+        ${answerBox()}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: problems.map((problem) => String(problem.answer)), answersNote: 'Answers are listed in worksheet order.', count: total };
+}
+
+function buildSubPicsContent(count, theme, rng) {
+  const total = count;
+  const problems = Array.from({ length: total }, () => {
+    const a = rng.int(4, 9);
+    const b = rng.int(1, a - 1);
+    const icon = rng.chance(0.7) ? theme.emoji : rng.pick(theme.deco);
+    return { a, b, icon, answer: a - b };
+  });
+  const dense = total > 10;
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Cross-out subtraction', `${total} problems`)}
+    <div class="picture-eq-grid ${dense ? 'picture-eq-grid--dense' : ''}">
+      ${problems.map((problem) => {
+        const marks = Array.from({ length: problem.a }, (_, index) => `<span class="${index < problem.b ? 'is-crossed' : ''}">${problem.icon}</span>`).join('');
+        return `<div class="picture-eq">
+          <span class="picture-eq__group picture-eq__group--cross" aria-hidden="true">${marks}</span>
+          <b>−</b>
+          <span>${problem.b}</span>
+          <b>=</b>
+          ${answerBox()}
+        </div>`;
+      }).join('')}
+    </div>
+  </section>`;
+  return { body, answers: problems.map((problem) => String(problem.answer)), answersNote: 'Answers are listed in worksheet order.', count: total };
+}
+
+function buildDoublesContent(count, theme, rng) {
+  const total = count;
+  const problems = Array.from({ length: total }, () => {
+    const a = rng.int(1, 10);
+    return { a, b: a, op: '+', result: a + a, answer: a + a, missing: null };
+  });
+  const dense = total > 10;
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Doubles', `${total} problems`)}
+    <ol class="problem-grid ${dense ? 'problem-grid--dense' : ''}">
+      ${problems.map((problem, index) => equationMarkup(problem, index)).join('')}
+    </ol>
+  </section>`;
+  return { body, answers: problems.map((problem) => String(problem.answer)), answersNote: 'Answers are listed in worksheet order.', count: total };
+}
+
+function buildBeforeAfterContent(count, theme, rng) {
+  const total = sheetCount(count, 12);
+  const values = Array.from({ length: total }, () => rng.int(2, 19));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'One more, one less', `${total} cards`)}
+    <div class="beforeafter-grid ${total > 8 ? 'beforeafter-grid--dense' : ''}">
+      ${values.map((n) => `<div class="beforeafter-card">
+        <div class="beforeafter-cell"><span class="beforeafter-label">Before</span>${answerBox()}</div>
+        <span class="beforeafter-num">${n}</span>
+        <div class="beforeafter-cell"><span class="beforeafter-label">After</span>${answerBox()}</div>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: values.map((n) => `${n - 1}, ${n + 1}`), answersNote: 'Answers are the numbers before and after.', count: total };
+}
+
+function buildSkipCountContent(count, theme, rng) {
+  const total = sheetCount(count, 8);
+  const sequences = [];
+  for (let i = 0; i < total; i += 1) {
+    const step = rng.pick([2, 5, 10]);
+    const start = step;
+    const length = 8;
+    const terms = Array.from({ length }, (_, k) => start + k * step);
+    const blanks = new Set();
+    while (blanks.size < 2) blanks.add(rng.int(2, length - 1));
+    sequences.push({ terms, blanks: [...blanks].sort((a, b) => a - b), step });
+  }
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Skip counting', `${total} sequences`)}
+    <div class="sequence-list">
+      ${sequences.map((sequence, index) => `<div class="sequence-row">
+        <span class="sequence-row__num">${index + 1}</span>
+        <span class="sequence-row__step">Count by ${sequence.step}s</span>
+        <span class="sequence-row__terms">${sequence.terms.map((term, termIndex) => sequence.blanks.includes(termIndex) ? '<span class="sequence-blank"></span>' : `<span class="sequence-term">${term}</span>`).join('')}</span>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: sequences.map((sequence) => sequence.blanks.map((blank) => sequence.terms[blank]).join(', ')), answersNote: 'Answers are the missing numbers in each sequence.', count: total };
+}
+
+function buildGreaterContent(count, theme, rng) {
+  const total = count;
+  const pairs = Array.from({ length: total }, () => {
+    const a = rng.int(1, 20);
+    let b = rng.int(1, 20);
+    if (rng.chance(0.15)) b = a;
+    const answer = a > b ? '>' : a < b ? '<' : '=';
+    return { a, b, answer };
+  });
+  const dense = total > 10;
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Compare the numbers', `${total} pairs`)}
+    <div class="greater-grid ${dense ? 'greater-grid--dense' : ''}">
+      ${pairs.map((pair) => `<div class="greater-card">
+        <span>${pair.a}</span>
+        <span class="symbol-box"></span>
+        <span>${pair.b}</span>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: pairs.map((pair) => pair.answer), answersNote: 'Answers are >, < or =.', count: total };
+}
+
+function buildPlaceContent(count, theme, rng) {
+  const total = sheetCount(count, 12);
+  const items = Array.from({ length: total }, () => {
+    const tens = rng.int(1, 5);
+    const ones = rng.int(0, 9);
+    return { tens, ones };
+  });
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Tens & ones', `${total} numbers`)}
+    <div class="place-grid ${total > 8 ? 'place-grid--dense' : ''}">
+      ${items.map((item) => `<div class="place-card">
+        <div class="place-blocks" aria-hidden="true">
+          <div class="base-ten">
+            <div class="base-ten__tens">${Array.from({ length: item.tens }, () => '<span class="base-ten__rod"></span>').join('')}</div>
+            <div class="base-ten__ones">${Array.from({ length: item.ones }, () => '<span class="base-ten__unit"></span>').join('')}</div>
+          </div>
+        </div>
+        <div class="place-answer-row">
+          <span class="place-label">Tens</span>${answerBox()}
+          <span class="place-label">Ones</span>${answerBox()}
+        </div>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: items.map((item) => `${item.tens} tens, ${item.ones} ones`), answersNote: 'Answers are the tens and ones.', count: total };
+}
+
+function buildOrdinalContent(count, theme, rng) {
+  const total = sheetCount(count, 10);
+  const rows = [];
+  for (let i = 0; i < total; i += 1) {
+    const position = rng.int(1, 5);
+    const target = theme.deco[2];
+    const filler = theme.emoji;
+    const items = Array.from({ length: 5 }, (_, index) => (index + 1 === position ? target : filler));
+    rows.push({ items, position, target });
+  }
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Ordinal numbers', `${total} rows`)}
+    <div class="ordinal-grid ${total > 6 ? 'ordinal-grid--dense' : ''}">
+      ${rows.map((row) => `<div class="ordinal-card">
+        <div class="ordinal-row" aria-hidden="true">${row.items.map((symbol) => `<span class="ordinal-item">${symbol}</span>`).join('')}</div>
+        <p class="ordinal-question">What position is the ${row.target}? ${answerBox()}</p>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: rows.map((row) => String(row.position)), answersNote: 'Answers are the positions.', count: total };
+}
+
+function numberLineSvg(start, hops, max) {
+  const width = 560;
+  const left = 30;
+  const right = 30;
+  const y = 54;
+  const span = width - left - right;
+  const x = (n) => left + (n / max) * span;
+  const ticks = Array.from({ length: max + 1 }, (_, n) => {
+    const tx = x(n);
+    const tall = n % 5 === 0;
+    return `<line x1="${tx}" y1="${y - (tall ? 10 : 5)}" x2="${tx}" y2="${y + (tall ? 10 : 5)}" stroke="currentColor" stroke-width="${tall ? 2 : 1}"/><text x="${tx}" y="${y + 30}" text-anchor="middle" font-size="10" font-weight="${tall ? 700 : 500}">${tall ? n : ''}</text>`;
+  }).join('');
+  const sx = x(start);
+  const ex = x(Math.min(max, start + hops));
+  const arc = `<path d="M ${sx} ${y - 6} Q ${(sx + ex) / 2} ${y - 45} ${ex} ${y - 6}" fill="none" stroke="var(--ws-accent)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 4"/><circle cx="${sx}" cy="${y}" r="5" fill="var(--ws-accent)"/><circle cx="${ex}" cy="${y}" r="5" fill="#fff" stroke="var(--ws-accent)" stroke-width="2.5"/>`;
+  return `<svg class="numberline-svg" viewBox="0 0 ${width} 100" aria-hidden="true"><line x1="${left}" y1="${y}" x2="${width - right}" y2="${y}" stroke="currentColor" stroke-width="2"/>${ticks}${arc}</svg>`;
+}
+
+function buildNumberLineContent(count, theme, rng) {
+  const total = sheetCount(count, 10);
+  const items = Array.from({ length: total }, () => ({ start: rng.int(1, 10), hops: rng.int(1, 5) }));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Number line hops', `${total} hops`)}
+    <div class="numberline-list">
+      ${items.map((item, index) => `<div class="numberline-card">
+        <span class="numberline-card__num">${index + 1}</span>
+        ${numberLineSvg(item.start, item.hops, 20)}
+        <p class="numberline-question">Start at ${item.start}. Hop ${item.hops} forward. Where do you land? ${answerBox()}</p>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: items.map((item) => String(item.start + item.hops)), answersNote: 'Answers are the landing numbers.', count: total };
+}
+
+function buildNumberWordsContent(count, theme, rng) {
+  const words = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty'];
+  const total = sheetCount(count, 12);
+  const values = [];
+  while (values.length < total) {
+    const n = rng.int(1, 20);
+    if (!values.includes(n)) values.push(n);
+  }
+  const bank = rng.shuffle(values.map((n) => words[n])).join(' · ');
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Number words', `${total} numbers`)}
+    <div class="word-bank"><strong>Word bank:</strong> ${bank}</div>
+    <div class="numberword-grid ${total > 8 ? 'numberword-grid--dense' : ''}">
+      ${values.map((n) => `<div class="numberword-card">
+        <span class="numberword-num">${n}</span>
+        ${answerBox('answer-box--wide')}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: values.map((n) => words[n]), answersNote: 'Answers are the number words.', count: total };
+}
+
+function buildPlace100Content(count, theme, rng) {
+  const total = sheetCount(count, 12);
+  const numbers = Array.from({ length: total }, () => rng.int(11, 99));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Place value to 100', `${total} numbers`)}
+    <div class="place100-grid ${total > 8 ? 'place100-grid--dense' : ''}">
+      ${numbers.map((n) => {
+        const tens = Math.floor(n / 10);
+        const ones = n % 10;
+        return `<div class="place100-card">
+          <span class="place100-num">${n}</span>
+          <span class="place100-eq">${n} = ${answerBox()} + ${answerBox()}</span>
+        </div>`;
+      }).join('')}
+    </div>
+  </section>`;
+  return { body, answers: numbers.map((n) => `${Math.floor(n / 10) * 10} + ${n % 10}`), answersNote: 'Answers are tens + ones.', count: total };
+}
+
+function buildEvenOddContent(count, theme, rng) {
+  const total = sheetCount(count, 15);
+  const values = Array.from({ length: total }, () => rng.int(1, 50));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Even or odd?', `${total} numbers`)}
+    <div class="evenodd-grid ${total > 10 ? 'evenodd-grid--dense' : ''}">
+      ${values.map((n) => `<div class="evenodd-card">
+        <span class="evenodd-num">${n}</span>
+        <span class="evenodd-choice">Even ${answerBox('answer-box--small')} Odd ${answerBox('answer-box--small')}</span>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: values.map((n) => (n % 2 === 0 ? 'Even' : 'Odd')), answersNote: 'Answers are even or odd.', count: total };
+}
+
+function fractionVisual(parts, shaded, shape) {
+  if (shape === 'circle') {
+    const angle = (shaded / parts) * 360;
+    return `<span class="fraction-circle" style="background:conic-gradient(var(--ws-accent) 0 ${angle}deg, #fff ${angle}deg 360deg);" aria-hidden="true"></span>`;
+  }
+  return `<span class="fraction-rect" aria-hidden="true">${Array.from({ length: parts }, (_, i) => `<span class="${i < shaded ? 'is-shaded' : ''}"></span>`).join('')}</span>`;
+}
+
+function buildFractionsContent(count, theme, rng) {
+  const total = sheetCount(count, 12);
+  const items = Array.from({ length: total }, () => {
+    const parts = rng.pick([2, 4]);
+    const shaded = rng.int(1, parts - 1);
+    const shape = rng.chance(0.5) ? 'circle' : 'rect';
+    return { parts, shaded, shape };
+  });
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Fractions', `${total} shapes`)}
+    <div class="fraction-grid ${total > 8 ? 'fraction-grid--dense' : ''}">
+      ${items.map((item) => `<div class="fraction-card">
+        ${fractionVisual(item.parts, item.shaded, item.shape)}
+        ${answerBox()}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: items.map((item) => `${item.shaded}/${item.parts}`), answersNote: 'Answers are the shaded fractions.', count: total };
+}
+
+function clockSvg(hour, minute) {
+  const cx = 50;
+  const cy = 50;
+  const hand = (angle, length) => {
+    const x = cx + Math.sin(angle) * length;
+    const y = cy - Math.cos(angle) * length;
+    return { x, y };
+  };
+  const hourAngle = (((hour % 12) + minute / 60) * 30) * Math.PI / 180;
+  const minuteAngle = (minute / 60) * 360 * Math.PI / 180;
+  const h = hand(hourAngle, 24);
+  const m = hand(minuteAngle, 34);
+  const ticks = Array.from({ length: 12 }, (_, i) => {
+    const a = i * 30 * Math.PI / 180;
+    const x1 = cx + Math.sin(a) * 40;
+    const y1 = cy - Math.cos(a) * 40;
+    const x2 = cx + Math.sin(a) * 46;
+    const y2 = cy - Math.cos(a) * 46;
+    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="currentColor" stroke-width="2"/>`;
+  }).join('');
+  const labels = `<text x="50" y="16" text-anchor="middle" font-size="9" font-weight="700">12</text><text x="86" y="54" text-anchor="middle" font-size="9" font-weight="700">3</text><text x="50" y="92" text-anchor="middle" font-size="9" font-weight="700">6</text><text x="14" y="54" text-anchor="middle" font-size="9" font-weight="700">9</text>`;
+  return `<svg class="clock-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff" stroke="currentColor" stroke-width="2.5"/>${ticks}${labels}<line x1="50" y1="50" x2="${h.x}" y2="${h.y}" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><line x1="50" y1="50" x2="${m.x}" y2="${m.y}" stroke="var(--ws-accent)" stroke-width="2.5" stroke-linecap="round"/><circle cx="50" cy="50" r="2.5" fill="currentColor"/></svg>`;
+}
+
+function buildTimeContent(count, theme, rng) {
+  const total = sheetCount(count, 10);
+  const items = Array.from({ length: total }, () => ({ hour: rng.int(1, 12), minute: rng.pick([0, 30]) }));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Telling time', `${total} clocks`)}
+    <div class="clock-grid ${total > 6 ? 'clock-grid--dense' : ''}">
+      ${items.map((item) => `<div class="clock-card">
+        ${clockSvg(item.hour, item.minute)}
+        ${answerBox('answer-box--wide')}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: items.map((item) => `${item.hour}:${item.minute === 0 ? '00' : '30'}`), answersNote: 'Answers are the times shown.', count: total };
+}
+
+function buildMoneyContent(count, theme, rng) {
+  const coinValues = [1, 5, 10, 25];
+  const total = sheetCount(count, 10);
+  const purses = Array.from({ length: total }, () => {
+    const coins = Array.from({ length: rng.int(3, 5) }, () => rng.pick(coinValues));
+    return { coins, total: coins.reduce((a, b) => a + b, 0) };
+  });
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Count the coins', `${total} purses`)}
+    <div class="money-grid ${total > 6 ? 'money-grid--dense' : ''}">
+      ${purses.map((purse) => `<div class="money-card">
+        <div class="coin-row" aria-hidden="true">${purse.coins.map((value) => `<span class="coin coin--${value}">${value}¢</span>`).join('')}</div>
+        ${answerBox('answer-box--wide')}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: purses.map((purse) => `${purse.total}¢`), answersNote: 'Answers are the total value of the coins.', count: total };
+}
+
+function buildFactFamilyContent(count, theme, rng) {
+  const total = sheetCount(count, 8);
+  const families = Array.from({ length: total }, () => {
+    const a = rng.int(1, 9);
+    const b = rng.int(1, 9);
+    return { a, b, sum: a + b };
+  });
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Fact families', `${total} families`)}
+    <div class="factfamily-grid ${total > 4 ? 'factfamily-grid--dense' : ''}">
+      ${families.map((family) => `<div class="factfamily-card">
+        <div class="factfamily-triangle" aria-hidden="true">
+          <span class="factfamily-top">${family.sum}</span>
+          <span class="factfamily-left">${family.a}</span>
+          <span class="factfamily-right">${family.b}</span>
+        </div>
+        <div class="factfamily-lines">
+          ${Array.from({ length: 4 }, () => '<span class="factfamily-line"></span>').join('')}
+        </div>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: families.map((family) => `${family.a} + ${family.b} = ${family.sum}; ${family.b} + ${family.a} = ${family.sum}; ${family.sum} - ${family.a} = ${family.b}; ${family.sum} - ${family.b} = ${family.a}`), answersNote: 'Answers are the four related facts.', count: total };
+}
+
+function buildThreeAddContent(count, theme, rng) {
+  const total = count;
+  const problems = Array.from({ length: total }, () => {
+    const a = rng.int(1, 6);
+    const b = rng.int(1, 6);
+    const c = rng.int(1, 6);
+    return { a, b, c, answer: a + b + c };
+  });
+  const dense = total > 10;
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Add three numbers', `${total} problems`)}
+    <ol class="problem-grid ${dense ? 'problem-grid--dense' : ''}">
+      ${problems.map((problem, index) => `<li class="problem">
+        <span class="problem__num">${index + 1}</span>
+        <span class="equation"><span>${problem.a}</span><b class="op">+</b><span>${problem.b}</span><b class="op">+</b><span>${problem.c}</span><b class="op">=</b><i class="eq-blank" aria-hidden="true"></i></span>
+      </li>`).join('')}
+    </ol>
+  </section>`;
+  return { body, answers: problems.map((problem) => String(problem.answer)), answersNote: 'Answers are listed in worksheet order.', count: total };
+}
+
+function buildTwoDigitContent(count, theme, rng) {
+  const total = count;
+  const problems = [];
+  for (let i = 0; i < total; i += 1) {
+    if (rng.chance(0.5)) {
+      const tensA = rng.int(1, 8);
+      const onesA = rng.int(1, 8);
+      const tensB = rng.int(1, 9 - tensA);
+      const onesB = rng.int(1, 9 - onesA);
+      const a = tensA * 10 + onesA;
+      const b = tensB * 10 + onesB;
+      problems.push({ a, b, op: '+', answer: a + b });
+    } else {
+      const tensA = rng.int(2, 9);
+      const onesA = rng.int(1, 9);
+      const tensB = rng.int(1, tensA - 1);
+      const onesB = rng.int(1, onesA);
+      const a = tensA * 10 + onesA;
+      const b = tensB * 10 + onesB;
+      problems.push({ a, b, op: '−', answer: a - b });
+    }
+  }
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Two-digit practice', `${total} problems`)}
+    <div class="vertical-grid ${total > 10 ? 'vertical-grid--dense' : ''}">
+      ${problems.map((problem) => `<div class="vertical-problem">
+        <span class="vertical-op">${problem.op}</span>
+        <span class="vertical-num">${problem.a}</span>
+        <span class="vertical-num">${problem.b}</span>
+        <span class="vertical-rule"></span>
+        <span class="vertical-answer"></span>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: problems.map((problem) => String(problem.answer)), answersNote: 'Answers are listed in worksheet order.', count: total };
+}
+
+function buildArraysContent(count, theme, rng) {
+  const total = sheetCount(count, 8);
+  const items = Array.from({ length: total }, () => {
+    const rows = rng.int(2, 5);
+    const cols = rng.int(2, 5);
+    return { rows, cols, answer: rows * cols };
+  });
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Arrays', `${total} arrays`)}
+    <div class="array-grid ${total > 4 ? 'array-grid--dense' : ''}">
+      ${items.map((item) => `<div class="array-card">
+        <div class="array-dots" style="--array-cols:${item.cols}" aria-hidden="true">${Array.from({ length: item.rows * item.cols }, () => '<span></span>').join('')}</div>
+        <p class="array-equation">${item.cols} + ${item.cols}${item.rows > 2 ? ' + …' : ''} = ${answerBox()} <span class="array-total">(${item.rows} × ${item.cols})</span></p>
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: items.map((item) => String(item.answer)), answersNote: 'Answers are the total number of dots.', count: total };
+}
+
+function buildGraphContent(count, theme, rng) {
+  const total = sheetCount(count, 3);
+  const graphs = Array.from({ length: total }, () => {
+    const categories = [theme.emoji, ...theme.deco.slice(0, 3)];
+    const counts = categories.map(() => rng.int(1, 6));
+    const totalAll = counts.reduce((a, b) => a + b, 0);
+    const maxIndex = counts.indexOf(Math.max(...counts));
+    const minIndex = counts.indexOf(Math.min(...counts));
+    return { categories, counts, totalAll, maxIndex, minIndex };
+  });
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Picture graphs', `${graphs.length} graphs`)}
+    ${graphs.map((graph, graphIndex) => `<div class="graph-card">
+      <div class="graph-title">Graph ${graphIndex + 1}</div>
+      <div class="graph-rows">
+        ${graph.categories.map((symbol, index) => `<div class="graph-row">
+          <span class="graph-label" aria-hidden="true">${symbol}</span>
+          <span class="graph-pictures" aria-hidden="true">${symbol.repeat(graph.counts[index])}</span>
+        </div>`).join('')}
+      </div>
+      <div class="graph-questions">
+        <div class="graph-question">Which has the most? ${answerBox('answer-box--wide')}</div>
+        <div class="graph-question">Which has the least? ${answerBox('answer-box--wide')}</div>
+        <div class="graph-question">How many in all? ${answerBox('answer-box--wide')}</div>
+      </div>
+    </div>`).join('')}
+  </section>`;
+  return { body, answers: graphs.flatMap((graph) => [graph.categories[graph.maxIndex], graph.categories[graph.minIndex], String(graph.totalAll)]), answersNote: 'Answers are most, least, and total.', count: graphs.length * 3 };
+}
+
+function buildRoundingContent(count, theme, rng) {
+  const total = sheetCount(count, 15);
+  const values = Array.from({ length: total }, () => rng.int(11, 89));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', 'Round to the nearest ten', `${total} numbers`)}
+    <div class="round-grid ${total > 10 ? 'round-grid--dense' : ''}">
+      ${values.map((n) => `<div class="round-card">
+        <span class="round-num">${n}</span>
+        ${answerBox()}
+      </div>`).join('')}
+    </div>
+  </section>`;
+  return { body, answers: values.map((n) => String(Math.round(n / 10) * 10)), answersNote: 'Answers are the rounded numbers.', count: total };
+}
+
+const SOLID_SVGS = {
+  cube: '<svg class="solid-svg" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 28 40 16l20 12v24L40 64 20 52z" fill="#eaf0ff" stroke="currentColor" stroke-width="2.5"/><path d="M20 28 40 40l20-12M40 40v24" stroke="currentColor" stroke-width="2.5" fill="none"/></svg>',
+  sphere: '<svg class="solid-svg" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="28" fill="#eaf0ff" stroke="currentColor" stroke-width="2.5"/><ellipse cx="40" cy="40" rx="28" ry="9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/></svg>',
+  cylinder: '<svg class="solid-svg" viewBox="0 0 80 80" aria-hidden="true"><ellipse cx="40" cy="20" rx="22" ry="8" fill="#eaf0ff" stroke="currentColor" stroke-width="2.5"/><rect x="18" y="20" width="44" height="40" fill="#eaf0ff" stroke="none"/><line x1="18" y1="20" x2="18" y2="60" stroke="currentColor" stroke-width="2.5"/><line x1="62" y1="20" x2="62" y2="60" stroke="currentColor" stroke-width="2.5"/><ellipse cx="40" cy="60" rx="22" ry="8" fill="#eaf0ff" stroke="currentColor" stroke-width="2.5"/></svg>',
+  cone: '<svg class="solid-svg" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 12 18 62h44z" fill="#eaf0ff" stroke="currentColor" stroke-width="2.5"/><ellipse cx="40" cy="62" rx="22" ry="8" fill="#eaf0ff" stroke="currentColor" stroke-width="2.5"/></svg>',
+  pyramid: '<svg class="solid-svg" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 14 14 62h52z" fill="#eaf0ff" stroke="currentColor" stroke-width="2.5"/><path d="M40 14 40 62" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/></svg>',
+};
+
+function buildShapes3DContent(count, theme, rng) {
+  const kinds = Object.keys(SOLID_SVGS);
+  const total = sheetCount(count, 10);
+  const items = Array.from({ length: total }, () => rng.pick(kinds));
+  const body = `<section class="ws-block">
+    ${blockTitle('A', '3D shapes', `${total} shapes`)}
+    <div class="solid-grid ${total > 6 ? 'solid-grid--dense' : ''}">
+      ${items.map((kind) => `<div class="solid-card">
+        ${SOLID_SVGS[kind]}
+        ${answerBox('answer-box--wide')}
+      </div>`).join('')}
+    </div>
+    <p class="word-bank"><strong>Word bank:</strong> cube, sphere, cylinder, cone, pyramid</p>
+  </section>`;
+  return { body, answers: items, answersNote: 'Answers are the shape names.', count: total };
+}
+
 function createContent(activity, count, theme, rng, options = {}) {
   if (activity === 'mixed-prek') return buildMixedPreKContent(count, theme, rng, options);
   if (activity === 'trace') return buildTraceContent(count, theme, rng, options.range);
   if (activity === 'count') return buildCountContent(count, theme, rng);
   if (activity === 'shapes') return buildShapesContent(count, theme, rng);
   if (activity === 'compare') return buildCompareContent(count, theme, rng);
+  if (activity === 'patterns') return buildPatternsContent(count, theme, rng);
+  if (activity === 'tenframe') return buildTenframeContent(count, theme, rng);
+  if (activity === 'dice') return buildDiceContent(count, theme, rng);
+  if (activity === 'sort') return buildSortContent(count, theme, rng);
   if (activity === 'bonds') return buildBondsContent(count, theme, rng);
   if (activity === 'tally') return buildTallyContent(count, theme, rng);
+  if (activity === 'addpics') return buildAddPicsContent(count, theme, rng);
+  if (activity === 'subpics') return buildSubPicsContent(count, theme, rng);
+  if (activity === 'doubles') return buildDoublesContent(count, theme, rng);
+  if (activity === 'beforeafter') return buildBeforeAfterContent(count, theme, rng);
+  if (activity === 'skipcount') return buildSkipCountContent(count, theme, rng);
+  if (activity === 'greater') return buildGreaterContent(count, theme, rng);
+  if (activity === 'place') return buildPlaceContent(count, theme, rng);
+  if (activity === 'ordinal') return buildOrdinalContent(count, theme, rng);
+  if (activity === 'numberline') return buildNumberLineContent(count, theme, rng);
+  if (activity === 'numberwords') return buildNumberWordsContent(count, theme, rng);
   if (activity === 'word') return buildWordContent(count, theme, rng);
+  if (activity === 'place100') return buildPlace100Content(count, theme, rng);
+  if (activity === 'evenodd') return buildEvenOddContent(count, theme, rng);
+  if (activity === 'fractions') return buildFractionsContent(count, theme, rng);
+  if (activity === 'time') return buildTimeContent(count, theme, rng);
+  if (activity === 'money') return buildMoneyContent(count, theme, rng);
+  if (activity === 'factfamily') return buildFactFamilyContent(count, theme, rng);
+  if (activity === 'threeadd') return buildThreeAddContent(count, theme, rng);
+  if (activity === 'twodigit') return buildTwoDigitContent(count, theme, rng);
+  if (activity === 'arrays') return buildArraysContent(count, theme, rng);
+  if (activity === 'graph') return buildGraphContent(count, theme, rng);
+  if (activity === 'rounding') return buildRoundingContent(count, theme, rng);
+  if (activity === 'shapes3d') return buildShapes3DContent(count, theme, rng);
   return buildEquationContent(activity, count, theme, rng);
 }
 
@@ -1140,6 +1938,7 @@ function buildWorksheet(config) {
   const instruction = config.instruction || defaultInstruction(activity);
   const content = createContent(activity, count, theme, rng, config);
   const answers = content.answers || [];
+  const actualCount = Number.isFinite(content.count) ? content.count : count;
   const includeKey = Boolean(config.includeKey) && answers.length > 0;
   const totalPages = includeKey ? 2 : 1;
 
@@ -1170,7 +1969,7 @@ function buildWorksheet(config) {
     activity,
     difficulty,
     theme,
-    count,
+    count: actualCount,
     seed,
     answers,
     pageCount: totalPages,
@@ -1186,13 +1985,16 @@ window.SquiggleMath = {
   THEMES,
   ACTIVITY_INFO,
   LEVEL_PLAN,
-  CATALOG,
+  CATALOG_PLAN,
+  ACTIVITY_GROUPS,
+  catalogFor,
+  activitiesFor,
+  generatorActivitiesFor,
   CATALOG_BY_CATEGORY,
   SHEET_WIDTH,
   SHEET_HEIGHT,
   MAX_PROBLEMS,
-  catalogFor,
-  activitiesFor,
+  generatorActivitiesFor,
   findSheet,
   buildWorksheet,
   createRng,
