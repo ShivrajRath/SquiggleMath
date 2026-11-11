@@ -24,6 +24,47 @@ const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(sel
 const LEVELS = ['prek', 'k', 'g1'];
 const PAGE_SIZE = 12;
 
+/* The landing page is a shop window, so hand-pick one sheet from a spread of
+   skills and themes for each level instead of taking the first four catalogue
+   entries (which all share the same activity). */
+const LANDING_PICKS = {
+  prek: [
+    { activity: 'trace', theme: 'ocean' },
+    { activity: 'count', theme: 'safari' },
+    { activity: 'shapes', theme: 'unicorns' },
+    { activity: 'patterns', theme: 'space' },
+  ],
+  k: [
+    { activity: 'add10', theme: 'monsters' },
+    { activity: 'bonds', theme: 'space' },
+    { activity: 'tally', theme: 'ocean' },
+    { activity: 'maketen', theme: 'unicorns' },
+  ],
+  g1: [
+    { activity: 'word', theme: 'safari' },
+    { activity: 'place100', theme: 'space' },
+    { activity: 'money', theme: 'ocean' },
+    { activity: 'time', theme: 'monsters' },
+  ],
+};
+
+function landingSheets(category) {
+  const all = catalogFor(category);
+  const picked = (LANDING_PICKS[category] || [])
+    .map(({ activity, theme }) => all.find((sheet) => sheet.activity === activity && sheet.theme === theme))
+    .filter(Boolean);
+
+  // If the catalogue changes, top up with unused skills and themes so the row
+  // never falls back to four near-identical cards.
+  for (const sheet of all) {
+    if (picked.length >= 4) break;
+    if (picked.some((entry) => entry.activity === sheet.activity || entry.theme === sheet.theme)) continue;
+    picked.push(sheet);
+  }
+
+  return picked;
+}
+
 /* =========================================================
    Library cards
    ========================================================= */
@@ -113,8 +154,8 @@ function miniPreview(sheet) {
 
   if (activity === 'balance') {
     return `<div class="mini-eq"><span>7 + 2 =</span><span></span></div>
-      <div class="mini-eq"><span>5 + = 4 +</span><span></span></div>
-      <div class="mini-eq"><span>3 + 3 = 1 +</span><span></span></div>`;
+      <div class="mini-eq mini-eq--solo mini-eq--missing"><span>5 + <i class="mini-blank"></i> = 4 + <i class="mini-blank"></i></span></div>
+      <div class="mini-eq mini-eq--solo mini-eq--missing"><span>3 + 3 = 1 + <i class="mini-blank"></i></span></div>`;
   }
 
   if (activity === 'symmetry') {
@@ -123,6 +164,99 @@ function miniPreview(sheet) {
 
   if (activity === 'measure') {
     return `<div class="mini-measure"><span style="width:82%"></span></div><div class="mini-measure"><span style="width:48%"></span></div><div class="mini-measure"><span style="width:66%"></span></div>`;
+  }
+
+  if (activity === 'patterns') {
+    const kinds = ['circle', 'square', 'triangle', 'star'];
+    return [0, 1, 2].map((row) => {
+      const first = kinds[row % kinds.length];
+      const second = kinds[(row + 1) % kinds.length];
+      const sequence = [first, second, first, second, first];
+      return `<div class="mini-pattern">${sequence.map((kind, index) => shapeSvg(kind, (row + index) % 4)).join('')}<span class="mini-pattern__blank"></span></div>`;
+    }).join('');
+  }
+
+  if (activity === 'numberhunt') {
+    return [0, 1].map((row) => {
+      const target = row === 0 ? 7 : 8;
+      return `<div class="mini-hunt">${[3, 5, 7, 8, 9].map((value) => {
+        const number = value + row;
+        return `<span class="${number === target ? 'is-target' : ''}">${number}</span>`;
+      }).join('')}</div>`;
+    }).join('');
+  }
+
+  if (activity === 'samediff') {
+    return [0, 1, 2].map((row) => {
+      const same = row % 2 === 0;
+      const icons = same ? [theme.emoji, theme.emoji, theme.emoji] : [theme.emoji, theme.deco[1], theme.emoji];
+      return `<div class="mini-samediff"><span>${icons.join('')}</span><span class="mini-samediff__box"></span></div>`;
+    }).join('');
+  }
+
+  if (activity === 'shapesort') {
+    return `<div class="mini-sort"><span class="mini-sort__label">Flat</span><span class="mini-sort__set">${shapeSvg('circle', 0)}${shapeSvg('triangle', 1)}${shapeSvg('square', 2)}</span></div>
+      <div class="mini-sort"><span class="mini-sort__label">Solid</span><span class="mini-sort__set"><em>🧊</em><em>⚽</em><em>🎲</em></span></div>`;
+  }
+
+  if (activity === 'counton') {
+    return [0, 1].map((row) => {
+      const start = 4 + row * 3;
+      return `<div class="mini-counton"><b>${start}</b><i>→</i><b>${start + 1}</b><i>→</i><b>${start + 2}</b><i>→</i><span class="mini-counton__blank"></span></div>`;
+    }).join('');
+  }
+
+  if (activity === 'place100') {
+    return [0, 1].map((row) => {
+      const tens = row === 0 ? 3 : 2;
+      const ones = row === 0 ? 4 : 6;
+      return `<div class="mini-place"><span class="mini-place__rods">${'<i></i>'.repeat(tens)}</span><span class="mini-place__ones">${'<b></b>'.repeat(ones)}</span><span class="mini-count__box"></span></div>`;
+    }).join('');
+  }
+
+  if (activity === 'money') {
+    const rows = [
+      [['25¢', 'gold'], ['10¢', 'gold'], ['5¢', 'silver']],
+      [['10¢', 'gold'], ['1¢', 'copper'], ['1¢', 'copper']],
+    ];
+    return rows.map((coins) => `<div class="mini-money">${coins.map(([label, tone]) => `<span class="mini-coin mini-coin--${tone}">${label}</span>`).join('')}<span class="mini-count__box"></span></div>`).join('');
+  }
+
+  if (activity === 'time') {
+    return [3, 7].map((hour, index) => {
+      const minute = index === 0 ? 0 : 30;
+      const minuteAngle = minute * 6;
+      const hourAngle = (hour % 12) * 30 + minute * 0.5;
+      const hand = (angle, length) => {
+        const radians = (angle - 90) * (Math.PI / 180);
+        return `${22 + Math.cos(radians) * length} ${22 + Math.sin(radians) * length}`;
+      };
+      return `<div class="mini-time">
+        <svg class="mini-clock" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <circle cx="22" cy="22" r="18" fill="#fff" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M22 8v3.5M36 22h-3.5M22 36v-3.5M8 22h3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M22 22 ${hand(hourAngle, 9)}M22 22 ${hand(minuteAngle, 13)}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="22" cy="22" r="1.6" fill="currentColor"/>
+        </svg>
+        <span class="mini-time__digital">${hour}:${String(minute).padStart(2, '0')}</span>
+        <span class="mini-count__box"></span>
+      </div>`;
+    }).join('');
+  }
+
+  if (activity === 'fractionsset') {
+    return [3, 1].map((shaded) => {
+      const quadrant = (index) => {
+        const start = ((index * 90 - 90) * Math.PI) / 180;
+        const end = (((index + 1) * 90 - 90) * Math.PI) / 180;
+        const x1 = 22 + Math.cos(start) * 17;
+        const y1 = 22 + Math.sin(start) * 17;
+        const x2 = 22 + Math.cos(end) * 17;
+        const y2 = 22 + Math.sin(end) * 17;
+        return `<path d="M22 22 L${x1} ${y1} A17 17 0 0 1 ${x2} ${y2} Z" fill="currentColor" fill-opacity="${index < shaded ? 0.55 : 0}" stroke="currentColor" stroke-width="1.2"/>`;
+      };
+      return `<div class="mini-fraction"><svg class="mini-fraction__pie" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="17" fill="#fff"/>${[0, 1, 2, 3].map(quadrant).join('')}</svg><span class="mini-count__box"></span></div>`;
+    }).join('');
   }
 
   const isSubtraction = activity === 'sub10' || activity === 'sub20';
@@ -185,10 +319,10 @@ function renderLibraryLevel(category) {
 
   if (!grid) return;
 
-  // Landing page: show only a few cards, no filters.
+  // Landing page: a small, varied showcase, no filters.
   if (!tools) {
     const limit = Number(grid.dataset.limit) || 4;
-    grid.innerHTML = all.slice(0, limit).map(sheetCardMarkup).join('');
+    grid.innerHTML = landingSheets(category).slice(0, limit).map(sheetCardMarkup).join('');
     if (countEl) countEl.textContent = `· ${all.length} worksheets`;
     return;
   }

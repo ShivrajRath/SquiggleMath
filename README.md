@@ -1,13 +1,16 @@
 # SquiggleMath
 
 A playful, print-ready math worksheet site for ages 3–7. SquiggleMath is a
-single-page static site with a hand-picked printables library and a client-side
-worksheet studio. No build step, no backend, no dependencies to install.
+static site with a hand-picked printables library, guided learning paths and a
+client-side worksheet studio. No build step, no backend, no dependencies to install.
 
 ## What is inside
 
 - **Printables library** grouped by age, with 180 worksheets for every age group
   (540 total), across 56 themes in the studio.
+- **Guided paths** for every age: four weeks, three short sessions a week, in a
+  deliberate skill order. Sessions open ready-made print pages and progress is
+  saved in the browser.
 - **Worksheet Studio** with an age-first flow: pick Pre-K, Kindergarten or
   Grade 1, then a skill, a theme and an amount of practice. 60+ activity types,
   56 themes, optional answer key.
@@ -45,14 +48,17 @@ The library and studio group activities into seven areas:
 .
 ├── index.html            # Landing page with printables library
 ├── worksheets.html       # Full browsable library
+├── paths.html            # Guided four-week learning paths
 ├── generator.html        # Worksheet studio
 ├── worksheet.html        # Standalone print page
 ├── engine.js             # Shared worksheet engine + age-band data
 ├── script.js             # Library interactions
+├── paths.js              # Guided path data, progress and rendering
 ├── generator.js          # Studio interactions
 ├── worksheet.js          # Print page logic
 ├── styles.css            # Design system + worksheet styles
 ├── generator.css         # Studio styles
+├── paths.css             # Guided path page + home promo
 ├── worksheet.css         # Print page chrome
 ├── worksheet-ages.css    # Age bands + new activity layouts
 ├── docs/worksheet-design.md  # Early-education design contract
@@ -76,6 +82,23 @@ Everything else is local.
 The engine caps item counts per band (`DIFFICULTIES[level].maxProblems`), so a
 studio URL cannot produce a 20-item Pre-K sheet. Every sheet is designed to fit
 one A4 page; enabling the answer key adds a second page.
+
+## Guided paths
+
+`paths.html` turns the library into a sequence instead of a pile. Each age has
+one four-week path with twelve sessions:
+
+| Age | Path | Focus |
+|---|---|---|
+| Pre-K | First Marks | Pencil control, counting to 5, colours, shapes, position words |
+| Kindergarten | Number Explorers | Numbers to 10, make ten, teens, addition, measurement |
+| Grade 1 | Fact Fluency | Facts to 20, place value, money, time, fractions, graphs |
+
+Every session links to a stable `worksheet.html` recipe with the right item cap
+for the age. Ticking a session saves progress under
+`squigglemath.paths.v1` in `localStorage`; there is no account and no server.
+The page shows a per-age ring, a per-week completion badge and a “continue”
+button that always points at the next unfinished session.
 
 ## Run locally
 
@@ -134,6 +157,9 @@ No GitHub Actions workflow or build command is needed.
 - **Age bands** are defined in `DIFFICULTIES` in `engine.js` (item caps, choice
   sets, session length, grown-up tips). Their visual scale lives in
   `worksheet-ages.css`.
+- **Guided paths** live in the `PATHS` object in `paths.js`. Each week lists an
+  `activity`, `theme`, `problems` count and a short coaching note. Keep activity
+  keys inside `LEVEL_PLAN[level]` and the count within that age's cap.
 - **Themes** live in `THEMES` in `engine.js`. Add a theme and it appears in the
   studio automatically.
 - **Randomized sheets** use a small seeded PRNG (mulberry32). Pre-made sheets

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guided Paths | SquiggleMath</title>
+  <meta name="description" content="Four-week guided math paths for ages 3–7. Three short sessions a week, in the right order, with progress saved on your device.">
+  <meta name="theme-color" content="#fff8ea">
+  <meta property="og:title" content="Guided Paths — SquiggleMath">
+  <meta property="og:description" content="Little steps, big progress. Four-week printable math paths for Pre-K, Kindergarten and Grade 1.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ffd447'/%3E%3Cpath d='M10 38c8-22 14 14 22-8s12 14 22-6' fill='none' stroke='%231f2a44' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261112-4">
+  <link rel="stylesheet" href="paths.css?v=20261112-2">
+  <script src="engine.js?v=20261112-2" defer></script>
+  <script src="paths.js?v=20261112-2" defer></script>
+</head>
+<body class="paths-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html#top" aria-label="SquiggleMath home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 52 52" fill="none">
+            <rect width="52" height="52" rx="15" fill="#ffd447"/>
+            <path d="M8 31c7-18 12 11 19-6s10 11 18-4" stroke="#1f2a44" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand__name">Squiggle<span>Math</span></span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html#library">Printables</a>
+        <span class="site-nav__current" aria-current="page">Guided paths</span>
+        <a href="generator.html">Studio</a>
+        <a href="index.html#how">How it works</a>
+      </nav>
+
+      <a class="btn btn--small btn--ink header-cta" href="index.html#library">
+        <span>Browse library</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="paths-hero">
+      <div class="container paths-hero__inner">
+        <div class="paths-hero__copy">
+          <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--yellow"></span> Guided paths</p>
+          <h1>Little steps,<br><span class="marker marker--mint">big progress</span>.</h1>
+          <p class="paths-hero__lede">Three short sessions a week, in the right order. Pick an age and follow a four-week path from first marks to confident facts — then tick each session off as you go.</p>
+
+          <div class="path-age-tabs" id="path-age-tabs" role="tablist" aria-label="Choose a path by age"></div>
+          <p class="path-age-hint">Switch ages any time. Progress for each path is saved separately.</p>
+
+          <ul class="hero__proof paths-hero__proof">
+            <li><span class="check" aria-hidden="true">✓</span> 4 weeks, 12 sessions</li>
+            <li><span class="check" aria-hidden="true">✓</span> About 8–15 min each</li>
+            <li><span class="check" aria-hidden="true">✓</span> Progress saved here</li>
+          </ul>
+        </div>
+
+        <div class="paths-hero__art" aria-hidden="true">
+          <span class="paths-blob paths-blob--yellow"></span>
+          <span class="paths-blob paths-blob--pink"></span>
+
+          <div class="path-map">
+            <div class="path-map__top">
+              <span class="path-map__badge">My little path</span>
+              <span class="path-map__star">⭐</span>
+            </div>
+            <p class="path-map__title">Four weeks of wins</p>
+            <p class="path-map__sub">3 short sessions a week</p>
+            <ol class="path-map__list">
+              <li class="is-done">
+                <span class="path-map__num">1</span>
+                <span>Warm up</span>
+                <span class="path-map__tick">✓</span>
+              </li>
+              <li class="is-current">
+                <span class="path-map__num">2</span>
+                <span>Learn something new</span>
+                <span class="path-map__tick">→</span>
+              </li>
+              <li>
+                <span class="path-map__num">3</span>
+                <span>Practise it</span>
+                <span class="path-map__tick"></span>
+              </li>
+              <li>
+                <span class="path-map__num">4</span>
+                <span>Big finish</span>
+                <span class="path-map__tick"></span>
+              </li>
+            </ol>
+            <div class="path-map__footer">
+              <span>🖍️</span>
+              <span>12 little sessions</span>
+              <span class="path-map__stars">★★★</span>
+            </div>
+          </div>
+
+          <span class="path-map__sticker">One step<br>at a time!</span>
+          <span class="paths-doodle">〰️</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="paths-section" aria-labelledby="path-page-title">
+      <div class="container">
+        <h2 class="sr-only" id="path-page-title">Your guided path</h2>
+
+        <div class="path-guide">
+          <div>
+            <span class="path-guide__icon" aria-hidden="true">⏱️</span>
+            <div><strong>Short and doable</strong><span>One page, then go and play.</span></div>
+          </div>
+          <div>
+            <span class="path-guide__icon" aria-hidden="true">🪜</span>
+            <div><strong>In the right order</strong><span>Each week builds on the last.</span></div>
+          </div>
+          <div>
+            <span class="path-guide__icon" aria-hidden="true">✅</span>
+            <div><strong>See the progress</strong><span>Tick sessions off as you finish.</span></div>
+          </div>
+        </div>
+
+        <div class="path-summary" id="path-summary" data-level="prek"></div>
+
+        <div class="path-weeks" id="path-panel" role="tabpanel" aria-labelledby="path-tab-prek"></div>
+
+        <div class="path-foot">
+          <button class="path-reset" type="button" id="path-reset">Start this path again</button>
+          <p>Progress is saved in this browser only. No account, no cloud, no fuss.</p>
+          <p class="sr-only" id="path-live" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <a class="brand brand--light" href="index.html#top" aria-label="SquiggleMath home">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 52 52" fill="none">
+              <rect width="52" height="52" rx="15" fill="#ffd447"/>
+              <path d="M8 31c7-18 12 11 19-6s10 11 18-4" stroke="#1f2a44" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand__name">Squiggle<span>Math</span></span>
+        </a>
+        <p>Big fun. Little squiggles.<br>Print-ready maths for ages 3–7.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <div>
+          <h3>Explore</h3>
+          <a href="index.html#library">Printables library</a>
+          <a href="paths.html">Guided paths</a>
+          <a href="generator.html">Worksheet studio</a>
+          <a href="index.html#how">How it works</a>
+        </div>
+        <div>
+          <h3>Little extras</h3>
+          <a href="generator.html">Make an answer key</a>
+          <a href="index.html#library">Pre-K tracing</a>
+          <a href="https://github.com/ShivrajRath/SquiggleMath" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </div>
+      </nav>
+      <div class="site-footer__bottom">
+        <p>© <span id="year">2026</span> SquiggleMath. Made for little hands and big imaginations.</p>
+        <p class="footer-badge">Free forever <span aria-hidden="true">♡</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript">Guided paths need JavaScript to save progress and open worksheets. Please enable it and refresh.</div>
+  </noscript>
+</body>
+</html>
