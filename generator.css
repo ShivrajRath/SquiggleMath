@@ -1400,6 +1400,386 @@
   }
 }
 
+/* =========================================================
+   Age-first studio controls (2026 rebuild)
+   ========================================================= */
+
+.studio--page {
+  grid-template-columns: 410px minmax(0, 1fr);
+  align-items: start;
+  min-width: 0;
+}
+
+.stage,
+.studio-panel,
+.paper-scene {
+  min-width: 0;
+}
+
+.studio-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.studio-form fieldset,
+.studio-step,
+.theme-search-wrap,
+.theme-picker,
+.theme-tile,
+.theme-tile__name {
+  min-width: 0;
+}
+
+.theme-tile__name { overflow-wrap: anywhere; }
+
+.studio-step {
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+}
+
+.studio-step:last-of-type {
+  margin-bottom: 14px;
+}
+
+.studio-step__num {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.studio-step .field-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+/* age cards */
+.age-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.age-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 11px 13px;
+  border: 2px solid rgba(31, 42, 68, 0.12);
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s var(--ease-bounce);
+}
+
+.age-card:hover {
+  transform: translateX(2px);
+  border-color: rgba(31, 42, 68, 0.32);
+}
+
+.age-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
+.age-card.is-active {
+  border-color: var(--ink);
+  background: var(--yellow);
+  box-shadow: 0 3px 0 rgba(31, 42, 68, 0.15);
+}
+
+.age-card__emoji {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 14px;
+  background: var(--cream);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.age-card.is-active .age-card__emoji {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.age-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.18;
+}
+
+.age-card__title {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.age-card__ages {
+  margin-top: 1px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pink-deep);
+}
+
+.age-card__focus {
+  margin-top: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.age-card__check {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.age-card.is-active .age-card__check { opacity: 1; }
+
+.field-hint {
+  display: block;
+  margin-top: 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* skill filter chips */
+.skill-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 2px solid rgba(31, 42, 68, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.skill-chip span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--cream);
+  font-size: 0.6rem;
+  color: var(--ink-faint);
+}
+
+.skill-chip:hover { border-color: rgba(31, 42, 68, 0.34); }
+
+.skill-chip.is-active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+
+.skill-chip.is-active span {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* activity tiles */
+.activity-picker { max-height: 330px; }
+
+.activity-tile__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.activity-tile__name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.activity-tile__flag {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--mint);
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.activity-tile.is-active .activity-tile__flag {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+/* teacher card */
+.teacher-card {
+  margin-top: 4px;
+  padding: 14px 15px;
+  border: 2px dashed rgba(31, 42, 68, 0.16);
+  border-radius: 16px;
+  background: #fffdf8;
+}
+
+.teacher-card__kicker {
+  margin-bottom: 5px;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink-deep);
+}
+
+.teacher-card__focus {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.teacher-card__skill {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.teacher-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.teacher-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.teacher-card__list span {
+  flex: none;
+  font-size: 0.85rem;
+  line-height: 1.25;
+}
+
+.teacher-card__tip {
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(31, 42, 68, 0.16);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.teacher-card__tip strong { color: var(--ink); }
+
+.teacher-card__tip--soft {
+  margin-top: 6px;
+  padding-top: 0;
+  border-top: 0;
+  color: var(--ink-faint);
+}
+
+/* stage ribbon + actions */
+.stage__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.age-ribbon {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 1.5px solid rgba(31, 42, 68, 0.1);
+  border-radius: 12px;
+  background: #fffdf8;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.age-ribbon__badge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--yellow);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.panel__note {
+  margin-top: 14px;
+}
+
+@media (max-width: 980px) {
+  .studio--page { grid-template-columns: 1fr; }
+  .stage__bar { flex-wrap: wrap; }
+  .activity-picker { max-height: 360px; }
+}
+
 @media (max-width: 620px) {
   .theme-picker {
     grid-template-columns: repeat(5, 1fr);
@@ -1408,4 +1788,15 @@
   .activity-picker {
     max-height: 280px;
   }
+
+  .age-card { min-height: 68px; }
+  .age-card__focus { display: none; }
+  .stage__actions { width: 100%; }
+  .stage__actions .btn { flex: 1; justify-content: center; }
+}
+
+@media (max-width: 460px) {
+  .theme-picker { grid-template-columns: repeat(4, 1fr); }
+  .theme-tile { padding: 7px 2px; }
+  .age-ribbon { font-size: 0.7rem; }
 }

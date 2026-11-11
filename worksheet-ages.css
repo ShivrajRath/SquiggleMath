@@ -1,0 +1,1497 @@
+/* =========================================================
+   SquiggleMath — worksheet age bands + new activity styles
+   Loaded after styles.css / generator.css.
+
+   Three bands, three densities:
+     Pre-K        fewer, bigger, calmer (2 columns, chunky boxes)
+     Kindergarten picture support, medium density (3 columns)
+     Grade 1      efficient practice (3–4 columns, one challenge)
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Answer boxes (shared, age-scaled below)
+   --------------------------------------------------------- */
+
+.answer-box {
+  display: inline-block;
+  width: 44px;
+  height: 34px;
+  flex: none;
+  border: 2px solid rgba(31, 42, 68, 0.34);
+  border-radius: 8px;
+  background: #fff;
+  vertical-align: middle;
+}
+
+.answer-box--small { width: 30px; height: 24px; }
+.answer-box--wide { width: 76px; height: 34px; }
+.answer-box--tall { width: 56px; height: 46px; }
+
+/* ---------------------------------------------------------
+   Shared extras: wordless steps, mascot, grown-up corner,
+   challenge, workzone
+   --------------------------------------------------------- */
+
+.ws-steps {
+  display: none;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.worksheet--prek .ws-steps,
+.worksheet--k .ws-steps { display: flex; }
+
+.ws-step {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 6px 9px;
+  border: 1.5px solid rgba(31, 42, 68, 0.12);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.ws-step__num {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ws-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.ws-step__icon { font-size: 16px; line-height: 1; }
+
+.ws-step__label {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.worksheet--prek .ws-step { min-height: 52px; padding: 8px 11px; gap: 8px; }
+.worksheet--prek .ws-step__num { width: 22px; height: 22px; font-size: 11px; }
+.worksheet--prek .ws-step__icon { font-size: 22px; }
+.worksheet--prek .ws-step__label { font-size: 13px; }
+
+.ws-mascot { display: none; }
+
+.worksheet--prek .ws-mascot,
+.worksheet--k .ws-mascot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--ws-accent-soft);
+}
+
+.ws-mascot__face { font-size: 24px; line-height: 1; }
+.ws-mascot__bubble {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.worksheet--prek .ws-mascot__face { font-size: 32px; }
+.worksheet--prek .ws-mascot__bubble { font-size: 13px; }
+
+.ws-grownup { display: none; }
+
+.worksheet--prek .ws-grownup {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1.5px dashed var(--ws-accent);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.ws-grownup__icon { font-size: 16px; line-height: 1.2; }
+.ws-grownup p { margin: 0; font-size: 10px; line-height: 1.45; color: var(--ink-soft); }
+.ws-grownup strong { color: var(--ink); }
+.ws-grownup em { font-style: normal; font-weight: 700; color: var(--ws-accent); }
+
+.ws-challenge { display: none; }
+
+.worksheet--k .ws-challenge,
+.worksheet--g1 .ws-challenge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 7px 11px;
+  border-radius: 9px;
+  background: var(--ws-accent-soft);
+}
+
+.ws-challenge p { margin: 0; font-size: 10px; font-weight: 600; line-height: 1.4; color: var(--ink-soft); }
+.ws-challenge strong { color: var(--ink); }
+.ws-challenge__icon { font-size: 14px; flex: none; }
+
+.ws-workzone--prek { min-height: 150px; max-height: 240px; }
+.worksheet--prek .ws-workzone__head { font-size: 10px; }
+
+/* ---------------------------------------------------------
+   Pre-K activity: pre-writing paths
+   --------------------------------------------------------- */
+
+.prewrite-list { display: flex; flex-direction: column; gap: 10px; }
+
+.prewrite-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 0;
+}
+
+.prewrite-row__label {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ws-accent-soft);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.prewrite-row__track { flex: 1; min-width: 0; }
+
+.prewrite-svg {
+  display: block;
+  width: 100%;
+  height: 74px;
+  overflow: visible;
+}
+
+.prewrite-guide {
+  fill: none;
+  stroke: var(--ws-accent-soft);
+  stroke-width: 18;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.prewrite-path {
+  fill: none;
+  stroke: var(--ws-accent);
+  stroke-width: 2.4;
+  stroke-dasharray: 6 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.prewrite-dot { fill: var(--ws-accent); }
+
+.prewrite-row__ends {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.worksheet--prek .prewrite-row { gap: 12px; }
+.worksheet--prek .prewrite-row__label { width: 32px; height: 32px; font-size: 13px; }
+.worksheet--prek .prewrite-svg { height: 76px; }
+.worksheet--prek .prewrite-row__ends { font-size: 22px; }
+
+/* ---------------------------------------------------------
+   Pre-K activity: colour hunt
+   --------------------------------------------------------- */
+
+.colour-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.colour-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 108px;
+  padding: 10px;
+  border: 1.5px solid rgba(31, 42, 68, 0.16);
+  border-radius: 12px;
+  background: #fffdfa;
+}
+
+.colour-card__shapes {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 6px;
+}
+
+.colour-shape {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--dot);
+  box-shadow: 0 1px 0 rgba(31, 42, 68, 0.12) inset;
+}
+
+.colour-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(31, 42, 68, 0.14);
+}
+
+.colour-swatch {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border: 1.5px solid rgba(31, 42, 68, 0.2);
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.colour-label {
+  flex: 1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.worksheet--prek .colour-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.worksheet--prek .colour-card { min-height: 150px; padding: 14px; border-width: 2px; border-radius: 14px; }
+.worksheet--prek .colour-shape { width: 36px; height: 36px; }
+.worksheet--prek .colour-swatch { width: 22px; height: 22px; }
+.worksheet--prek .colour-label { font-size: 13px; }
+
+/* ---------------------------------------------------------
+   Pre-K activity: same & different
+   --------------------------------------------------------- */
+
+.samediff-list { display: flex; flex-direction: column; gap: 10px; }
+
+.samediff-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+  padding: 8px 12px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 12px;
+  background: #fffdfa;
+}
+
+.samediff-row__num {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ws-accent-soft);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.samediff-row__items {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.samediff-item { display: inline-block; }
+
+.samediff-row__hint {
+  flex: none;
+  max-width: 84px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: right;
+  color: var(--ink-faint);
+}
+
+.worksheet--prek .samediff-row { min-height: 100px; padding: 12px 16px; border-width: 2px; border-radius: 14px; }
+.worksheet--prek .samediff-row__items { gap: 22px; font-size: 46px; }
+.worksheet--prek .samediff-row__hint { font-size: 10px; max-width: 100px; }
+
+/* ---------------------------------------------------------
+   Pre-K activity: position words
+   --------------------------------------------------------- */
+
+.position-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.position-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 9px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 12px;
+  background: #fffdfa;
+}
+
+.position-scene {
+  position: relative;
+  height: 120px;
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, #f4fbff, var(--ws-accent-soft));
+  overflow: hidden;
+}
+
+.position-anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 46px;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+}
+
+.position-target,
+.position-other { position: absolute; font-size: 26px; line-height: 1; }
+
+.position-scene--above .position-target { top: 6px; left: 50%; transform: translateX(-50%); }
+.position-scene--above .position-other { bottom: 8px; left: 14px; }
+
+.position-scene--below .position-target { bottom: 6px; left: 50%; transform: translateX(-50%); }
+.position-scene--below .position-other { top: 8px; left: 14px; }
+
+.position-scene--beside .position-target { top: 50%; right: 10px; transform: translateY(-50%); }
+.position-scene--beside .position-other { top: 10px; left: 12px; }
+
+.position-scene--front .position-target { bottom: 8px; left: 50%; transform: translateX(-50%); }
+.position-scene--front .position-other { top: 10px; right: 14px; }
+
+.position-scene--behind .position-target { top: 10px; left: 50%; transform: translateX(-50%); }
+.position-scene--behind .position-other { bottom: 8px; right: 14px; }
+
+.position-scene--inside .position-target { top: 50%; left: 50%; font-size: 20px; transform: translate(-50%, -40%); }
+.position-scene--inside .position-other { bottom: 10px; left: 14px; }
+
+.position-question {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+.position-question strong { color: var(--ws-accent); }
+
+.worksheet--prek .position-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.worksheet--prek .position-card { padding: 7px; border-width: 2px; border-radius: 12px; }
+.worksheet--prek .position-scene { height: 106px; }
+.worksheet--prek .position-anchor { font-size: 44px; }
+.worksheet--prek .position-target { font-size: 28px; }
+.worksheet--prek .position-other { font-size: 25px; }
+.worksheet--prek .position-question { font-size: 11px; }
+
+/* ---------------------------------------------------------
+   Pre-K activity: number hunt
+   --------------------------------------------------------- */
+
+.hunt-grid { display: flex; flex-direction: column; gap: 10px; }
+
+.hunt-card {
+  padding: 10px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 12px;
+  background: #fffdfa;
+}
+
+.hunt-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.hunt-target {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--ws-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.hunt-card__ask { flex: 1; font-size: 12px; font-weight: 700; }
+.hunt-card__ask strong { color: var(--ws-accent); }
+
+.hunt-score {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hunt-score i {
+  display: block;
+  width: 32px;
+  height: 15px;
+  border-bottom: 1.5px dotted rgba(31, 42, 68, 0.4);
+}
+
+.hunt-numbers {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.hunt-num {
+  display: grid;
+  place-items: center;
+  height: 36px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 8px;
+  background: #fff;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.worksheet--prek .hunt-card { padding: 12px; border-width: 2px; border-radius: 14px; }
+.worksheet--prek .hunt-card__head { margin-bottom: 6px; }
+.worksheet--prek .hunt-target { width: 48px; height: 48px; font-size: 27px; }
+.worksheet--prek .hunt-card__ask { font-size: 14px; }
+.worksheet--prek .hunt-numbers { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.worksheet--prek .hunt-num { height: 48px; font-size: 23px; border-width: 2px; border-radius: 10px; }
+
+/* ---------------------------------------------------------
+   Pre-K activity: count & colour dots
+   --------------------------------------------------------- */
+
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.dot-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 12px;
+  background: #fffdfa;
+}
+
+.dot-card__num {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--ws-accent);
+  line-height: 1;
+}
+
+.dot-card__dots {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  width: 100%;
+  max-width: 180px;
+}
+
+.dot {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px dashed rgba(31, 42, 68, 0.3);
+  border-radius: 50%;
+}
+
+.dot-card__hint {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.worksheet--prek .dot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.worksheet--prek .dot-card { min-height: 140px; padding: 13px; border-width: 2px; border-radius: 14px; }
+.worksheet--prek .dot-card__num { font-size: 38px; }
+.worksheet--prek .dot-card__dots { gap: 6px; max-width: 200px; }
+.worksheet--prek .dot-card__hint { font-size: 10px; }
+
+/* ---------------------------------------------------------
+   Pre-K activity: sorting bins
+   --------------------------------------------------------- */
+
+.sortbin-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 14px;
+  background: #fffdfa;
+}
+
+.sortbin-pile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--ws-accent-soft);
+}
+
+.sortbin-item { font-size: 28px; line-height: 1; }
+
+.sortbin-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sortbin {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 104px;
+  padding: 8px;
+  border: 2px dashed var(--ws-accent);
+  border-radius: 12px;
+}
+
+.sortbin__label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ws-accent);
+}
+
+.sortbin__area { flex: 1; border-radius: 8px; background: rgba(31, 42, 68, 0.02); }
+
+.sortbin-index {
+  align-self: flex-end;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.worksheet--prek .sortbin-pile { gap: 10px; padding: 10px; }
+.worksheet--prek .sortbin-item { font-size: 32px; }
+.worksheet--prek .sortbin { min-height: 118px; padding: 9px; }
+.worksheet--prek .sortbin__label { font-size: 14px; }
+
+/* ---------------------------------------------------------
+   Kindergarten / Grade 1: make ten
+   --------------------------------------------------------- */
+
+.maketen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.maketen-grid--dense { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.maketen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 9px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.maketen-card .ten-frame { max-width: 128px; }
+
+.maketen-eq {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.maketen-hint {
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-faint);
+}
+
+.worksheet--k .maketen-grid,
+.worksheet--k .maketen-grid--dense { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.worksheet--k .maketen-card { padding: 11px; border-width: 2px; }
+.worksheet--k .maketen-eq { font-size: 21px; }
+.worksheet--g1 .maketen-card { padding: 8px; }
+.worksheet--g1 .maketen-eq { font-size: 17px; }
+
+/* ---------------------------------------------------------
+   Kindergarten: teen numbers
+   --------------------------------------------------------- */
+
+.teen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.teen-grid--dense { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.teen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 9px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.teen-num {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ws-accent);
+}
+
+.teen-frames {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.teen-frames .ten-frame { max-width: 120px; }
+
+.teen-extra {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  min-height: 12px;
+}
+
+.teen-extra .dot {
+  width: 12px;
+  height: 12px;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ws-accent);
+}
+
+.teen-eq {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.worksheet--k .teen-card { padding: 11px; border-width: 2px; }
+.worksheet--k .teen-frames .ten-frame { max-width: 140px; }
+.worksheet--k .teen-extra .dot { width: 14px; height: 14px; }
+.worksheet--k .teen-eq { font-size: 18px; }
+
+/* ---------------------------------------------------------
+   Kindergarten: longer / shorter / taller
+   --------------------------------------------------------- */
+
+.measure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.measure-grid--dense { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.measure-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  min-height: 108px;
+  padding: 11px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.measure-sticks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-height: 58px;
+}
+
+.measure-stick {
+  display: block;
+  width: var(--len, 60%);
+  height: 18px;
+  border: 2px solid var(--ws-accent);
+  border-radius: 999px;
+  background: var(--ws-accent-soft);
+}
+
+.measure-stick:last-child {
+  align-self: flex-end;
+  background: var(--ws-accent);
+}
+
+.measure-sticks--tall {
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 24px;
+  height: 86px;
+}
+
+.measure-sticks--tall .measure-stick {
+  width: 26px;
+  height: var(--len, 60%);
+  border-radius: 8px;
+}
+
+.measure-sticks--tall .measure-stick:last-child { align-self: flex-end; }
+
+.measure-question {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.measure-question strong { color: var(--ws-accent); }
+
+.worksheet--k .measure-card { min-height: 124px; padding: 14px; border-width: 2px; }
+.worksheet--k .measure-question { font-size: 12px; }
+.worksheet--k .measure-sticks--tall { height: 104px; }
+.worksheet--g1 .measure-card { min-height: 100px; }
+
+/* ---------------------------------------------------------
+   Kindergarten / Grade 1: symmetry
+   --------------------------------------------------------- */
+
+.symmetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.symmetry-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.symmetry-box { width: 100%; max-width: 210px; }
+.symmetry-svg { display: block; width: 100%; height: auto; }
+
+.symmetry-half {
+  fill: var(--ws-accent-soft);
+  stroke: var(--ws-accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.symmetry-line {
+  stroke: var(--ws-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+}
+
+.symmetry-prompt {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.worksheet--k .symmetry-card { padding: 10px; border-width: 2px; gap: 6px; }
+.worksheet--k .symmetry-box { max-width: 188px; }
+.worksheet--k .symmetry-prompt { font-size: 10px; }
+.worksheet--g1 .symmetry-card { padding: 8px; }
+.worksheet--g1 .symmetry-box { max-width: 170px; }
+
+/* ---------------------------------------------------------
+   Kindergarten: flat or solid
+   --------------------------------------------------------- */
+
+.shapesort-wrap { display: flex; flex-direction: column; gap: 12px; }
+
+.shapesort-bank {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--ws-accent-soft);
+}
+
+.shapesort-shape {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+}
+
+.shapesort-shape svg { width: 100%; height: 100%; color: var(--ink); }
+
+.shapesort-bins {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.shapesort-bin {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 124px;
+  padding: 9px;
+  border: 2px dashed var(--ws-accent);
+  border-radius: 12px;
+}
+
+.shapesort-bin__label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--ws-accent);
+}
+
+.shapesort-bin__area { flex: 1; border-radius: 8px; background: rgba(31, 42, 68, 0.02); }
+
+.worksheet--k .shapesort-bank { gap: 22px; padding: 18px; }
+.worksheet--k .shapesort-shape { width: 62px; height: 62px; }
+.worksheet--k .shapesort-bin { min-height: 150px; }
+.worksheet--k .shapesort-bin__label { font-size: 14px; }
+
+/* ---------------------------------------------------------
+   Kindergarten: count on
+   --------------------------------------------------------- */
+
+.counton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.counton-grid--dense { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.counton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 9px 10px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.counton-start {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.counton-start b { font-size: 18px; color: var(--ws-accent); }
+
+.counton-card .numberline-svg { height: 60px; }
+
+.counton-question {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.worksheet--k .counton-card { padding: 12px 14px; border-width: 2px; }
+.worksheet--k .counton-start { font-size: 15px; }
+.worksheet--k .counton-card .numberline-svg { height: 64px; }
+.worksheet--k .counton-question { font-size: 12px; }
+
+/* ---------------------------------------------------------
+   Kindergarten: number order
+   --------------------------------------------------------- */
+
+.order-list { display: flex; flex-direction: column; gap: 8px; }
+
+.order-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.order-row__num {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ws-accent-soft);
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 600;
+}
+
+.order-terms {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.order-row__hint {
+  flex: none;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.worksheet--k .order-row { min-height: 62px; padding: 10px 14px; border-width: 2px; }
+.worksheet--k .order-terms { gap: 12px; }
+.worksheet--k .sequence-term { min-width: 38px; height: 36px; font-size: 19px; }
+.worksheet--k .sequence-blank { width: 42px; height: 36px; }
+.worksheet--k .order-row__hint { font-size: 9px; }
+.worksheet--g1 .sequence-term { min-width: 34px; height: 30px; font-size: 16px; }
+.worksheet--g1 .sequence-blank { width: 38px; height: 30px; }
+
+/* number line practice: two columns keeps 6–10 hops on one page */
+.numberline-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.numberline-card { gap: 4px; }
+.numberline-card .numberline-svg { height: 62px; }
+.numberline-question { font-size: 9.5px; }
+
+/* ---------------------------------------------------------
+   Grade 1: balance the equation
+   --------------------------------------------------------- */
+
+.balance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.balance-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 62px;
+  padding: 8px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.balance-side { display: flex; align-items: center; gap: 6px; }
+.balance-eq { color: var(--ws-accent); }
+
+.worksheet--g1 .balance-card { min-height: 58px; font-size: 22px; }
+.worksheet--g1 .balance-grid { gap: 9px 28px; }
+
+/* ---------------------------------------------------------
+   Grade 1: measure with units
+   --------------------------------------------------------- */
+
+.unitmeasure-list { display: flex; flex-direction: column; gap: 8px; }
+
+.unitmeasure-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.unitmeasure-no {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ws-accent-soft);
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 600;
+}
+
+.unitmeasure-object {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 22px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.unitmeasure-key {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.unitmeasure-cube {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border: 1.5px solid var(--ws-accent);
+  border-radius: 2px;
+  background: var(--ws-accent-soft);
+}
+
+.unitmeasure-question {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  margin: 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.worksheet--g1 .unitmeasure-card { padding: 10px 14px; }
+.worksheet--g1 .unitmeasure-object { font-size: 24px; }
+.worksheet--g1 .unitmeasure-question { font-size: 11px; }
+
+/* ---------------------------------------------------------
+   Grade 1: fractions of a group
+   --------------------------------------------------------- */
+
+.fractionset-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.fractionset-grid--dense { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.fractionset-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 9px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+  text-align: center;
+}
+
+.fractionset-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.fractionset-item { opacity: 0.28; }
+.fractionset-item.is-shaded { opacity: 1; }
+
+.fractionset-question {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+
+.worksheet--g1 .fractionset-card { padding: 8px; }
+.worksheet--g1 .fractionset-group { font-size: 17px; }
+.worksheet--g1 .fractionset-question { font-size: 9.5px; }
+
+/* ---------------------------------------------------------
+   Grade 1: ten more, ten less
+   --------------------------------------------------------- */
+
+.moreless-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.moreless-grid--dense { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.moreless-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 10px;
+  border: 1.5px solid rgba(31, 42, 68, 0.14);
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.moreless-num {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.moreless-cells { display: flex; gap: 8px; width: 100%; }
+
+.moreless-cell {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.moreless-cell i {
+  display: block;
+  width: 100%;
+  height: 17px;
+  border-bottom: 1.5px dotted rgba(31, 42, 68, 0.4);
+}
+
+.worksheet--g1 .moreless-card { padding: 9px 11px; }
+.worksheet--g1 .moreless-cell { font-size: 8px; }
+
+/* =========================================================
+   AGE BANDS
+   ========================================================= */
+
+/* ---------------- Pre-K: big, calm, two columns ---------- */
+
+.worksheet--prek {
+  padding: 32px 34px 22px;
+  font-size: 15px;
+}
+
+.worksheet--prek .ws-topline { padding-bottom: 10px; border-bottom-width: 3px; }
+.worksheet--prek .ws-brand { font-size: 17px; }
+.worksheet--prek .ws-brand svg { width: 34px; height: 34px; }
+.worksheet--prek .ws-theme-pill { font-size: 10.5px; padding: 5px 12px; }
+.worksheet--prek .ws-title { padding-top: 12px; }
+.worksheet--prek .ws-kicker { font-size: 10px; letter-spacing: 0.1em; }
+.worksheet--prek .ws-heading { font-size: 37px; line-height: 1.02; }
+.worksheet--prek .ws-sub { max-width: 620px; font-size: 14px; line-height: 1.4; }
+.worksheet--prek .ws-meta { gap: 24px; margin-top: 10px; }
+.worksheet--prek .ws-meta__item { font-size: 10px; }
+.worksheet--prek .ws-meta__item i { height: 22px; border-bottom-width: 2px; }
+
+.worksheet--prek .ws-instruction {
+  gap: 9px;
+  margin: 12px 0 14px;
+  padding: 10px 14px;
+  border-left-width: 6px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.worksheet--prek .ws-instruction > span:first-child { font-size: 18px; }
+.worksheet--prek .ws-body { gap: 12px; }
+.worksheet--prek .ws-block { gap: 12px; }
+.worksheet--prek .ws-block__title { gap: 10px; font-size: 19px; }
+.worksheet--prek .ws-block__badge { width: 28px; height: 28px; font-size: 13px; }
+.worksheet--prek .ws-block__hint { font-size: 9.5px; }
+
+.worksheet--prek .answer-box { width: 56px; height: 46px; border-width: 2.5px; border-radius: 10px; }
+.worksheet--prek .answer-box--small { width: 40px; height: 34px; }
+.worksheet--prek .answer-box--wide { width: 92px; height: 46px; }
+
+.worksheet--prek .count-grid,
+.worksheet--prek .shape-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.worksheet--prek .count-card,
+.worksheet--prek .shape-card {
+  min-height: 118px;
+  padding: 10px 12px;
+  border-width: 2px;
+  border-radius: 14px;
+}
+
+.worksheet--prek .count-card__emojis { gap: 2px 4px; font-size: 30px; line-height: 1.12; }
+.worksheet--prek .count-card__prompt,
+.worksheet--prek .shape-card__prompt { font-size: 10.5px; }
+.worksheet--prek .count-card__box,
+.worksheet--prek .shape-card__box { width: 56px; height: 44px; border-width: 2.5px; border-radius: 10px; }
+.worksheet--prek .shape-card__shapes { gap: 6px; min-height: 48px; }
+.worksheet--prek .ws-shape { width: 30px; height: 30px; }
+
+.worksheet--prek .compare-grid { gap: 12px; }
+.worksheet--prek .compare-card { min-height: 122px; padding: 14px 16px; border-width: 2px; border-radius: 14px; }
+.worksheet--prek .compare-card__prompt { max-width: 120px; font-size: 11.5px; }
+.worksheet--prek .compare-item--big { font-size: 54px; }
+.worksheet--prek .compare-item--small { font-size: 30px; }
+.worksheet--prek .compare-card__pair { gap: 20px; }
+
+.worksheet--prek .pattern-list { gap: 4px; }
+.worksheet--prek .pattern-row { padding: 5px 9px; border-width: 2px; border-radius: 12px; }
+.worksheet--prek .pattern-symbol { font-size: 24px; }
+.worksheet--prek .pattern-blank { width: 34px; height: 34px; border-width: 2.5px; }
+.worksheet--prek .pattern-row__num { width: 28px; height: 28px; font-size: 12px; }
+
+.worksheet--prek .tenframe-grid,
+.worksheet--prek .dice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.worksheet--prek .tenframe-card,
+.worksheet--prek .dice-card { padding: 12px; border-width: 2px; }
+.worksheet--prek .die { width: 54px; height: 54px; }
+.worksheet--prek .sort-pile { padding: 14px; font-size: 30px; gap: 10px; }
+.worksheet--prek .sort-tally { gap: 10px; }
+.worksheet--prek .sort-tally__item { padding: 9px 10px; }
+.worksheet--prek .sort-tally__label { font-size: 10.5px; }
+
+.worksheet--prek .trace-row { min-height: 80px; padding: 2px 4px; }
+.worksheet--prek .trace-glyph { width: 64px; height: 68px; }
+.worksheet--prek .trace-row__key { width: 38px; height: 38px; border-radius: 12px; font-size: 19px; }
+.worksheet--prek .trace-row__copies { gap: 3px; }
+.worksheet--prek .trace-row__write { height: 38px; border-bottom-width: 2px; }
+.worksheet--prek .trace-row__deco { display: block; width: 30px; font-size: 18px; }
+.worksheet--prek .trace-grid--compact .trace-row { min-height: 54px; }
+.worksheet--prek .trace-grid--compact .trace-glyph { width: 44px; height: 48px; }
+
+.worksheet--prek .problem-grid { grid-template-columns: 1fr; gap: 12px; }
+.worksheet--prek .problem { min-height: 78px; gap: 14px; }
+.worksheet--prek .equation { gap: 10px; font-size: 34px; }
+.worksheet--prek .eq-blank { width: 62px; height: 46px; border-width: 2.5px; }
+.worksheet--prek .problem__num { width: 30px; height: 30px; font-size: 13px; }
+
+.worksheet--prek .ws-mascot { margin-top: 10px; padding: 8px 12px; }
+.worksheet--prek .ws-grownup { margin-top: 8px; padding: 9px 12px; }
+.worksheet--prek .ws-grownup p { font-size: 11px; line-height: 1.5; }
+.worksheet--prek .ws-reward { padding: 9px 12px; font-size: 11px; }
+.worksheet--prek .ws-reward__stars { font-size: 20px; letter-spacing: 6px; }
+.worksheet--prek .ws-footer { margin-top: 14px; padding-top: 10px; font-size: 9px; }
+
+.worksheet--prek .key-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.worksheet--prek .key-item { min-height: 58px; font-size: 20px; }
+
+/* ---------------- Kindergarten: picture support ---------- */
+
+.worksheet--k { padding: 32px 38px 22px; }
+
+.worksheet--k .ws-heading { font-size: 34px; }
+.worksheet--k .ws-sub { max-width: 590px; font-size: 13px; }
+.worksheet--k .ws-meta__item { font-size: 9.5px; }
+.worksheet--k .ws-meta__item i { height: 19px; border-bottom-width: 2px; }
+
+.worksheet--k .ws-instruction {
+  margin: 12px 0 14px;
+  padding: 9px 13px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.worksheet--k .ws-body { gap: 16px; }
+.worksheet--k .ws-block { gap: 10px; }
+.worksheet--k .ws-block__title { font-size: 17px; }
+.worksheet--k .ws-block__badge { width: 25px; height: 25px; font-size: 11.5px; }
+
+.worksheet--k .answer-box { width: 48px; height: 38px; border-width: 2px; }
+.worksheet--k .answer-box--small { width: 34px; height: 28px; }
+.worksheet--k .answer-box--wide { width: 84px; height: 38px; }
+.worksheet--k .answer-box--tall { width: 60px; height: 48px; }
+
+.worksheet--k .count-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; }
+.worksheet--k .count-card { min-height: 118px; padding: 12px 14px; border-width: 2px; border-radius: 12px; }
+.worksheet--k .count-card__emojis { font-size: 26px; }
+.worksheet--k .count-card__box { width: 46px; height: 34px; border-width: 2px; }
+.worksheet--k .count-card__prompt { font-size: 8.5px; }
+
+.worksheet--k .shape-grid { gap: 11px; }
+.worksheet--k .shape-card { min-height: 112px; padding: 12px; border-width: 2px; }
+.worksheet--k .ws-shape { width: 26px; height: 26px; }
+.worksheet--k .shape-card__box { width: 46px; height: 34px; border-width: 2px; }
+
+.worksheet--k .problem-grid { gap: 11px 34px; }
+.worksheet--k .problem { min-height: 70px; }
+.worksheet--k .equation { gap: 8px; font-size: 32px; }
+.worksheet--k .eq-blank { width: 62px; height: 46px; border-width: 2px; }
+.worksheet--k .problem__num { width: 27px; height: 27px; font-size: 12px; }
+
+.worksheet--k .trace-row { min-height: 72px; }
+.worksheet--k .trace-glyph { width: 64px; height: 68px; }
+.worksheet--k .trace-row__key { width: 32px; height: 32px; font-size: 17px; }
+.worksheet--k .trace-row__write { height: 34px; border-bottom-width: 2px; }
+.worksheet--k .trace-row__deco { width: 30px; font-size: 17px; }
+
+.worksheet--k .compare-card { min-height: 100px; padding: 12px; border-width: 2px; }
+.worksheet--k .compare-item--big { font-size: 42px; }
+.worksheet--k .compare-item--small { font-size: 23px; }
+.worksheet--k .compare-card__prompt { font-size: 9.5px; }
+
+.worksheet--k .pattern-row { padding: 8px 10px; border-width: 2px; }
+.worksheet--k .pattern-symbol { font-size: 26px; }
+.worksheet--k .pattern-blank { width: 36px; height: 36px; }
+.worksheet--k .tenframe-card,
+.worksheet--k .dice-card { padding: 10px; border-width: 2px; }
+.worksheet--k .die { width: 46px; height: 46px; }
+.worksheet--k .bond-svg text { font-size: 23px; }
+.worksheet--k .word-problem__text { font-size: 12px; }
+
+.worksheet--k .ws-mascot { padding: 8px 12px; }
+.worksheet--k .ws-grownup { display: none; }
+.worksheet--k .ws-reward { margin-top: 10px; }
+.worksheet--k .key-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* ---------------- Grade 1: efficient practice ------------ */
+
+.worksheet--g1 { padding: 30px 40px 20px; }
+
+.worksheet--g1 .ws-heading { font-size: 31px; }
+.worksheet--g1 .ws-sub { font-size: 12px; }
+.worksheet--g1 .ws-instruction { margin: 11px 0 13px; padding: 8px 12px; font-size: 11.5px; }
+.worksheet--g1 .ws-body { gap: 14px; }
+.worksheet--g1 .ws-block { gap: 8px; }
+.worksheet--g1 .ws-block__title { font-size: 16px; }
+.worksheet--g1 .answer-box { width: 50px; height: 36px; }
+.worksheet--g1 .answer-box--wide { width: 82px; height: 36px; }
+.worksheet--g1 .answer-box--small { width: 32px; height: 26px; }
+
+.worksheet--g1 .equation { font-size: 27px; }
+.worksheet--g1 .problem { min-height: 60px; }
+.worksheet--g1 .eq-blank { width: 58px; height: 38px; }
+
+.worksheet--g1 .count-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.worksheet--g1 .count-card { min-height: 100px; padding: 10px 12px; border-width: 2px; }
+.worksheet--g1 .count-card__emojis { font-size: 24px; }
+.worksheet--g1 .count-card__box { width: 44px; height: 32px; border-width: 2px; }
+.worksheet--g1 .shape-card { min-height: 96px; padding: 10px; border-width: 2px; }
+.worksheet--g1 .ws-shape { width: 24px; height: 24px; }
+
+.worksheet--g1 .ws-challenge { margin-top: 8px; }
+.worksheet--g1 .ws-reward { margin-top: 9px; }
+.worksheet--g1 .key-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+.worksheet--g1 .key-item { min-height: 52px; font-size: 18px; }
+
+/* =========================================================
+   Print: keep every age on one A4 page
+   ========================================================= */
+
+@media print {
+  #print-area .worksheet--prek { padding: 8mm 10mm; }
+  #print-area .worksheet--k { padding: 7mm 10.5mm; }
+  #print-area .worksheet--g1 { padding: 7mm 10.5mm; }
+
+  #print-area .ws-mascot,
+  #print-area .ws-grownup,
+  #print-area .ws-challenge,
+  #print-area .ws-steps,
+  #print-area .ws-step,
+  #print-area .answer-box,
+  #print-area .fractionset-group {
+    background-color: #fff !important;
+  }
+
+  #print-area .prewrite-guide { stroke: #e7e7e7 !important; }
+  #print-area .measure-stick,
+  #print-area .symmetry-half,
+  #print-area .colour-shape {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

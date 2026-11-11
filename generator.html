@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Worksheet Studio | SquiggleMath</title>
-  <meta name="description" content="Build a brand-new themed math worksheet. Choose a level, activity, theme and problem count, then print.">
+  <meta name="description" content="Build a themed math worksheet that fits your child's age. Pre-K gets big pictures and fewer items; Grade 1 gets real practice and a challenge.">
   <meta name="theme-color" content="#fff8ea">
   <meta name="robots" content="noindex">
 
@@ -12,10 +12,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261109-6">
-  <link rel="stylesheet" href="generator.css?v=20261109-6">
-  <script src="engine.js?v=20261109-6" defer></script>
-  <script src="generator.js?v=20261109-6" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261111-2">
+  <link rel="stylesheet" href="generator.css?v=20261111-2">
+  <link rel="stylesheet" href="worksheet-ages.css?v=20261111-2">
+  <script src="engine.js?v=20261111-2" defer></script>
+  <script src="generator.js?v=20261111-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -49,44 +50,43 @@
       <div class="container">
         <div class="studio-page__head">
           <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--blue"></span> The worksheet studio</p>
-          <h1>Build your own<br><span class="marker marker--pink">printable sheet</span>.</h1>
-          <p class="section-lede">Choose a level, pick from dozens of activity types and themes, and shuffle up fresh problems. Every sheet is print-ready.</p>
+          <h1>Worksheets that fit<br><span class="marker marker--pink">little hands</span>.</h1>
+          <p class="section-lede">Pick an age first. We’ll match the picture size, spacing and number of items to what your child can actually do — then you choose the skill and theme.</p>
         </div>
 
         <div class="studio studio--page">
-          <aside class="panel" aria-label="Worksheet settings">
-            <form id="generator-form">
-              <fieldset class="field-group">
-                <legend class="field-label">Age &amp; difficulty</legend>
-                <div class="difficulty-list" id="difficulty-list"></div>
+          <aside class="panel studio-panel" aria-label="Worksheet settings">
+            <form id="generator-form" class="studio-form">
+              <fieldset class="field-group studio-step">
+                <legend class="field-label"><span class="studio-step__num">1</span> Who is it for?</legend>
+                <div class="age-cards" id="age-cards"></div>
+                <p class="field-hint" id="age-hint"></p>
               </fieldset>
 
-              <div class="field-group">
+              <fieldset class="field-group studio-step">
+                <legend class="field-label"><span class="studio-step__num">2</span> Pick a skill</legend>
+                <div class="skill-filter" id="skill-filter"></div>
                 <div class="field-label-row">
-                  <span class="field-label">Activity type</span>
                   <span class="field-hint" id="activity-count"></span>
                 </div>
                 <div class="activity-picker" id="activity-picker"></div>
-              </div>
-
-              <fieldset class="field-group">
-                <legend class="field-label">Number of problems</legend>
-                <div class="pill-group" id="problem-pills">
-                  <label><input type="radio" name="problems" value="5"><span>5</span></label>
-                  <label><input type="radio" name="problems" value="10" checked><span>10</span></label>
-                  <label><input type="radio" name="problems" value="15"><span>15</span></label>
-                  <label><input type="radio" name="problems" value="20"><span>20</span></label>
-                </div>
+                <p class="field-hint" id="activity-hint"></p>
               </fieldset>
 
-              <div class="field-group">
-                <label class="field-label" for="theme-search">Worksheet theme</label>
+              <fieldset class="field-group studio-step">
+                <legend class="field-label"><span class="studio-step__num">3</span> Choose a theme</legend>
                 <div class="theme-search-wrap">
-                  <input id="theme-search" type="search" placeholder="Search 50 themes…" autocomplete="off" aria-label="Search themes">
+                  <input id="theme-search" type="search" placeholder="Search 56 themes…" autocomplete="off" aria-label="Search themes">
                 </div>
                 <div class="theme-picker" id="theme-picker"></div>
                 <p class="field-hint" id="theme-hint">Roar! Little dinos will love this one.</p>
-              </div>
+              </fieldset>
+
+              <fieldset class="field-group studio-step">
+                <legend class="field-label"><span class="studio-step__num">4</span> How much practice?</legend>
+                <div class="pill-group" id="problem-pills"></div>
+                <p class="field-hint" id="problem-hint"></p>
+              </fieldset>
 
               <label class="switch-row">
                 <span class="switch-row__text">
@@ -102,7 +102,7 @@
                   <svg class="generate-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  Generate new worksheet
+                  Make a fresh sheet
                 </button>
                 <button class="btn btn--ghost btn--block" type="button" id="shuffle-btn">
                   🎲 Surprise me
@@ -110,9 +110,11 @@
               </div>
             </form>
 
+            <div class="teacher-card" id="teacher-card"></div>
+
             <div class="panel__note">
               <span aria-hidden="true">🖨️</span>
-              <p>Designed for A4 or US Letter. Prints beautifully in colour or black &amp; white.</p>
+              <p>One A4 page, designed for the age you picked. Prints beautifully in colour or black &amp; white.</p>
             </div>
           </aside>
 
@@ -122,11 +124,15 @@
                 <span class="live-dot" aria-hidden="true"></span>
                 <span id="sheet-status" role="status" aria-live="polite">Your worksheet is ready</span>
               </div>
-              <button class="btn btn--ink btn--small" type="button" id="print-btn">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Open print page
-              </button>
+              <div class="stage__actions">
+                <button class="btn btn--ink btn--small" type="button" id="print-btn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v6H7z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Open print page
+                </button>
+              </div>
             </div>
+
+            <div class="age-ribbon" id="age-ribbon"></div>
 
             <div class="paper-scene">
               <div class="paper-frame" id="paper-frame">

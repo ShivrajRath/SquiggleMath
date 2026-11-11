@@ -34,24 +34,65 @@ const MAX_PROBLEMS = 20;
    Configuration data
    ========================================================= */
 
+/* Each age band is a full design system, not just a label: item caps,
+   choice sets, typography scale and the grown-up support copy all live here. */
 const DIFFICULTIES = {
   prek: {
     label: 'Pre-K',
     ages: 'Ages 3–4',
     badge: 'Pre-K • Ages 3–4',
     shortBadge: 'Pre-K',
+    className: 'prek',
+    emoji: '🖍️',
+    focus: 'Pencil grip · counting to 5 · colours & shapes',
+    promise: 'Big pictures, chunky boxes, no writing marathon.',
+    defaultActivity: 'mixed-prek',
+    defaultProblems: 5,
+    maxProblems: 6,
+    problemChoices: [4, 5, 6],
+    session: '5–10 minutes',
+    materials: 'A chunky crayon or pencil, plus crayons for the colouring bits.',
+    tip: 'Follow your child’s lead. Do one section now and come back later if little hands get tired.',
+    talk: '“Point and count with me. Touch each picture once.”',
+    extension: 'Go on a colour or shape hunt around the room.',
   },
   k: {
     label: 'Kindergarten',
     ages: 'Ages 5–6',
     badge: 'Kindergarten • Ages 5–6',
     shortBadge: 'Kindergarten',
+    className: 'k',
+    emoji: '🧩',
+    focus: 'Numbers to 10 · adding & taking away · shapes',
+    promise: 'Picture support with real number practice.',
+    defaultActivity: 'mixed10',
+    defaultProblems: 8,
+    maxProblems: 10,
+    problemChoices: [6, 8, 10],
+    session: '8–15 minutes',
+    materials: 'A pencil and crayons for the colour-in prompts.',
+    tip: 'Let your child use counters, fingers or the pictures. Understanding matters more than speed.',
+    talk: '“Can you show me how you know?”',
+    extension: 'Make up a number story about your favourite toy.',
   },
   g1: {
     label: '1st Grade',
     ages: 'Ages 6–7',
     badge: '1st Grade • Ages 6–7',
     shortBadge: '1st Grade',
+    className: 'g1',
+    emoji: '🚀',
+    focus: 'Facts to 20 · place value · time, money & data',
+    promise: 'Independent practice with one thinking challenge.',
+    defaultActivity: 'mixed20',
+    defaultProblems: 12,
+    maxProblems: 15,
+    problemChoices: [10, 12, 15],
+    session: '10–20 minutes',
+    materials: 'A pencil, plus counters or a ruler if you like.',
+    tip: 'Ask your child to explain one answer out loud. Talking through maths builds stronger understanding.',
+    talk: '“How did you work that out?”',
+    extension: 'Try the challenge at the bottom of the sheet.',
   },
 };
 
@@ -150,6 +191,12 @@ const THEMES = {
   rainbows: { name:'Rainbows', emoji:'🌈', styleName:'Rainbow', accent:'#d64fa2', soft:'#fdeaf6', deco:['☀️','☁️','🌈'], characters:['Sunny','Cloud','Arc'], who:'rainbow friend', items:['colors','stars','clouds'], hint:'Colorful rainbow maths.' },
   birthdays: { name:'Birthdays', emoji:'🎂', styleName:'Birthday', accent:'#d64545', soft:'#fde8e8', deco:['🎈','🎁','🎉'], characters:['Party Pip','Cake','Candle'], who:'party host', items:['balloons','gifts','candles'], hint:'Party maths fun.' },
   science: { name:'Science', emoji:'🔬', styleName:'Science', accent:'#3a6f8f', soft:'#e5f2f8', deco:['🧪','🧬','⚛️'], characters:['Professor Pip','Lab','Atom'], who:'scientist', items:['beakers','atoms','stars'], hint:'Experiment with maths.' },
+  camping: { name:'Camping', emoji:'🏕️', styleName:'Camping', accent:'#3f7a4a', soft:'#e8f5e6', deco:['🔥','🌲','⛺'], characters:['Scout','Toast','Pine'], who:'camper', items:['marshmallows','pine cones','fireflies'], hint:'Toast a marshmallow and count the stars.' },
+  garden: { name:'Garden', emoji:'🌻', styleName:'Garden', accent:'#4f8f2a', soft:'#eef8e0', deco:['🐝','🌷','🪴'], characters:['Petal','Buzz','Sprout'], who:'gardener', items:['seeds','flowers','ladybugs'], hint:'Plant a little number garden.' },
+  detectives: { name:'Detectives', emoji:'🕵️', styleName:'Detective', accent:'#5a5a7a', soft:'#eeeef5', deco:['🔍','🗝️','🕯️'], characters:['Dot','Clue','Sherlock'], who:'detective', items:['clues','magnifying glasses','fingerprints'], hint:'Case files full of number clues.' },
+  candy: { name:'Candy', emoji:'🍬', styleName:'Candy', accent:'#d64f8f', soft:'#fdeaf4', deco:['🍭','🍡','🧁'], characters:['Bonbon','Lolly','Sprinkle'], who:'candy maker', items:['sweets','lollipops','gumdrops'], hint:'Sweet counting, no sugar rush.' },
+  icecream: { name:'Ice Cream', emoji:'🍦', styleName:'Ice Cream', accent:'#d9895f', soft:'#fdf0e6', deco:['🍧','🍨','🍓'], characters:['Scoop','Cone','Sprinkles'], who:'ice cream seller', items:['scoops','sprinkles','cherries'], hint:'Two scoops of number fun.' },
+  cats: { name:'Cats', emoji:'🐱', styleName:'Cat', accent:'#c27a3a', soft:'#fbf0e4', deco:['🐈','🧶','🐾'], characters:['Mochi','Whiskers','Mittens'], who:'cat', items:['yarn balls','fish treats','paw prints'], hint:'Purr-fect counting practice.' },
 };
 
 /* =========================================================
@@ -161,7 +208,26 @@ const THEMES = {
    ========================================================= */
 
 const ACTIVITY_INFO = {
-  trace: { label: 'Number tracing', short: 'Tracing', unit: 'numbers', icon: '✏️', group: 'Early skills', description: 'Trace dashed digits, then write them alone.' },
+  prewrite: { label: 'Pre-writing paths', short: 'Paths', unit: 'paths', icon: '〰️', group: 'Getting ready', description: 'Trace big wavy, zigzag and loop paths.', starter: true },
+  colors: { label: 'Colour hunt', short: 'Colours', unit: 'cards', icon: '🎨', group: 'Getting ready', description: 'Count and colour by colour.' },
+  samediff: { label: 'Same & different', short: 'Same/diff', unit: 'rows', icon: '👀', group: 'Getting ready', description: 'Circle the picture that is different.' },
+  position: { label: 'Position words', short: 'Position', unit: 'scenes', icon: '🧭', group: 'Getting ready', description: 'Above, below, beside, in front, inside.' },
+  sortcolor: { label: 'Sorting bins', short: 'Sorting', unit: 'sorts', icon: '🧺', group: 'Getting ready', description: 'Sort pictures into two friendly bins.' },
+  dots: { label: 'Count & colour dots', short: 'Dots', unit: 'cards', icon: '⚫', group: 'Early skills', description: 'Count the dots, then colour that many.' },
+  numberhunt: { label: 'Number hunt', short: 'Hunt', unit: 'hunts', icon: '🔍', group: 'Early skills', description: 'Find and circle every matching number.' },
+  maketen: { label: 'Make ten', short: 'Make 10', unit: 'frames', icon: '🔟', group: 'Number sense', description: 'How many more to make ten?', starter: true },
+  teen: { label: 'Teen numbers', short: 'Teens', unit: 'numbers', icon: '🔢', group: 'Number sense', description: 'See ten and some more.' },
+  measure: { label: 'Longer & shorter', short: 'Measure', unit: 'pairs', icon: '📏', group: 'Measurement & data', description: 'Compare length, height and size.' },
+  symmetry: { label: 'Symmetry', short: 'Symmetry', unit: 'shapes', icon: '🦋', group: 'Geometry', description: 'Finish the mirror half of each shape.' },
+  shapesort: { label: 'Flat or solid?', short: '2D/3D', unit: 'sorts', icon: '🧊', group: 'Geometry', description: 'Sort flat and solid shapes.' },
+  counton: { label: 'Count on', short: 'Count on', unit: 'hops', icon: '👣', group: 'Operations', description: 'Start at a number and hop forward.' },
+  numberorder: { label: 'Number order', short: 'Order', unit: 'rows', icon: '↕️', group: 'Number sense', description: 'Put numbers in order and fill the gaps.' },
+  patternsnum: { label: 'Number patterns', short: 'Num patterns', unit: 'patterns', icon: '🔁', group: 'Number sense', description: 'Spot the rule and keep it going.' },
+  balance: { label: 'Balance the equation', short: 'Balance', unit: 'problems', icon: '⚖️', group: 'Operations', description: 'Make both sides equal.', starter: true },
+  measureunits: { label: 'Measure with units', short: 'Units', unit: 'objects', icon: '🧱', group: 'Measurement & data', description: 'Measure pictures with cubes.' },
+  fractionsset: { label: 'Fractions of a group', short: 'Fractions', unit: 'groups', icon: '🍪', group: 'Geometry', description: 'Shade and name part of a set.' },
+  moreless: { label: 'Ten more, ten less', short: '10 more/less', unit: 'numbers', icon: '↔️', group: 'Number sense', description: 'Hop ten forward and ten back.' },
+  trace: { label: 'Number tracing', short: 'Tracing', unit: 'numbers', icon: '✏️', group: 'Early skills', description: 'Trace dashed digits, then write them alone.', starter: true },
   count: { label: 'Counting', short: 'Counting', unit: 'cards', icon: '🔢', group: 'Early skills', description: 'Count pictures and write the total.' },
   shapes: { label: 'Shapes & counting', short: 'Shapes', unit: 'groups', icon: '🔷', group: 'Early skills', description: 'Count shapes in each group.' },
   compare: { label: 'Size comparison', short: 'Size', unit: 'pairs', icon: '📏', group: 'Early skills', description: 'Circle the bigger or smaller picture.' },
@@ -169,7 +235,7 @@ const ACTIVITY_INFO = {
   tenframe: { label: 'Ten-frames', short: 'Ten-frames', unit: 'frames', icon: '🔟', group: 'Early skills', description: 'Count dots in a ten-frame.' },
   dice: { label: 'Dice count', short: 'Dice', unit: 'cards', icon: '🎲', group: 'Early skills', description: 'Roll two dice and add the pips.' },
   sort: { label: 'Sort & count', short: 'Sort', unit: 'mats', icon: '🧺', group: 'Early skills', description: 'Sort shapes and count each kind.' },
-  'mixed-prek': { label: 'Mixed pre-K', short: 'Mixed', unit: 'activities', icon: '🌟', group: 'Early skills', description: 'A little tracing plus a little counting.' },
+  'mixed-prek': { label: 'Mixed pre-K', short: 'Mixed', unit: 'tasks', icon: '🌟', group: 'Early skills', description: 'A little tracing plus a little counting.', starter: true },
   add10: { label: 'Addition to 10', short: 'Addition', unit: 'problems', icon: '➕', group: 'Operations', description: 'Single-digit sums within 10.' },
   sub10: { label: 'Subtraction to 10', short: 'Subtraction', unit: 'problems', icon: '➖', group: 'Operations', description: 'Take-away facts within 10.' },
   mixed10: { label: 'Add & subtract to 10', short: 'Mixed', unit: 'problems', icon: '±', group: 'Operations', description: 'A mixed set of facts to 10.' },
@@ -205,19 +271,20 @@ const ACTIVITY_INFO = {
 };
 
 const CATALOG_PLAN = {
-  prek: ['trace', 'count', 'shapes', 'compare', 'mixed-prek'],
-  k: ['add10', 'sub10', 'mixed10', 'bonds', 'tally'],
-  g1: ['add20', 'sub20', 'mixed20', 'missing', 'word'],
+  prek: ['prewrite', 'trace', 'colors', 'count', 'shapes', 'compare', 'patterns', 'numberhunt', 'samediff', 'mixed-prek'],
+  k: ['add10', 'sub10', 'mixed10', 'maketen', 'bonds', 'tally', 'teen', 'counton', 'measure', 'shapesort'],
+  g1: ['add20', 'sub20', 'mixed20', 'missing', 'word', 'balance', 'place100', 'money', 'time', 'fractionsset'],
 };
 
 const LEVEL_PLAN = {
-  prek: ['trace', 'count', 'shapes', 'compare', 'patterns', 'tenframe', 'dice', 'sort', 'mixed-prek'],
-  k: ['add10', 'sub10', 'mixed10', 'bonds', 'tally', 'addpics', 'subpics', 'doubles', 'beforeafter', 'skipcount', 'greater', 'place', 'ordinal', 'numberline', 'numberwords'],
-  g1: ['add20', 'sub20', 'mixed20', 'missing', 'word', 'place100', 'evenodd', 'fractions', 'time', 'money', 'factfamily', 'threeadd', 'twodigit', 'arrays', 'graph', 'rounding', 'shapes3d', 'numberline', 'numberwords'],
+  prek: ['prewrite', 'trace', 'colors', 'count', 'dots', 'shapes', 'compare', 'patterns', 'numberhunt', 'samediff', 'position', 'sortcolor', 'tenframe', 'mixed-prek'],
+  k: ['count', 'add10', 'sub10', 'mixed10', 'maketen', 'bonds', 'tally', 'teen', 'doubles', 'beforeafter', 'counton', 'numberorder', 'numberwords', 'patternsnum', 'measure', 'shapesort', 'symmetry', 'graph'],
+  g1: ['add20', 'sub20', 'mixed20', 'missing', 'word', 'place100', 'evenodd', 'fractions', 'time', 'money', 'factfamily', 'threeadd', 'twodigit', 'arrays', 'graph', 'rounding', 'shapes3d', 'numberline', 'numberwords', 'balance', 'moreless', 'measureunits', 'fractionsset', 'symmetry', 'patternsnum'],
 };
 
-const ACTIVITY_GROUPS = ['Early skills', 'Number sense', 'Operations', 'Measurement & data', 'Geometry', 'Stories'];
+const ACTIVITY_GROUPS = ['Getting ready', 'Early skills', 'Number sense', 'Operations', 'Measurement & data', 'Geometry', 'Stories'];
 
+// 10 skills × 3 layouts × 6 themes = 180 stable recipes per age group.
 const CATALOG_THEMES = ['dinos', 'space', 'monsters', 'ocean', 'unicorns', 'safari'];
 
 const TITLE_PATTERNS = {
@@ -236,6 +303,21 @@ const TITLE_PATTERNS = {
   mixed20: ['Math Facts Mission', 'Mixed Practice', 'Fact Fluency Fun', 'Add, Subtract & Solve', 'Grade One Shuffle', 'Math Adventure'],
   missing: ['Missing Number Mysteries', 'Find the Missing Number', 'Number Detectives', "What's Missing?", 'Mystery Numbers', 'Secret Number Search'],
   word: ['Word Problem Wizards', 'Story Problem Studio', 'Math Stories', 'Read & Solve', 'Story Sums', 'Word Problem Workshop'],
+  patterns: ['Pattern Parade', 'What Comes Next?', 'Spot the Pattern', 'Pattern Power', 'Repeat After Me', 'Pattern Party'],
+  maketen: ['Make Ten Magic', 'Ten-Frame Friends', 'How Many More?', 'Ten Ways', 'Fill the Frame', 'Make a Ten'],
+  balance: ['Balance the Equation', 'Equal Sides', 'Weigh It Up', 'The Balance Challenge', 'Same Both Sides', 'Equation Balance'],
+  prewrite: ['Path Party', 'Squiggle Trails', 'Trace & Travel'],
+  colors: ['Colour Hunt', 'Colour Count', 'Rainbow Count'],
+  numberhunt: ['Number Hunt', 'Find the Number', 'Number Detective'],
+  samediff: ['Same or Different?', 'Spot the Odd One', 'Look Closely'],
+  teen: ['Teen Number Trail', 'Ten and Some More', 'Teen Number Treasure'],
+  counton: ['Count On!', 'Hop Forward', 'Counting Hops'],
+  measure: ['Longer or Shorter?', 'Size Safari', 'Compare & Circle'],
+  shapesort: ['Flat or Solid?', '2D or 3D?', 'Shape Sort'],
+  fractionsset: ['Fraction Fair Shares', 'Shade the Fraction', 'Fraction Friends'],
+  place100: ['Place Value to 100', 'Tens & Ones', 'Build the Number'],
+  money: ['Coin Count', 'Purse Math', 'Money Match'],
+  time: ['Telling Time', 'Clock Watch', 'What Time Is It?'],
 };
 
 const BLURB_PATTERNS = {
@@ -359,6 +441,90 @@ const BLURB_PATTERNS = {
     'Friendly story problems that connect reading with math.',
     'A word-problem workshop with space to show every answer.',
   ],
+  patterns: [
+    'Look closely, spot the repeat, then finish the pattern.',
+    'A gentle pattern page that builds early algebra thinking.',
+    'Can you work out what comes next? Colour and draw to finish.',
+    'Repeating patterns with friendly pictures and big thinking spaces.',
+    'Spot the rule, then keep the pattern going to the end of the row.',
+    'A colourful pattern parade for growing mathematical eyes.',
+  ],
+  maketen: [
+    'See how many dots are in the frame, then work out how many more make ten.',
+    'A ten-frame workout that builds the all-important make-ten fact.',
+    'How many more to make ten? Count the empty spaces to help.',
+    'Fill the frame to ten and grow real number sense.',
+    'Ten-frame practice that turns counting into thinking.',
+    'A friendly make-ten page with picture support on every card.',
+  ],
+  balance: [
+    'Make both sides equal by finding the missing number.',
+    'A balance challenge that turns equations into puzzles.',
+    'One side is complete. Work out what the other side needs.',
+    'Think of the equals sign as “the same as”, then solve each balance.',
+    'Balancing equations builds flexible, confident mathematicians.',
+    'Find the missing number that keeps each equation balanced.',
+  ],
+  prewrite: [
+    'Trace big wavy, zigzag and loop paths from one friend to another.',
+    'A fine-motor warm-up that builds the strokes behind early letter writing.',
+    'Start at the big dot and follow each dotted trail to the end.',
+  ],
+  colors: [
+    'Count the shapes in each colour, then write how many you found.',
+    'A bright colour-matching page that pairs naming with one-to-one counting.',
+    'Look at the swatch, count the matching shapes, and write the total.',
+  ],
+  numberhunt: [
+    'Circle every matching numeral in the grid, then count how many you found.',
+    'A number-recognition hunt with a friendly picture theme.',
+    'Look closely! The same number is hiding all over this page.',
+  ],
+  samediff: [
+    'Look closely and circle the picture that is different in each row.',
+    'A visual-discrimination page that builds same and different vocabulary.',
+    'Which one does not belong? Circle the odd picture in every row.',
+  ],
+  teen: [
+    'See ten and some more. Write the ones that make each teen number.',
+    'Ten-frames make teen numbers visible, concrete and easy to compare.',
+    'Each teen number is one ten plus some ones. Fill in the missing part.',
+  ],
+  counton: [
+    'Start at the number, hop forward on the line, and write where you land.',
+    'A count-on page that turns addition into movement along a number line.',
+    'Count on with the hops. Then write the landing number.',
+  ],
+  measure: [
+    'Compare the pictures and circle the longer, shorter or taller one.',
+    'A size-comparison page that builds measurement vocabulary.',
+    'Look carefully at each pair, then circle the one the question asks for.',
+  ],
+  shapesort: [
+    'Sort flat and solid shapes into two clear groups.',
+    'A shape-sorting page that builds 2D and 3D vocabulary.',
+    'Is it flat or solid? Sort every shape into the right bin.',
+  ],
+  fractionsset: [
+    'Look at the shaded part of each group and write the fraction.',
+    'Fair shares made visual: name the fraction that is shaded.',
+    'A gentle introduction to fractions of a set.',
+  ],
+  place100: [
+    'Break each number into tens and ones.',
+    'A place-value page that builds two-digit number sense.',
+    'How many tens? How many ones? Write each part.',
+  ],
+  money: [
+    'Count the coins in each purse and write the total.',
+    'A coin-counting page that mixes small values for real addition practice.',
+    'Add the coins carefully, then write the total value.',
+  ],
+  time: [
+    'Read each clock and write the time, on the hour and half hour.',
+    'A clock-reading page with clear analogue faces.',
+    'Where are the hands pointing? Write the time.',
+  ],
 };
 
 const PROBLEM_SETS = [5, 10, 15, 20, 10, 15];
@@ -401,17 +567,17 @@ function buildCatalog() {
   Object.entries(CATALOG_PLAN).forEach(([category, activities]) => {
     activities.forEach((activity) => {
       const info = ACTIVITY_INFO[activity];
-      for (let pattern = 0; pattern < 6; pattern += 1) {
+      for (let pattern = 0; pattern < 3; pattern += 1) {
         for (let themeIndex = 0; themeIndex < CATALOG_THEMES.length; themeIndex += 1) {
           const themeKey = CATALOG_THEMES[themeIndex];
           const theme = THEMES[themeKey];
-          const problems = problemCountFor(activity, pattern);
+          const problems = Math.min(problemCountFor(activity, pattern), DIFFICULTIES[category].maxProblems);
           const range = activity === 'trace'
             ? TRACE_RANGES[pattern]
             : activity === 'mixed-prek'
               ? MIXED_RANGES[pattern]
               : null;
-          const suffix = String(pattern * 4 + themeIndex + 1).padStart(2, '0');
+          const suffix = String(pattern * CATALOG_THEMES.length + themeIndex + 1).padStart(2, '0');
           counters[category] += 1;
 
           const entry = {
@@ -419,12 +585,12 @@ function buildCatalog() {
             number: counters[category],
             category,
             activity,
-            title: `${theme.styleName} ${TITLE_PATTERNS[activity][pattern]}`,
+            title: `${theme.styleName} ${(TITLE_PATTERNS[activity] || ['Practice'])[pattern % (TITLE_PATTERNS[activity] || ['Practice']).length]}`,
             problems,
             theme: themeKey,
             seed: hashSeed(`${category}|${activity}|${pattern}|${themeKey}|catalog-v2`),
             tags: [info.label, countLabelFor({ activity, problems, range })],
-            blurb: `${theme.styleName} edition. ${BLURB_PATTERNS[activity][pattern]}`,
+            blurb: `${theme.styleName} edition. ${(BLURB_PATTERNS[activity] || ['A themed practice page.'])[pattern % (BLURB_PATTERNS[activity] || ['A themed practice page.']).length]}`,
           };
 
           if (range && activity === 'trace') {
@@ -578,6 +744,25 @@ function defaultTitle(activity, theme) {
   const titles = {
     'mixed-prek': `${theme.styleName} Trace & Count`,
     trace: 'Trace & Write',
+    prewrite: `${theme.styleName} Path Party`,
+    colors: 'Colour Hunt',
+    samediff: 'Same or Different?',
+    position: 'Where Is It?',
+    numberhunt: 'Number Hunt',
+    dots: 'Dot Counting',
+    sortcolor: 'Sort into the Bins',
+    maketen: 'Make Ten Magic',
+    teen: 'Teen Number Trail',
+    measure: 'Longer or Shorter?',
+    symmetry: 'Mirror Magic',
+    shapesort: 'Flat or Solid?',
+    counton: 'Count On!',
+    numberorder: 'Number Order',
+    patternsnum: 'Number Patterns',
+    balance: 'Balance the Equation',
+    measureunits: 'Measure with Cubes',
+    fractionsset: 'Fraction Fair Shares',
+    moreless: 'Ten More, Ten Less',
     count: 'Count & Write',
     shapes: 'Shape Count',
     compare: 'Big or Small?',
@@ -625,6 +810,25 @@ function defaultSubtitle(activity, theme) {
   const subtitles = {
     'mixed-prek': 'Trace the numbers, then count each group.',
     trace: 'Follow the dashed numbers, then try writing them on your own.',
+    prewrite: 'Trace each path from the dot to the picture at the end.',
+    colors: 'Count the shapes in each colour, then write how many.',
+    samediff: 'Look closely. Circle the picture that is different.',
+    position: 'Use the position word to find the right picture.',
+    numberhunt: 'Circle every matching number in the grid.',
+    dots: 'Count the dots. Colour the same number of dots.',
+    sortcolor: 'Sort the pictures into the two bins.',
+    maketen: 'Count the dots, then work out how many more make ten.',
+    teen: 'See ten and some more. Write how many more.',
+    measure: 'Look carefully, then circle the longer, shorter or taller one.',
+    symmetry: 'Draw the mirror half to finish each shape.',
+    shapesort: 'Sort the shapes into flat and solid groups.',
+    counton: 'Start at the green dot and hop forward on the number line.',
+    numberorder: 'Write the missing number in each row.',
+    patternsnum: 'Spot the step, then fill in the missing numbers.',
+    balance: 'Find the missing number that makes both sides equal.',
+    measureunits: 'Count how many cubes long each picture is.',
+    fractionsset: 'Look at the shaded part. Write the fraction.',
+    moreless: 'Write ten less and ten more than each number.',
     count: 'Count the pictures and write how many you see.',
     shapes: 'Count each shape group and write the total.',
     compare: 'Look at each pair. Which one is bigger or smaller?',
@@ -672,6 +876,25 @@ function defaultInstruction(activity) {
   const instructions = {
     'mixed-prek': 'Trace each number. Then count the pictures and write how many in the box.',
     trace: 'Trace each dashed number, then try writing it yourself.',
+    prewrite: 'Start at the big dot. Trace each path slowly, then try it again.',
+    colors: 'Count the shapes that match the colour swatch. Write the total.',
+    samediff: 'Circle the picture that is different from the others in the row.',
+    position: 'Read the position word with a grown-up. Circle the matching picture.',
+    numberhunt: 'Find and circle every matching number. Count how many you found.',
+    dots: 'Count the dots. Colour the same number of dots next to them.',
+    sortcolor: 'Look at each picture, then draw it in the correct bin.',
+    maketen: 'Count the filled spaces. Write how many empty spaces are left.',
+    teen: 'Each teen number is ten and some ones. Write the missing ones.',
+    measure: 'Compare the two pictures. Circle the one the question asks for.',
+    symmetry: 'Use the dotted line to help you draw the matching half.',
+    shapesort: 'Sort the six shapes into flat (2D) and solid (3D) bins.',
+    counton: 'Start at the number. Count on the hops. Write where you land.',
+    numberorder: 'Write the missing number so the row is in order.',
+    patternsnum: 'Work out the step, then write the missing numbers.',
+    balance: 'Make both sides the same. Write the missing number.',
+    measureunits: 'Count the cubes that match each picture.',
+    fractionsset: 'Write the fraction that shows the shaded part of the group.',
+    moreless: 'Write ten less and ten more than each number.',
     count: 'Count the pictures in each box. Write the number in the box.',
     shapes: 'Count the shapes in each group. Write the total in the box.',
     compare: 'Read the prompt. Circle the bigger or smaller picture.',
@@ -1104,7 +1327,7 @@ function buildTallyContent(count, theme, rng) {
 
 function buildWordContent(count, theme, rng) {
   const problems = [];
-  const total = Math.min(count, 8);
+  const total = Math.min(count, 6);
   const addTemplates = [
     (c, f, a, b, item) => `${c} the ${theme.who} has ${a} ${item}. ${f} brings ${b} more. How many ${item} are there altogether?`,
     (c, f, a, b, item) => `${c} finds ${a} ${item} in the morning and ${b} in the afternoon. How many ${item} in all?`,
@@ -1187,15 +1410,16 @@ function buildWordContent(count, theme, rng) {
 function buildMixedPreKContent(count, theme, rng, options = {}) {
   const range = Array.isArray(options.range) ? options.range : [1, 5];
   const traceNumbers = [];
-  for (let number = range[0]; number <= range[1] && traceNumbers.length < 5; number += 1) {
+  for (let number = range[0]; number <= range[1] && traceNumbers.length < 3; number += 1) {
     traceNumbers.push(number);
   }
-  const items = makeCountItems(count, theme, rng);
+  const itemCount = Math.min(count, 4);
+  const items = makeCountItems(itemCount, theme, rng);
   const body = [
     traceBlock(traceNumbers, theme, { compact: true, letter: 'A' }),
     countBlock(items, {
-      roomy: count <= 10,
-      dense: count > 10,
+      roomy: itemCount <= 10,
+      dense: itemCount > 10,
       letter: 'B',
       title: 'Count & write',
     }),
@@ -1205,7 +1429,7 @@ function buildMixedPreKContent(count, theme, rng, options = {}) {
     body,
     answers: items.map((item) => String(item.count)),
     answersNote: 'Answer key covers the counting section. Tracing needs no key.',
-    count: items.length,
+    count: items.length + traceNumbers.length,
   };
 }
 
@@ -1510,7 +1734,7 @@ function numberLineSvg(start, hops, max) {
 }
 
 function buildNumberLineContent(count, theme, rng) {
-  const total = sheetCount(count, 10);
+  const total = sheetCount(count, 6);
   const items = Array.from({ length: total }, () => ({ start: rng.int(1, 10), hops: rng.int(1, 5) }));
   const body = `<section class="ws-block">
     ${blockTitle('A', 'Number line hops', `${total} hops`)}
@@ -1769,8 +1993,9 @@ function buildArraysContent(count, theme, rng) {
   return { body, answers: items.map((item) => String(item.answer)), answersNote: 'Answers are the total number of dots.', count: total };
 }
 
-function buildGraphContent(count, theme, rng) {
-  const total = sheetCount(count, 3);
+function buildGraphContent(count, theme, rng, options = {}) {
+  // Kindergarten standards: one graph with 3–4 questions is a full task.
+  const total = sheetCount(count, options.difficulty === 'k' ? 1 : 2);
   const graphs = Array.from({ length: total }, () => {
     const categories = [theme.emoji, ...theme.deco.slice(0, 3)];
     const counts = categories.map(() => rng.int(1, 6));
@@ -1839,6 +2064,550 @@ function buildShapes3DContent(count, theme, rng) {
   return { body, answers: items, answersNote: 'Answers are the shape names.', count: total };
 }
 
+/* =========================================================
+   Age-band activity generators (2026 rebuild)
+   Pre-K activities are deliberately low-count and large-format;
+   Kindergarten keeps picture support; Grade 1 fades to symbols.
+   ========================================================= */
+
+const PREWRITE_PATHS = [
+  'M 28 66 Q 76 14 124 66 T 220 66 T 316 66 T 412 66 T 508 66 T 604 66',
+  'M 28 76 L 88 28 L 148 76 L 208 28 L 268 76 L 328 28 L 388 76 L 448 28 L 508 76 L 568 28 L 616 44',
+  'M 28 76 Q 54 22 80 76 Q 106 22 132 76 Q 158 22 184 76 Q 210 22 236 76 Q 262 22 288 76 Q 314 22 340 76 Q 366 22 392 76 Q 418 22 444 76 Q 470 22 496 76 Q 522 22 548 76 Q 574 22 600 76',
+  'M 28 78 L 84 78 L 84 46 L 140 46 L 140 78 L 196 78 L 196 46 L 252 46 L 252 78 L 308 78 L 308 46 L 364 46 L 364 78 L 420 78 L 420 46 L 476 46 L 476 78 L 532 78 L 532 46 L 588 46 L 616 46',
+  'M 28 80 L 96 32 L 164 80 L 232 32 L 300 80 L 368 32 L 436 80 L 504 32 L 572 80 L 616 56',
+];
+
+function prewriteLoopPath() {
+  let d = '';
+  for (let i = 0; i < 6; i += 1) {
+    const cx = 60 + i * 96;
+    d += `M ${cx - 28} 62 C ${cx - 28} 18 ${cx + 28} 18 ${cx + 28} 62 C ${cx + 28} 104 ${cx - 28} 104 ${cx - 28} 62 `;
+  }
+  return d.trim();
+}
+
+function buildPrewriteContent(count, theme, rng) {
+  const total = sheetCount(count, 5);
+  const paths = rng.shuffle([...PREWRITE_PATHS, prewriteLoopPath()]).slice(0, total);
+  const rows = paths.map((d, index) => `<div class="prewrite-row">
+    <span class="prewrite-row__label">${index + 1}</span>
+    <div class="prewrite-row__track">
+      <svg class="prewrite-svg" viewBox="0 0 640 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="prewrite-guide" d="${d}"/>
+        <path class="prewrite-path" d="${d}"/>
+        <circle class="prewrite-dot" cx="28" cy="66" r="7"/>
+      </svg>
+    </div>
+    <span class="prewrite-row__ends" aria-hidden="true">${theme.emoji}<span>${theme.deco[0]}</span></span>
+  </div>`).join('');
+
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Trace the paths', `${total} paths`)}
+      <div class="prewrite-list">${rows}</div>
+    </section>`,
+    answers: [],
+    answersNote: 'No answer key for tracing. Sit beside your child and talk about the path direction.',
+    count: total,
+  };
+}
+
+const COLOUR_TOKENS = [
+  { name: 'red', hex: '#e05555' },
+  { name: 'blue', hex: '#3c8fd0' },
+  { name: 'yellow', hex: '#e8b52a' },
+  { name: 'green', hex: '#4f9e4f' },
+  { name: 'pink', hex: '#e86fa8' },
+  { name: 'purple', hex: '#8a6bd6' },
+];
+
+function buildColorsContent(count, theme, rng) {
+  const total = sheetCount(count, 6);
+  const cards = [];
+  for (let i = 0; i < total; i += 1) {
+    const pair = rng.shuffle(COLOUR_TOKENS).slice(0, 2);
+    const target = pair[0];
+    const other = pair[1];
+    const targetCount = rng.int(2, 4);
+    const otherCount = rng.int(1, 3);
+    const shapes = rng.shuffle([
+      ...Array.from({ length: targetCount }, () => target),
+      ...Array.from({ length: otherCount }, () => other),
+    ]);
+    cards.push({ target, shapes });
+  }
+
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Colour hunt', `${total} cards`)}
+      <div class="colour-grid">
+        ${cards.map((card) => `<div class="colour-card">
+          <div class="colour-card__shapes" aria-hidden="true">
+            ${card.shapes.map((colour) => `<span class="colour-shape" style="--dot:${colour.hex}"></span>`).join('')}
+          </div>
+          <div class="colour-card__footer">
+            <span class="colour-swatch" style="--dot:${card.target.hex}"></span>
+            <span class="colour-label">${card.target.name}</span>
+            ${answerBox('answer-box--tall')}
+          </div>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: cards.map((card) => String(card.shapes.filter((colour) => colour.name === card.target.name).length)),
+    answersNote: 'Answers are the number of shapes in the target colour on each card.',
+    count: total,
+  };
+}
+
+function buildSameDiffContent(count, theme, rng) {
+  const total = sheetCount(count, 4);
+  const rows = Array.from({ length: total }, () => {
+    const same = rng.chance(0.5) ? theme.emoji : theme.deco[0];
+    const odd = theme.deco[1];
+    const items = rng.shuffle([same, same, same, odd]);
+    return { items };
+  });
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Same & different', `${total} rows`)}
+      <div class="samediff-list">
+        ${rows.map((row, index) => `<div class="samediff-row">
+          <span class="samediff-row__num">${index + 1}</span>
+          <span class="samediff-row__items" aria-hidden="true">${row.items.map((item) => `<span class="samediff-item">${item}</span>`).join('')}</span>
+          <span class="samediff-row__hint">Circle the odd one</span>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: [],
+    answersNote: 'Ask your child to say why the circled picture is different.',
+    count: total,
+  };
+}
+
+const POSITION_WORDS = [
+  { key: 'above', text: 'above', anchor: 'the picture' },
+  { key: 'below', text: 'below', anchor: 'the picture' },
+  { key: 'beside', text: 'beside', anchor: 'the picture' },
+  { key: 'front', text: 'in front of', anchor: 'the picture' },
+  { key: 'behind', text: 'behind', anchor: 'the picture' },
+  { key: 'inside', text: 'inside', anchor: 'the box' },
+];
+
+function buildPositionContent(count, theme, rng) {
+  const total = sheetCount(count, 4);
+  const words = rng.shuffle(POSITION_WORDS).slice(0, total);
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Where is it?', `${total} scenes`)}
+      <div class="position-grid">
+        ${words.map((word) => `<div class="position-card">
+          <div class="position-scene position-scene--${word.key}" aria-hidden="true">
+            <span class="position-anchor">${word.key === 'inside' ? '📦' : theme.deco[1]}</span>
+            <span class="position-target">${theme.emoji}</span>
+            <span class="position-other">${theme.deco[0]}</span>
+          </div>
+          <p class="position-question">Circle the one <strong>${word.text}</strong> ${word.anchor}.</p>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: [],
+    answersNote: 'Position words are best practised out loud. Ask your child to show you above, below and beside with their hands.',
+    count: total,
+  };
+}
+
+function buildNumberHuntContent(count, theme, rng) {
+  const total = sheetCount(count, 1);
+  const hunts = Array.from({ length: total }, () => {
+    const target = rng.int(1, 5);
+    const size = 16;
+    const values = [];
+    const wanted = rng.int(3, 5);
+    for (let i = 0; i < wanted; i += 1) values.push(target);
+    while (values.length < size) {
+      const n = rng.int(1, 5);
+      if (n !== target || values.filter((v) => v === target).length < wanted) values.push(n);
+    }
+    return { target, values: rng.shuffle(values).slice(0, size), wanted };
+  });
+
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Number hunt', `${total} hunts`)}
+      <div class="hunt-grid">
+        ${hunts.map((hunt) => `<div class="hunt-card">
+          <div class="hunt-card__head">
+            <span class="hunt-target">${hunt.target}</span>
+            <span class="hunt-card__ask">Circle every <strong>${hunt.target}</strong></span>
+            <span class="hunt-score">Found <i></i></span>
+          </div>
+          <div class="hunt-numbers" aria-hidden="true">
+            ${hunt.values.map((value) => `<span class="hunt-num">${value}</span>`).join('')}
+          </div>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: hunts.map((hunt) => String(hunt.wanted)),
+    answersNote: 'Answers are the number of matching numerals in each hunt.',
+    count: total,
+  };
+}
+
+function buildDotsContent(count, theme, rng) {
+  const total = sheetCount(count, 6);
+  const cards = Array.from({ length: total }, () => rng.int(1, 5));
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Count & colour', `${total} cards`)}
+      <div class="dot-grid">
+        ${cards.map((value) => `<div class="dot-card">
+          <span class="dot-card__num">${value}</span>
+          <span class="dot-card__dots" aria-hidden="true">${Array.from({ length: 5 }, () => '<span class="dot"></span>').join('')}</span>
+          <span class="dot-card__hint">Colour ${value}</span>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: cards.map(String),
+    answersNote: 'Answers are the numbers shown on each card.',
+    count: total,
+  };
+}
+
+function buildSortColorContent(count, theme, rng) {
+  const total = sheetCount(count, 1);
+  const kinds = [
+    { symbol: theme.emoji, label: theme.name },
+    { symbol: theme.deco[0], label: 'Other pictures' },
+  ];
+  const sorts = Array.from({ length: total }, () => {
+    const pile = rng.shuffle([
+      ...Array.from({ length: rng.int(4, 6) }, () => kinds[0]),
+      ...Array.from({ length: rng.int(3, 5) }, () => kinds[1]),
+    ]);
+    return { pile };
+  });
+
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Sort into the bins', `${total} sorting mats`)}
+      ${sorts.map((sort, index) => `<div class="sortbin-wrap">
+        <div class="sortbin-pile" aria-hidden="true">${sort.pile.map((item) => `<span class="sortbin-item">${item.symbol}</span>`).join('')}</div>
+        <div class="sortbin-row">
+          ${kinds.map((kind) => `<div class="sortbin">
+            <span class="sortbin__label">${kind.symbol} ${kind.label}</span>
+            <span class="sortbin__area" aria-hidden="true"></span>
+          </div>`).join('')}
+        </div>
+        <span class="sortbin-index">Mat ${index + 1}</span>
+      </div>`).join('')}
+    </section>`,
+    answers: [],
+    answersNote: 'No written answer key. Ask your child to explain how they sorted.',
+    count: total,
+  };
+}
+
+function buildMakeTenContent(count, theme, rng) {
+  const total = sheetCount(count, 8);
+  const values = rng.shuffle([2, 3, 4, 5, 6, 7, 8, 9]).slice(0, total);
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Make ten', `${total} frames`)}
+      <div class="maketen-grid ${total > 6 ? 'maketen-grid--dense' : ''}">
+        ${values.map((value) => `<div class="maketen-card">
+          ${tenFrameMarkup(value)}
+          <p class="maketen-eq"><span>${value}</span><b>+</b>${answerBox('answer-box--tall')}<b>=</b><span>10</span></p>
+          <span class="maketen-hint">How many empty spaces?</span>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: values.map((value) => String(10 - value)),
+    answersNote: 'Answers are the number needed to make ten.',
+    count: total,
+  };
+}
+
+function buildTeenContent(count, theme, rng) {
+  const total = sheetCount(count, 8);
+  const values = rng.shuffle([11, 12, 13, 14, 15, 16, 17, 18, 19]).slice(0, total);
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Teen numbers', `${total} numbers`)}
+      <div class="teen-grid ${total > 6 ? 'teen-grid--dense' : ''}">
+        ${values.map((value) => {
+          const ones = value - 10;
+          return `<div class="teen-card">
+            <span class="teen-num">${value}</span>
+            <div class="teen-frames" aria-hidden="true">
+              ${tenFrameMarkup(10)}
+              <div class="teen-extra">${Array.from({ length: ones }, () => '<span class="dot"></span>').join('')}</div>
+            </div>
+            <p class="teen-eq"><span>10</span><b>+</b>${answerBox('answer-box--small')}<b>=</b><span>${value}</span></p>
+          </div>`;
+        }).join('')}
+      </div>
+    </section>`,
+    answers: values.map((value) => String(value - 10)),
+    answersNote: 'Answers are the ones in each teen number.',
+    count: total,
+  };
+}
+
+function buildMeasureContent(count, theme, rng) {
+  const total = sheetCount(count, 6);
+  const kinds = ['longer', 'shorter', 'taller', 'longer'];
+  const cards = Array.from({ length: total }, (_, index) => ({
+    kind: kinds[index % kinds.length],
+    a: rng.int(36, 88),
+    b: rng.int(18, 44),
+  }));
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Compare the size', `${total} pairs`)}
+      <div class="measure-grid${total > 4 ? ' measure-grid--dense' : ''}">
+        ${cards.map((card) => {
+          const vertical = card.kind === 'taller';
+          return `<div class="measure-card">
+            <div class="measure-sticks${vertical ? ' measure-sticks--tall' : ''}" aria-hidden="true">
+              <span class="measure-stick" style="--len:${card.a}%"></span>
+              <span class="measure-stick" style="--len:${card.b}%"></span>
+            </div>
+            <p class="measure-question">Circle the <strong>${card.kind}</strong> one.</p>
+          </div>`;
+        }).join('')}
+      </div>
+    </section>`,
+    answers: [],
+    answersNote: 'For size words, ask your child to point and explain before circling.',
+    count: total,
+  };
+}
+
+const SYMMETRY_SHAPES = [
+  { name: 'heart', d: 'M 50 86 C 22 64 12 42 28 30 C 40 21 48 30 50 40 Z' },
+  { name: 'star', d: 'M 50 12 L 41 38 L 14 38 L 35 54 L 28 82 L 50 66 Z' },
+  { name: 'house', d: 'M 50 88 L 50 46 L 22 46 L 50 18 Z' },
+  { name: 'butterfly', d: 'M 50 52 C 36 24 14 28 20 46 C 12 54 26 64 40 58 C 42 72 50 74 50 62 Z' },
+];
+
+function buildSymmetryContent(count, theme, rng) {
+  const total = sheetCount(count, 4);
+  const shapes = rng.shuffle(SYMMETRY_SHAPES).slice(0, total);
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Mirror halves', `${total} shapes`)}
+      <div class="symmetry-grid">
+        ${shapes.map((shape) => `<div class="symmetry-card">
+          <div class="symmetry-box" aria-hidden="true">
+            <svg class="symmetry-svg" viewBox="0 0 100 100">
+              <path class="symmetry-half" d="${shape.d}"/>
+              <line class="symmetry-line" x1="50" y1="8" x2="50" y2="92"/>
+            </svg>
+          </div>
+          <p class="symmetry-prompt">Finish the other half</p>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: [],
+    answersNote: 'Symmetry is exploratory here. Praise a careful mirror attempt rather than perfect lines.',
+    count: total,
+  };
+}
+
+function buildShapeSortContent(count, theme, rng) {
+  const flat = ['circle', 'square', 'triangle'].map((kind) => ({ type: 'flat', html: shapeSvg(kind, rng.int(0, 3)) }));
+  const solid = ['cube', 'sphere', 'cylinder'].map((kind) => ({ type: 'solid', html: SOLID_SVGS[kind] }));
+  const bank = rng.shuffle([...flat, ...solid]);
+  const flatCount = bank.filter((item) => item.type === 'flat').length;
+  const solidCount = bank.filter((item) => item.type === 'solid').length;
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Flat or solid?', 'Sort 6 shapes')}
+      <div class="shapesort-wrap">
+        <div class="shapesort-bank" aria-hidden="true">${bank.map((item) => `<span class="shapesort-shape shapesort-shape--${item.type}">${item.html}</span>`).join('')}</div>
+        <div class="shapesort-bins">
+          <div class="shapesort-bin"><span class="shapesort-bin__label">Flat (2D)</span><span class="shapesort-bin__area" aria-hidden="true"></span></div>
+          <div class="shapesort-bin"><span class="shapesort-bin__label">Solid (3D)</span><span class="shapesort-bin__area" aria-hidden="true"></span></div>
+        </div>
+      </div>
+    </section>`,
+    answers: [`${flatCount} flat, ${solidCount} solid`],
+    answersNote: 'Answers are the number of flat and solid shapes in the bank.',
+    count: 1,
+  };
+}
+
+function buildCountOnContent(count, theme, rng) {
+  const total = sheetCount(count, 6);
+  const items = Array.from({ length: total }, () => ({ start: rng.int(5, 15), hops: rng.int(2, 4) }));
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Count on', `${total} hops`)}
+      <div class="counton-grid${total > 4 ? ' counton-grid--dense' : ''}">
+        ${items.map((item) => `<div class="counton-card">
+          <span class="counton-start">Start at <b>${item.start}</b></span>
+          ${numberLineSvg(item.start, item.hops, 20)}
+          <p class="counton-question">Count on ${item.hops}. Where do you land? ${answerBox()}</p>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: items.map((item) => String(item.start + item.hops)),
+    answersNote: 'Answers are the landing numbers.',
+    count: total,
+  };
+}
+
+function buildNumberOrderContent(count, theme, rng) {
+  const total = sheetCount(count, 5);
+  const rows = [];
+  for (let i = 0; i < total; i += 1) {
+    const start = rng.int(1, 14);
+    const terms = Array.from({ length: 4 }, (_, k) => start + k);
+    const blank = rng.int(1, 3);
+    rows.push({ terms, blank });
+  }
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Number order', `${total} rows`)}
+      <div class="order-list">
+        ${rows.map((row, index) => `<div class="order-row">
+          <span class="order-row__num">${index + 1}</span>
+          <span class="order-terms">${row.terms.map((term, termIndex) => (termIndex === row.blank ? '<span class="sequence-blank"></span>' : `<span class="sequence-term">${term}</span>`)).join('')}</span>
+          <span class="order-row__hint">Smallest → biggest</span>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: rows.map((row) => String(row.terms[row.blank])),
+    answersNote: 'Answers are the missing numbers in each row.',
+    count: total,
+  };
+}
+
+function buildNumberPatternsContent(count, theme, rng) {
+  const total = sheetCount(count, 6);
+  const sequences = Array.from({ length: total }, () => {
+    const step = rng.pick([1, 2, 5, 10]);
+    const start = rng.int(1, 6);
+    const terms = Array.from({ length: 6 }, (_, k) => start + k * step);
+    const blanks = new Set();
+    while (blanks.size < 2) blanks.add(rng.int(2, 4));
+    return { step, terms, blanks: [...blanks].sort((a, b) => a - b) };
+  });
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Number patterns', `${total} patterns`)}
+      <div class="sequence-list">
+        ${sequences.map((sequence, index) => `<div class="sequence-row">
+          <span class="sequence-row__num">${index + 1}</span>
+          <span class="sequence-row__step">+${sequence.step}</span>
+          <span class="sequence-row__terms">${sequence.terms.map((term, termIndex) => (sequence.blanks.includes(termIndex) ? '<span class="sequence-blank"></span>' : `<span class="sequence-term">${term}</span>`)).join('')}</span>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: sequences.map((sequence) => sequence.blanks.map((blank) => sequence.terms[blank]).join(', ')),
+    answersNote: 'Answers are the missing numbers in each pattern.',
+    count: total,
+  };
+}
+
+function buildBalanceContent(count, theme, rng) {
+  const total = count;
+  const problems = [];
+  while (problems.length < total) {
+    const sum = rng.int(6, 16);
+    const a = rng.int(1, sum - 2);
+    const b = sum - a;
+    const c = rng.int(1, sum - 1);
+    const d = sum - c;
+    const blank = rng.int(0, 3);
+    problems.push({ a, b, c, d, blank, sum });
+  }
+  const cell = (value, index, problem) => (problem.blank === index ? answerBox('answer-box--small') : `<span>${value}</span>`);
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Balance the equation', `${total} problems`)}
+      <ol class="balance-grid">
+        ${problems.map((problem) => `<li class="balance-card">
+          <span class="balance-side">${cell(problem.a, 0, problem)}<b>+</b>${cell(problem.b, 1, problem)}</span>
+          <b class="balance-eq">=</b>
+          <span class="balance-side">${cell(problem.c, 2, problem)}<b>+</b>${cell(problem.d, 3, problem)}</span>
+        </li>`).join('')}
+      </ol>
+    </section>`,
+    answers: problems.map((problem) => String([problem.a, problem.b, problem.c, problem.d][problem.blank])),
+    answersNote: 'Answers are the missing numbers that keep both sides equal.',
+    count: total,
+  };
+}
+
+function buildUnitMeasureContent(count, theme, rng) {
+  const total = sheetCount(count, 6);
+  const items = Array.from({ length: total }, () => ({ cubes: rng.int(3, 8) }));
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Measure with cubes', `${total} objects`)}
+      <div class="unitmeasure-list">
+        ${items.map((item, index) => `<div class="unitmeasure-card">
+          <span class="unitmeasure-no">${index + 1}</span>
+          <div class="unitmeasure-object" aria-hidden="true">${theme.emoji.repeat(item.cubes)}</div>
+          <span class="unitmeasure-key" aria-hidden="true"><span class="unitmeasure-cube"></span>1 cube</span>
+          <p class="unitmeasure-question">How many cubes long? ${answerBox()}</p>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: items.map((item) => String(item.cubes)),
+    answersNote: 'Answers are the number of cubes that match each picture.',
+    count: total,
+  };
+}
+
+function buildFractionSetContent(count, theme, rng) {
+  const total = sheetCount(count, 6);
+  const items = Array.from({ length: total }, () => {
+    const parts = rng.pick([2, 4]);
+    const shaded = rng.int(1, parts - 1);
+    return { parts, shaded };
+  });
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Fractions of a group', `${total} groups`)}
+      <div class="fractionset-grid${total > 4 ? ' fractionset-grid--dense' : ''}">
+        ${items.map((item) => `<div class="fractionset-card">
+          <div class="fractionset-group" aria-hidden="true">${Array.from({ length: item.parts }, (_, index) => `<span class="fractionset-item${index < item.shaded ? ' is-shaded' : ''}">${theme.emoji}</span>`).join('')}</div>
+          <p class="fractionset-question">What fraction is shaded?</p>
+          ${answerBox('answer-box--wide')}
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: items.map((item) => `${item.shaded}/${item.parts}`),
+    answersNote: 'Answers are the shaded fractions.',
+    count: total,
+  };
+}
+
+function buildTenMoreLessContent(count, theme, rng) {
+  const total = sheetCount(count, 12);
+  const values = Array.from({ length: total }, () => rng.int(12, 89));
+  return {
+    body: `<section class="ws-block">
+      ${blockTitle('A', 'Ten more, ten less', `${total} numbers`)}
+      <div class="moreless-grid${total > 9 ? ' moreless-grid--dense' : ''}">
+        ${values.map((value) => `<div class="moreless-card">
+          <span class="moreless-num">${value}</span>
+          <span class="moreless-cells">
+            <span class="moreless-cell">10 less<i></i></span>
+            <span class="moreless-cell">10 more<i></i></span>
+          </span>
+        </div>`).join('')}
+      </div>
+    </section>`,
+    answers: values.map((value) => `${value - 10}, ${value + 10}`),
+    answersNote: 'Answers are ten less and ten more than each number.',
+    count: total,
+  };
+}
+
 function createContent(activity, count, theme, rng, options = {}) {
   if (activity === 'mixed-prek') return buildMixedPreKContent(count, theme, rng, options);
   if (activity === 'trace') return buildTraceContent(count, theme, rng, options.range);
@@ -1871,9 +2640,28 @@ function createContent(activity, count, theme, rng, options = {}) {
   if (activity === 'threeadd') return buildThreeAddContent(count, theme, rng);
   if (activity === 'twodigit') return buildTwoDigitContent(count, theme, rng);
   if (activity === 'arrays') return buildArraysContent(count, theme, rng);
-  if (activity === 'graph') return buildGraphContent(count, theme, rng);
+  if (activity === 'graph') return buildGraphContent(count, theme, rng, options);
   if (activity === 'rounding') return buildRoundingContent(count, theme, rng);
   if (activity === 'shapes3d') return buildShapes3DContent(count, theme, rng);
+  if (activity === 'prewrite') return buildPrewriteContent(count, theme, rng);
+  if (activity === 'colors') return buildColorsContent(count, theme, rng);
+  if (activity === 'samediff') return buildSameDiffContent(count, theme, rng);
+  if (activity === 'position') return buildPositionContent(count, theme, rng);
+  if (activity === 'numberhunt') return buildNumberHuntContent(count, theme, rng);
+  if (activity === 'dots') return buildDotsContent(count, theme, rng);
+  if (activity === 'sortcolor') return buildSortColorContent(count, theme, rng);
+  if (activity === 'maketen') return buildMakeTenContent(count, theme, rng);
+  if (activity === 'teen') return buildTeenContent(count, theme, rng);
+  if (activity === 'measure') return buildMeasureContent(count, theme, rng);
+  if (activity === 'symmetry') return buildSymmetryContent(count, theme, rng);
+  if (activity === 'shapesort') return buildShapeSortContent(count, theme, rng);
+  if (activity === 'counton') return buildCountOnContent(count, theme, rng);
+  if (activity === 'numberorder') return buildNumberOrderContent(count, theme, rng);
+  if (activity === 'patternsnum') return buildNumberPatternsContent(count, theme, rng);
+  if (activity === 'balance') return buildBalanceContent(count, theme, rng);
+  if (activity === 'measureunits') return buildUnitMeasureContent(count, theme, rng);
+  if (activity === 'fractionsset') return buildFractionSetContent(count, theme, rng);
+  if (activity === 'moreless') return buildTenMoreLessContent(count, theme, rng);
   return buildEquationContent(activity, count, theme, rng);
 }
 
@@ -1895,8 +2683,83 @@ function worksheetMeta() {
   </div>`;
 }
 
-function worksheetMarkup({ title, subtitle, instruction, body, theme, difficulty, pageLabel }) {
-  return `<article class="worksheet" style="--ws-accent:${theme.accent};--ws-accent-soft:${theme.soft};">
+function ageClass(difficulty) {
+  return `worksheet--${difficulty.className || 'k'}`;
+}
+
+function activityFamily(activity) {
+  if (['trace', 'prewrite', 'symmetry', 'patterns', 'patternsnum', 'numberwords', 'skipcount'].includes(activity)) return 'trace';
+  if (['word'].includes(activity)) return 'read';
+  if (['samediff', 'position', 'numberhunt', 'sortcolor', 'shapesort'].includes(activity)) return 'spot';
+  if (['measure', 'measureunits'].includes(activity)) return 'measure';
+  if (['count', 'shapes', 'colors', 'dots', 'tenframe', 'tally', 'dice', 'graph', 'ordinal', 'numberorder'].includes(activity)) return 'count';
+  return 'solve';
+}
+
+const STEP_SETS = {
+  prek: {
+    trace: [['👆', 'Trace with a finger'], ['✏️', 'Trace with a crayon'], ['🌈', 'Colour it in']],
+    count: [['👆', 'Point and count'], ['✏️', 'Write the number'], ['🖍️', 'Colour the pictures']],
+    read: [['👂', 'Listen to the story'], ['✏️', 'Draw your thinking'], ['🔢', 'Write the answer']],
+    spot: [['👀', 'Look closely'], ['☝️', 'Point and name'], ['⭕', 'Circle the answer']],
+    measure: [['👀', 'Look at both'], ['📏', 'Compare them'], ['⭕', 'Circle the answer']],
+    solve: [['👀', 'Look at the pictures'], ['✏️', 'Trace or write'], ['⭐', 'Check your work']],
+  },
+  k: {
+    trace: [['✏️', 'Trace'], ['✏️', 'Try it alone']],
+    count: [['🔢', 'Count'], ['✏️', 'Write the number']],
+    read: [['📖', 'Read'], ['✏️', 'Solve and show']],
+    spot: [['👀', 'Look closely'], ['⭕', 'Circle or sort']],
+    measure: [['📏', 'Compare'], ['⭕', 'Circle the answer']],
+    solve: [['🧠', 'Read the sign'], ['✏️', 'Write the answer']],
+  },
+};
+
+function stepsMarkup(activity, difficulty) {
+  if (difficulty.className === 'g1') return '';
+  const set = (STEP_SETS[difficulty.className] || STEP_SETS.k)[activityFamily(activity)] || STEP_SETS.k.solve;
+  return `<div class="ws-steps" aria-hidden="true">${set.map(([icon, label], index) => `<span class="ws-step"><span class="ws-step__num">${index + 1}</span><span class="ws-step__icon">${icon}</span><span class="ws-step__label">${label}</span></span>`).join('')}</div>`;
+}
+
+function themeCheer(theme, activity) {
+  const cheers = {
+    trace: 'Slow and steady makes the best lines.',
+    count: `Let’s count the ${theme.items[0]} together!`,
+    read: 'Let’s find out what happens in the story.',
+    spot: 'Look closely. Little details matter!',
+    measure: 'Which one is longer? Let’s check!',
+    solve: 'One little step at a time. You’ve got this!',
+  };
+  return `${theme.characters[0]} the ${theme.who} says: “${cheers[activityFamily(activity)]}”`;
+}
+
+function mascotMarkup(theme, activity) {
+  return `<div class="ws-mascot">
+    <span class="ws-mascot__face" aria-hidden="true">${theme.emoji}</span>
+    <span class="ws-mascot__bubble">${escapeHtml(themeCheer(theme, activity))}</span>
+  </div>`;
+}
+
+function grownupMarkup(difficulty) {
+  if (difficulty.className !== 'prek') return '';
+  return `<div class="ws-grownup">
+    <span class="ws-grownup__icon" aria-hidden="true">💡</span>
+    <p><strong>Grown-up corner:</strong> ${escapeHtml(difficulty.tip)} <em>${escapeHtml(difficulty.talk)}</em></p>
+  </div>`;
+}
+
+function challengeMarkup(difficulty) {
+  if (difficulty.className === 'prek') return '';
+  return `<div class="ws-challenge">
+    <span class="ws-challenge__icon" aria-hidden="true">⭐</span>
+    <p><strong>Challenge:</strong> ${escapeHtml(difficulty.extension)}</p>
+  </div>`;
+}
+
+function worksheetMarkup({ title, subtitle, instruction, body, theme, difficulty, pageLabel, activity }) {
+  const stars = difficulty.className === 'prek' ? '☆ ☆ ☆' : difficulty.className === 'k' ? '☆ ☆ ☆ ☆' : '☆ ☆ ☆ ☆ ☆';
+  const showMascot = difficulty.className !== 'g1';
+  return `<article class="worksheet ${ageClass(difficulty)}" style="--ws-accent:${theme.accent};--ws-accent-soft:${theme.soft};">
     ${worksheetHead(theme, difficulty)}
     <header class="ws-title">
       <p class="ws-kicker">${escapeHtml(difficulty.badge)}</p>
@@ -1904,18 +2767,22 @@ function worksheetMarkup({ title, subtitle, instruction, body, theme, difficulty
       <p class="ws-sub">${escapeHtml(subtitle)}</p>
     </header>
     ${worksheetMeta()}
+    ${stepsMarkup(activity, difficulty)}
     <p class="ws-instruction"><span aria-hidden="true">✏️</span><span>${escapeHtml(instruction)}</span></p>
     <div class="ws-body">${body}</div>
+    ${showMascot ? mascotMarkup(theme, activity) : ''}
+    ${grownupMarkup(difficulty)}
+    ${challengeMarkup(difficulty)}
     <div class="ws-reward">
       <span>All done? Colour a star for every try! ${theme.emoji}</span>
-      <span class="ws-reward__stars" aria-hidden="true">☆ ☆ ☆ ☆ ☆</span>
+      <span class="ws-reward__stars" aria-hidden="true">${stars}</span>
     </div>
     <footer class="ws-footer"><span>${theme.emoji} SquiggleMath</span><span>${escapeHtml(pageLabel)}</span></footer>
   </article>`;
 }
 
 function answerKeyMarkup({ answers, title, theme, difficulty, answersNote, pageLabel }) {
-  return `<article class="worksheet worksheet--key" style="--ws-accent:${theme.accent};--ws-accent-soft:${theme.soft};">
+  return `<article class="worksheet ${ageClass(difficulty)} worksheet--key" style="--ws-accent:${theme.accent};--ws-accent-soft:${theme.soft};">
     ${worksheetHead(theme, difficulty)}
     <header class="ws-title">
       <p class="ws-kicker">For grown-ups</p>
@@ -1934,22 +2801,27 @@ function answerKeyMarkup({ answers, title, theme, difficulty, answersNote, pageL
 }
 
 /* Sparse sheets get a dotted "extra thinking" area so the printable never
-   ends in a large empty gap. Word-problem sheets already include a workbox. */
+   ends in a large empty gap. Pre-K gets a drawing invitation instead of a
+   "show your work" box, and the threshold is lower because big items already
+   leave generous white space. Word-problem sheets have their own workbox. */
 function addThinkingSpace(root) {
   if (!root) return;
   root.querySelectorAll('.worksheet:not(.worksheet--key)').forEach((sheet) => {
     if (sheet.querySelector('.word-workbox') || sheet.querySelector('.ws-workzone')) return;
     const body = sheet.querySelector('.ws-body');
     if (!body) return;
+    const isPrek = sheet.classList.contains('worksheet--prek');
     const gap = Number.parseFloat(getComputedStyle(body).rowGap) || 0;
     const children = [...body.children];
     const used = children.reduce((total, child) => total + child.offsetHeight, 0);
     const free = body.clientHeight - used - gap * Math.max(0, children.length - 1);
-    if (free < 170) return;
+    if (free < (isPrek ? 120 : 170)) return;
 
     const workzone = document.createElement('div');
-    workzone.className = 'ws-workzone';
-    workzone.innerHTML = '<div class="ws-workzone__head"><span aria-hidden="true">✏️</span><span>Extra thinking space — doodle, count, or show your work.</span></div><div class="ws-workzone__area" aria-hidden="true"></div>';
+    workzone.className = `ws-workzone${isPrek ? ' ws-workzone--prek' : ''}`;
+    workzone.innerHTML = isPrek
+      ? '<div class="ws-workzone__head"><span aria-hidden="true">🖍️</span><span>Doodle zone — draw something from your sheet.</span></div><div class="ws-workzone__area" aria-hidden="true"></div>'
+      : '<div class="ws-workzone__head"><span aria-hidden="true">✏️</span><span>Extra thinking space — doodle, count, or show your work.</span></div><div class="ws-workzone__area" aria-hidden="true"></div>';
     body.appendChild(workzone);
   });
 }
@@ -1958,8 +2830,10 @@ function buildWorksheet(config) {
   const difficulty = DIFFICULTIES[config.difficulty || config.category] || DIFFICULTIES.prek;
   const theme = THEMES[config.theme] || THEMES.dinos;
   const activity = config.activity || defaultActivityFor(config.difficulty || config.category);
+  const levelMax = difficulty.maxProblems || MAX_PROBLEMS;
+  const levelDefault = difficulty.defaultProblems || 10;
   const requestedCount = Number.parseInt(config.problems, 10);
-  const count = Math.max(1, Math.min(Number.isFinite(requestedCount) ? requestedCount : 10, MAX_PROBLEMS));
+  const count = Math.max(1, Math.min(Number.isFinite(requestedCount) ? requestedCount : levelDefault, levelMax));
   const seed = Number(config.seed) || randomSeed();
   const rng = createRng(seed);
   const title = config.title || defaultTitle(activity, theme);
@@ -1978,6 +2852,7 @@ function buildWorksheet(config) {
     body: content.body,
     theme,
     difficulty,
+    activity,
     pageLabel: totalPages > 1 ? `Page 1 of ${totalPages}` : 'Print & play',
   });
 

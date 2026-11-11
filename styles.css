@@ -3944,6 +3944,78 @@ ul, ol {
 }
 
 /* =========================================================
+   Library skill groups + mini previews for new activities
+   ========================================================= */
+
+.filter-chips--groups {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(31, 42, 68, 0.16);
+}
+
+.filter-chip--sub {
+  padding: 4px 9px;
+  font-size: 0.66rem;
+}
+
+.mini-colour-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin: 1px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.mini-prewrite {
+  margin: 7px 0;
+  color: rgba(31, 42, 68, 0.55);
+}
+
+.mini-prewrite svg {
+  display: block;
+  width: 100%;
+  height: 27px;
+}
+
+.mini-tenframe {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  width: 74px;
+  margin: 6px auto;
+}
+
+.mini-tenframe span {
+  aspect-ratio: 1;
+  border: 1px solid rgba(31, 42, 68, 0.25);
+  border-radius: 2px;
+  background: #fff;
+}
+
+.mini-tenframe span.is-filled {
+  background: rgba(31, 42, 68, 0.55);
+  border-color: rgba(31, 42, 68, 0.55);
+}
+
+.mini-symmetry {
+  display: block;
+  width: 58px;
+  height: 50px;
+  margin: 3px auto;
+  color: rgba(31, 42, 68, 0.5);
+}
+
+.mini-measure { margin: 6px 0; }
+
+.mini-measure span {
+  display: block;
+  height: 7px;
+  border-radius: 99px;
+  background: rgba(31, 42, 68, 0.3);
+}
+
+/* =========================================================
    PRINT — the standalone print page only ever prints the
    worksheet. worksheet.js clones the active sheet(s) into
    #print-area before the browser print dialog opens.

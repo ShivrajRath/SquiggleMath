@@ -9,6 +9,7 @@ const {
   DIFFICULTIES,
   THEMES,
   ACTIVITY_INFO,
+  ACTIVITY_GROUPS,
   catalogFor,
   activitiesFor,
   createRng,
@@ -93,6 +94,37 @@ function miniPreview(sheet) {
       <div class="mini-eq"><span>9 + 8 =</span><span></span></div>`;
   }
 
+  if (activity === 'colors') {
+    const dots = ['#e05555', '#3c8fd0', '#e8b52a', '#4f9e4f'];
+    return dots.slice(0, 3).map((colour) => `<div class="mini-count"><span class="mini-count__emojis">${Array.from({ length: rng.int(2, 4) }, () => `<span class="mini-colour-dot" style="--dot:${colour}"></span>`).join('')}</span><span class="mini-count__box"></span></div>`).join('');
+  }
+
+  if (activity === 'prewrite') {
+    return `<div class="mini-prewrite"><svg viewBox="0 0 220 40" fill="none"><path d="M8 28 Q 30 6 52 28 T 96 28 T 140 28 T 184 28 T 212 24" stroke="currentColor" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/></svg></div>
+      <div class="mini-prewrite"><svg viewBox="0 0 220 40" fill="none"><path d="M8 30 L 34 12 L 60 30 L 86 12 L 112 30 L 138 12 L 164 30 L 190 12 L 212 22" stroke="currentColor" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/></svg></div>
+      <div class="mini-prewrite"><svg viewBox="0 0 220 40" fill="none"><path d="M8 30 Q 18 8 28 30 Q 38 8 48 30 Q 58 8 68 30 Q 78 8 88 30 Q 98 8 108 30 Q 118 8 128 30 Q 138 8 148 30 Q 158 8 168 30 Q 178 8 188 30 Q 198 8 208 30" stroke="currentColor" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/></svg></div>`;
+  }
+
+  if (activity === 'maketen' || activity === 'teen') {
+    const filled = rng.int(4, 8);
+    return `<div class="mini-tenframe">${Array.from({ length: 10 }, (_, index) => `<span class="${index < filled ? 'is-filled' : ''}"></span>`).join('')}</div>
+      <div class="mini-eq"><span>${filled} +</span><span></span></div>`;
+  }
+
+  if (activity === 'balance') {
+    return `<div class="mini-eq"><span>7 + 2 =</span><span></span></div>
+      <div class="mini-eq"><span>5 + = 4 +</span><span></span></div>
+      <div class="mini-eq"><span>3 + 3 = 1 +</span><span></span></div>`;
+  }
+
+  if (activity === 'symmetry') {
+    return `<svg class="mini-symmetry" viewBox="0 0 120 100" fill="none"><path d="M60 84 C34 62 26 42 40 32 C52 24 60 34 60 44" stroke="currentColor" stroke-width="2.5" fill="rgba(31,42,68,.06)"/><line x1="60" y1="12" x2="60" y2="88" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/></svg>`;
+  }
+
+  if (activity === 'measure') {
+    return `<div class="mini-measure"><span style="width:82%"></span></div><div class="mini-measure"><span style="width:48%"></span></div><div class="mini-measure"><span style="width:66%"></span></div>`;
+  }
+
   const isSubtraction = activity === 'sub10' || activity === 'sub20';
   return `<div class="mini-eq"><span>${isSubtraction ? '9 − 4 =' : '3 + 4 ='}</span><span></span></div>
     <div class="mini-eq"><span>${isSubtraction ? '12 − 6 =' : '7 + 2 ='}</span><span></span></div>
@@ -136,9 +168,12 @@ const libraryState = {};
 
 function filteredSheets(category) {
   const current = libraryState[category];
-  const sheets = catalogFor(category);
-  if (current.filter === 'all') return sheets;
-  return sheets.filter((sheet) => sheet.activity === current.filter);
+  let sheets = catalogFor(category);
+  if (current.group !== 'all') {
+    sheets = sheets.filter((sheet) => ACTIVITY_INFO[sheet.activity].group === current.group);
+  }
+  if (current.filter !== 'all') return sheets.filter((sheet) => sheet.activity === current.filter);
+  return sheets;
 }
 
 function renderLibraryLevel(category) {
@@ -172,12 +207,45 @@ function renderLibraryLevel(category) {
     })),
   ];
 
-  tools.innerHTML = `<div class="filter-chips" role="group" aria-label="Filter ${DIFFICULTIES[category].label} worksheets by skill">
-    ${filterButtons.map((filter) => {
-      const active = current.filter === filter.key;
+  const groups = ACTIVITY_GROUPS
+    .map((group) => ({ group, count: all.filter((sheet) => ACTIVITY_INFO[sheet.activity].group === group).length }))
+    .filter((group) => group.count > 0);
+
+  if (current.group !== 'all' && !groups.some((group) => group.group === current.group)) {
+    current.group = 'all';
+  }
+
+  const groupActivities = current.group === 'all'
+    ? activitiesFor(category)
+    : activitiesFor(category).filter((activity) => ACTIVITY_INFO[activity].group === current.group);
+
+  if (current.filter !== 'all' && !groupActivities.includes(current.filter)) {
+    current.filter = 'all';
+  }
+
+  tools.innerHTML = `<div class="filter-chips filter-chips--groups" role="group" aria-label="Filter ${DIFFICULTIES[category].label} worksheets by skill group">
+    <button class="filter-chip${current.group === 'all' ? ' is-active' : ''}" type="button"
+      data-filter-category="${category}" data-group-filter="all" aria-pressed="${current.group === 'all'}">
+      All areas <span>${all.length}</span>
+    </button>
+    ${groups.map((group) => {
+      const active = current.group === group.group;
       return `<button class="filter-chip${active ? ' is-active' : ''}" type="button"
-        data-filter-category="${category}" data-filter="${filter.key}" aria-pressed="${active}">
-        ${escapeHtml(filter.label)} <span>${filter.count}</span>
+        data-filter-category="${category}" data-group-filter="${group.group}" aria-pressed="${active}">
+        ${escapeHtml(group.group)} <span>${group.count}</span>
+      </button>`;
+    }).join('')}
+  </div>
+  <div class="filter-chips" role="group" aria-label="Filter ${DIFFICULTIES[category].label} worksheets by activity">
+    <button class="filter-chip filter-chip--sub${current.filter === 'all' ? ' is-active' : ''}" type="button"
+      data-filter-category="${category}" data-filter="all" aria-pressed="${current.filter === 'all'}">
+      All skills <span>${groupActivities.length ? all.filter((sheet) => ACTIVITY_INFO[sheet.activity].group === (current.group === 'all' ? ACTIVITY_INFO[sheet.activity].group : current.group)).length : 0}</span>
+    </button>
+    ${groupActivities.map((activity) => {
+      const active = current.filter === activity;
+      return `<button class="filter-chip filter-chip--sub${active ? ' is-active' : ''}" type="button"
+        data-filter-category="${category}" data-filter="${activity}" aria-pressed="${active}">
+        ${escapeHtml(ACTIVITY_INFO[activity].short)} <span>${all.filter((sheet) => sheet.activity === activity).length}</span>
       </button>`;
     }).join('')}
   </div>
@@ -196,7 +264,7 @@ function renderLibraryLevel(category) {
 
 function renderLibrary() {
   LEVELS.forEach((category) => {
-    libraryState[category] = { filter: 'all', visible: PAGE_SIZE };
+    libraryState[category] = { filter: 'all', group: 'all', visible: PAGE_SIZE };
     renderLibraryLevel(category);
   });
 }
@@ -207,6 +275,18 @@ function renderLibrary() {
 
 function bindEvents() {
   document.addEventListener('click', (event) => {
+    const groupFilter = event.target.closest('[data-group-filter]');
+    if (groupFilter) {
+      const category = groupFilter.dataset.filterCategory;
+      if (libraryState[category]) {
+        libraryState[category].group = groupFilter.dataset.groupFilter;
+        libraryState[category].filter = 'all';
+        libraryState[category].visible = PAGE_SIZE;
+        renderLibraryLevel(category);
+      }
+      return;
+    }
+
     const filter = event.target.closest('[data-filter]');
     if (filter) {
       const category = filter.dataset.filterCategory;

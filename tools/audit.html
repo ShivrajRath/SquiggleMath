@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SquiggleMath A4 fit audit</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../generator.css">
+  <link rel="stylesheet" href="../worksheet-ages.css">
+  <script src="../engine.js"></script>
+</head>
+<body>
+  <div id="stage" style="width:794px"></div>
+  <pre id="out" style="font:12px/1.4 monospace"></pre>
+  <script>
+  (function () {
+    try {
+    const SM = window.SquiggleMath;
+    const levels = ['prek', 'k', 'g1'];
+    const themes = ['dinos', 'space', 'ocean'];
+    const results = [];
+    const stage = document.getElementById('stage');
+
+    levels.forEach((level) => {
+      const band = SM.DIFFICULTIES[level];
+      const activities = SM.generatorActivitiesFor(level);
+      const counts = [band.defaultProblems, band.maxProblems];
+      activities.forEach((activity) => {
+        counts.forEach((problems) => {
+          themes.forEach((theme) => {
+            const sheet = SM.buildWorksheet({
+              difficulty: level,
+              activity,
+              theme,
+              problems,
+              seed: 12345 + problems,
+              includeKey: false,
+            });
+            stage.innerHTML = sheet.html;
+            SM.addThinkingSpace(stage);
+            const worksheet = stage.querySelector('.worksheet');
+            const body = stage.querySelector('.ws-body');
+            const h = Math.ceil(worksheet.getBoundingClientRect().height);
+            const bodyOverflow = Math.max(0, body.scrollHeight - body.clientHeight);
+            const items = body.querySelectorAll(
+              '.count-card,.shape-card,.compare-card,.pattern-row,.trace-row,.problem,.card,' +
+              '.bond-card,.tally-card,.word-problem,.tenframe-card,.dice-card,.picture-eq,' +
+              '.beforeafter-card,.sequence-row,.greater-card,.place-card,.ordinal-card,' +
+              '.numberline-card,.numberword-card,.place100-card,.evenodd-card,.fraction-card,' +
+              '.clock-card,.money-card,.factfamily-card,.vertical-problem,.array-card,.graph-card,' +
+              '.round-card,.solid-card,.prewrite-row,.colour-card,.samediff-row,.position-card,' +
+              '.hunt-card,.dot-card,.sortbin-wrap,.maketen-card,.teen-card,.measure-card,' +
+              '.symmetry-card,.counton-card,.order-row,.balance-card,.unitmeasure-card,' +
+              '.fractionset-card,.moreless-card'
+            ).length;
+            results.push({
+              level,
+              activity,
+              theme,
+              problems,
+              h,
+              bodyOverflow,
+              items,
+              ok: h <= 1124 && bodyOverflow === 0,
+            });
+          });
+        });
+      });
+    });
+
+    const failures = results.filter((r) => !r.ok);
+    const tallest = results.slice().sort((a, b) => b.h - a.h).slice(0, 8);
+    const lines = [];
+    lines.push(`rendered ${results.length} sheets`);
+    lines.push(`failures: ${failures.length}`);
+    failures.forEach((r) => {
+      lines.push(`FAIL ${r.level} ${r.activity} ${r.theme} n=${r.problems} h=${r.h} bodyOverflow=${r.bodyOverflow} items=${r.items}`);
+    });
+    lines.push('--- tallest ---');
+    tallest.forEach((r) => {
+      lines.push(`${r.h}px ${r.level}/${r.activity}/${r.theme} n=${r.problems} items=${r.items}`);
+    });
+    document.getElementById('out').textContent = lines.join('\n');
+    stage.innerHTML = '';
+    } catch (error) {
+      document.getElementById('out').textContent = 'AUDIT ERROR: ' + (error && error.stack ? error.stack : error);
+    }
+  })();
+  </script>
+</body>
+</html>
